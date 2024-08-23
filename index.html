@@ -4,118 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      background-color: #333;
-      width: 250px; /* Increased width */
-      height: 100%;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 5;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav ul li {
-      padding: 1rem;
-      text-align: center;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-
-    .hamburger {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 10;
-      cursor: pointer;
-      font-size: 2rem;
-      transition: opacity 0.3s ease;
-    }
-
-    .hamburger.active nav {
-      transform: translateX(0);
-    }
-
-    .main-content {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
-
-    /* Panel Styles */
-    #message-panel {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 250px; /* Match nav width */
-      height: 100%;
-      background-color: white;
-      border-left: 1px solid #ddd;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 15;
-      overflow: auto;
-      padding: 1rem;
-    }
-
-    #message-panel.active {
-      transform: translateX(0);
-    }
-
-    #message-container {
-      font-size: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    #close-btn {
-      font-size: 1.5rem;
-      color: #333;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -128,16 +17,16 @@
 <nav>
   <ul>
     <li><a href="#home" class="home-link">Home</a></li>
-    <li><a href="#" data-message="We're a Rwanda based breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#" data-message="We offer a wide range of digital solutions to help you grow your business.">Services</a></li>
-    <li><a href="#" data-message="Join our team and become a part of our innovative company.">Careers</a></li>
-    <li><a href="#" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
+    <li><a href="#about" data-message="We're a Rwanda based breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
+    <li><a href="#services" data-message="Discover our wide range of digital services and solutions.">Services</a></li>
+    <li><a href="#careers" data-message="Explore exciting career opportunities with us.">Careers</a></li>
+    <li><a href="#contact" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
   </ul>
 </nav>
 
 <div id="message-panel">
-  <button id="close-btn">X</button>
   <div id="message-container"></div>
+  <button id="close-btn">X</button>
 </div>
 
 <div class="main-content">
@@ -150,59 +39,7 @@
   <p>&copy; 2024 Dellyck. All rights reserved.</p>
 </footer>
 
-<script>
-  // Toggle hamburger menu
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
-  const messagePanel = document.getElementById('message-panel');
-  const messageContainer = document.getElementById('message-container');
-  const closeBtn = document.getElementById('close-btn');
-  const navLinks = document.querySelectorAll('nav ul li a');
-  const homeLink = document.querySelector('.home-link');
-
-  // Track if the hamburger menu is currently open
-  let isMenuOpen = false;
-
-  hamburger.addEventListener('click', () => {
-    if (isMenuOpen) {
-      nav.style.transform = 'translateX(100%)';
-      hamburger.style.opacity = '1';
-      isMenuOpen = false;
-    } else {
-      nav.style.transform = 'translateX(0)';
-      hamburger.style.opacity = '0';
-      isMenuOpen = true;
-    }
-  });
-
-  // Show message panel
-  navLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-      if (event.target.classList.contains('home-link')) {
-        window.location.href = 'https://kareck1.github.io/Dellyck/'; // Redirect to the specified home page
-        return; // Allow default behavior for the Home link
-      }
-
-      event.preventDefault(); // Prevent default link behavior
-      const message = link.getAttribute('data-message');
-      messageContainer.textContent = message;
-      messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
-      hamburger.style.opacity = '0'; // Hide hamburger icon with animation
-      isMenuOpen = false; // Update menu state
-    });
-  });
-
-  // Close message panel
-  closeBtn.addEventListener('click', () => {
-    messagePanel.classList.remove('active');
-    // Use setTimeout to delay reappearance of the hamburger icon for smooth animation
-    setTimeout(() => {
-      hamburger.style.opacity = '1'; // Show hamburger icon with animation
-    }, 300); // Match the delay to the CSS transition time
-    isMenuOpen = false; // Update menu state
-  });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
