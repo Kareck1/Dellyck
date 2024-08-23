@@ -87,8 +87,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 300px; /* Width of the panel */
-      height: 100px; /* Height of the panel */
+      width: 400px; /* Increased width */
+      height: 150px; /* Increased height */
       background-color: #fff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       transform: translateX(-100%);
@@ -158,6 +158,9 @@
   // Toggle hamburger menu
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('nav');
+  const messagePanel = document.getElementById('message-panel');
+  const messageContainer = document.getElementById('message-container');
+  const closeBtn = document.getElementById('close-btn');
 
   hamburger.addEventListener('click', () => {
     nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
@@ -166,20 +169,19 @@
 
   // Show message panel
   const aboutLink = document.querySelector('a[href="#about"]');
-  const messagePanel = document.getElementById('message-panel');
-  const messageContainer = document.getElementById('message-container');
-  const closeBtn = document.getElementById('close-btn');
 
   aboutLink.addEventListener('click', (event) => {
     event.preventDefault(); // Prevent default link behavior
     const message = aboutLink.getAttribute('data-message');
     messageContainer.textContent = message;
     messagePanel.classList.add('active');
+    hamburger.style.display = 'none'; // Hide hamburger icon
   });
 
   // Close message panel
   closeBtn.addEventListener('click', () => {
     messagePanel.classList.remove('active');
+    hamburger.style.display = 'block'; // Show hamburger icon
   });
 </script>
 
