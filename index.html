@@ -87,7 +87,7 @@
       top: 0;
       left: 0;
       width: 300px; /* Adjusted width */
-      height: 200px; /* Adjusted height */
+      height: 400px; /* Increased height */
       background-color: #fff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       transform: translateX(-100%);
@@ -129,11 +129,11 @@
 
 <nav>
   <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about" class="nav-link" data-message="We're a Rwanda based breaking down barriers between people and technology to create a seamless digital experience">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#careers">Careers</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#home" class="nav-link home-link">Home</a></li>
+    <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
+    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
+    <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
+    <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
   </ul>
 </nav>
 
@@ -160,6 +160,7 @@
   const messagePanel = document.getElementById('message-panel');
   const messageContainer = document.getElementById('message-container');
   const closeBtn = document.getElementById('close-btn');
+  const homeLink = document.querySelector('.home-link');
 
   hamburger.addEventListener('click', () => {
     nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
@@ -167,14 +168,20 @@
   });
 
   // Show message panel
-  const aboutLink = document.querySelector('a[href="#about"]');
+  const navLinks = document.querySelectorAll('.nav-link');
 
-  aboutLink.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default link behavior
-    const message = aboutLink.getAttribute('data-message');
-    messageContainer.textContent = message;
-    messagePanel.classList.add('active');
-    hamburger.style.display = 'none'; // Hide hamburger icon
+  navLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+      if (event.target.classList.contains('home-link')) {
+        return; // Allow default navigation for Home link
+      }
+
+      event.preventDefault(); // Prevent default link behavior
+      const message = link.getAttribute('data-message');
+      messageContainer.textContent = message;
+      messagePanel.classList.add('active');
+      hamburger.style.display = 'none'; // Hide hamburger icon
+    });
   });
 
   // Close message panel
