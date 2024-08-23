@@ -29,7 +29,7 @@
       top: 0;
       right: 0;
       background-color: #333;
-      width: 200px;
+      width: 250px; /* Increased width */
       height: 100%;
       transform: translateX(100%);
       transition: transform 0.3s ease;
@@ -60,7 +60,7 @@
       z-index: 10;
       cursor: pointer;
       font-size: 2rem;
-      transition: opacity 0.3s ease; /* Add transition for visibility */
+      transition: opacity 0.3s ease;
     }
 
     .hamburger.active nav {
@@ -82,41 +82,38 @@
       bottom: 0;
     }
 
-    /* Sliding panel styles */
+    /* Panel Styles */
     #message-panel {
       position: fixed;
       top: 0;
-      left: 0;
-      width: 300px;
-      height: 400px;
-      background-color: #fff;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      transform: translateX(-100%);
+      right: 0;
+      width: 250px; /* Match nav width */
+      height: 100%;
+      background-color: white;
+      border-left: 1px solid #ddd;
+      transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 15;
+      overflow: auto;
       padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
 
     #message-panel.active {
       transform: translateX(0);
     }
 
-    #close-btn {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      font-size: 1.5rem;
-      cursor: pointer;
+    #message-container {
+      font-size: 1.2rem;
+      margin-top: 2rem;
     }
 
-    #message-container {
-      padding: 1rem;
-      font-size: 1rem;
-      text-align: center;
+    #close-btn {
+      font-size: 1.5rem;
+      color: #333;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
     }
   </style>
 </head>
@@ -130,13 +127,18 @@
 
 <nav>
   <ul>
-    <li><a href="#home" class="nav-link home-link">Home</a></li>
-    <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
-    <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
-    <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
+    <li><a href="#home" class="home-link">Home</a></li>
+    <li><a href="#" data-message="We're a Rwanda based breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
+    <li><a href="#" data-message="We offer a wide range of digital solutions to help you grow your business.">Services</a></li>
+    <li><a href="#" data-message="Join our team and become a part of our innovative company.">Careers</a></li>
+    <li><a href="#" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
   </ul>
 </nav>
+
+<div id="message-panel">
+  <button id="close-btn">X</button>
+  <div id="message-container"></div>
+</div>
 
 <div class="main-content">
   <h1>Welcome to Dellyck</h1>
@@ -148,65 +150,57 @@
   <p>&copy; 2024 Dellyck. All rights reserved.</p>
 </footer>
 
-<!-- Sliding Panel -->
-<div id="message-panel">
-  <span id="close-btn">&times;</span>
-  <div id="message-container"></div>
-</div>
-
 <script>
-// Toggle hamburger menu
-const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('nav');
-const messagePanel = document.getElementById('message-panel');
-const messageContainer = document.getElementById('message-container');
-const closeBtn = document.getElementById('close-btn');
-const navLinks = document.querySelectorAll('.nav-link');
-const homeLink = document.querySelector('.home-link');
+  // Toggle hamburger menu
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  const messagePanel = document.getElementById('message-panel');
+  const messageContainer = document.getElementById('message-container');
+  const closeBtn = document.getElementById('close-btn');
+  const navLinks = document.querySelectorAll('nav ul li a');
+  const homeLink = document.querySelector('.home-link');
 
-// Track if the hamburger menu is currently open
-let isMenuOpen = false;
+  // Track if the hamburger menu is currently open
+  let isMenuOpen = false;
 
-hamburger.addEventListener('click', () => {
-  if (isMenuOpen) {
-    nav.style.transform = 'translateX(100%)';
-    hamburger.style.opacity = '1';
-    isMenuOpen = false;
-  } else {
-    nav.style.transform = 'translateX(0)';
-    hamburger.style.opacity = '0';
-    isMenuOpen = true;
-  }
-});
-
-// Show message panel
-navLinks.forEach(link => {
-  link.addEventListener('click', (event) => {
-    if (event.target.classList.contains('home-link')) {
-      window.location.href = 'https://kareck1.github.io/Dellyck/'; // Redirect to the specified home page
-      return; // Allow default behavior for the Home link
+  hamburger.addEventListener('click', () => {
+    if (isMenuOpen) {
+      nav.style.transform = 'translateX(100%)';
+      hamburger.style.opacity = '1';
+      isMenuOpen = false;
+    } else {
+      nav.style.transform = 'translateX(0)';
+      hamburger.style.opacity = '0';
+      isMenuOpen = true;
     }
-
-    event.preventDefault(); // Prevent default link behavior
-    const message = link.getAttribute('data-message');
-    messageContainer.textContent = message;
-    messagePanel.classList.add('active');
-    nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
-    hamburger.style.opacity = '0'; // Hide hamburger icon with animation
-    isMenuOpen = false; // Update menu state
   });
-});
 
-// Close message panel
-closeBtn.addEventListener('click', () => {
-  messagePanel.classList.remove('active');
-  // Use setTimeout to delay reappearance of the hamburger icon for smooth animation
-  setTimeout(() => {
-    hamburger.style.opacity = '1'; // Show hamburger icon with animation
-  }, 300); // Match the delay to the CSS transition time
-  isMenuOpen = false; // Update menu state
-});
+  // Show message panel
+  navLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+      if (event.target.classList.contains('home-link')) {
+        window.location.href = 'https://kareck1.github.io/Dellyck/'; // Redirect to the specified home page
+        return; // Allow default behavior for the Home link
+      }
 
+      event.preventDefault(); // Prevent default link behavior
+      const message = link.getAttribute('data-message');
+      messageContainer.textContent = message;
+      messagePanel.classList.add('active');
+      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
+      hamburger.style.opacity = '0'; // Hide hamburger icon with animation
+      isMenuOpen = false; // Update menu state
+    });
+  });
+
+  // Close message panel
+  closeBtn.addEventListener('click', () => {
+    messagePanel.classList.remove('active');
+    // Use setTimeout to delay reappearance of the hamburger icon for smooth animation
+    setTimeout(() => {
+      hamburger.style.opacity = '1'; // Show hamburger icon with animation
+    }, 300); // Match the delay to the CSS transition time
+    isMenuOpen = false; // Update menu state
   });
 </script>
 
