@@ -1,4 +1,3 @@
-/* General Styling */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -18,15 +17,14 @@ header {
   font-weight: bold;
 }
 
-/* Navigation Styling */
 nav {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0; /* Change to left */
   background-color: #333;
-  width: 200px;
+  width: 250px; /* Increased width */
   height: 100%;
-  transform: translateX(100%);
+  transform: translateX(-100%); /* Open from the left */
   transition: transform 0.3s ease;
   z-index: 5;
 }
@@ -48,37 +46,53 @@ nav ul li a {
   font-size: 1.2rem;
 }
 
-/* Hamburger Icon */
 .hamburger {
   position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 10;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.5rem; /* Smaller icon */
 }
 
-.hamburger.active nav {
+.message-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Match width of the nav */
+  height: 100%;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateX(-100%); /* Hidden initially */
+  transition: transform 0.3s ease;
+  z-index: 15;
+}
+
+.message-panel.active {
   transform: translateX(0);
 }
 
-/* Main Content Styling */
+#message-container {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+#close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: red;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
 .main-content {
   padding: 2rem;
   text-align: center;
 }
 
-h1 {
-  color: #333;
-  font-size: 2.5rem;
-}
-
-p {
-  color: #666;
-  font-size: 1.2rem;
-}
-
-/* Footer Styling */
 footer {
   background-color: #333;
   color: white;
@@ -87,4 +101,8 @@ footer {
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+
+.bold-text {
+  font-weight: bold;
 }
