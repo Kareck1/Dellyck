@@ -80,6 +80,15 @@
       width: 100%;
       bottom: 0;
     }
+
+    #message-container {
+      padding: 20px;
+      font-size: 16px;
+      color: #333;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -93,7 +102,7 @@
 <nav>
   <ul>
     <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#about" class="nav-link" data-message="We're a Rwanda based breaking down barriers between people and technology to create a seamless digital experience">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#careers">Careers</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -103,9 +112,8 @@
 <div class="main-content">
   <h1>Welcome to Dellyck</h1>
   <p class="bold-text">Your solution for innovative digital experiences.</p>
-
   <p>Welcome to Dellyck where innovation meets convenience.</p>
-
+  <div id="message-container"></div>
 </div>
 
 <footer>
@@ -113,11 +121,22 @@
 </footer>
 
 <script>
+  // Toggle hamburger menu
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('nav');
 
   hamburger.addEventListener('click', () => {
     nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+  });
+
+  // Display message on About link click
+  const aboutLink = document.querySelector('a[href="#about"]');
+  const messageContainer = document.getElementById('message-container');
+
+  aboutLink.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default link behavior
+    const message = aboutLink.getAttribute('data-message');
+    messageContainer.textContent = message;
   });
 </script>
 
