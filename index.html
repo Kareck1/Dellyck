@@ -51,6 +51,7 @@
       color: white;
       text-decoration: none;
       font-size: 1.2rem;
+      position: relative;
     }
 
     .hamburger {
@@ -86,14 +87,18 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 300px; /* Width of the panel */
+      height: 100px; /* Height of the panel */
       background-color: #fff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       transform: translateX(-100%);
       transition: transform 0.3s ease;
       z-index: 15;
-      padding: 2rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     #message-panel.active {
@@ -102,15 +107,16 @@
 
     #close-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: 0.5rem;
+      right: 0.5rem;
       font-size: 1.5rem;
       cursor: pointer;
     }
 
     #message-container {
       padding: 1rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
+      text-align: center;
     }
   </style>
 </head>
