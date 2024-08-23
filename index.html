@@ -86,8 +86,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 300px; /* Adjusted width */
-      height: 400px; /* Increased height */
+      width: 300px;
+      height: 400px;
       background-color: #fff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       transform: translateX(-100%);
@@ -160,6 +160,7 @@
   const messagePanel = document.getElementById('message-panel');
   const messageContainer = document.getElementById('message-container');
   const closeBtn = document.getElementById('close-btn');
+  const navLinks = document.querySelectorAll('.nav-link');
   const homeLink = document.querySelector('.home-link');
 
   hamburger.addEventListener('click', () => {
@@ -168,18 +169,18 @@
   });
 
   // Show message panel
-  const navLinks = document.querySelectorAll('.nav-link');
-
   navLinks.forEach(link => {
     link.addEventListener('click', (event) => {
       if (event.target.classList.contains('home-link')) {
-        return; // Allow default navigation for Home link
+        window.location.href = '/'; // Refresh and go to the home page
+        return; // Allow default behavior for the Home link
       }
 
       event.preventDefault(); // Prevent default link behavior
       const message = link.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
+      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
       hamburger.style.display = 'none'; // Hide hamburger icon
     });
   });
