@@ -25,9 +25,9 @@ header {
 }
 
 .logo img {
-  width: 40px; /* Adjusted logo size to ensure it is not too large */
+  width: 30px; /* Adjusted logo size to ensure it is not too large */
   height: auto;
-  max-width: 100%; /* Prevents image from stretching */
+  max-width: 80%; /* Prevents image from stretching */
   cursor: pointer;
 }
 
