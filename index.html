@@ -148,7 +148,7 @@
 
 <nav>
      <ul>
-    <li><a href="https://kareck1.github.io/Dellyck/#home" class="nav-link home-link">Home</a></li>
+    <li><a href="#home" class="nav-link home-link">Home</a></li>
     <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
     <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
     <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
@@ -183,29 +183,35 @@
   const homeLink = document.querySelector('.home-link');
 
   hamburger.addEventListener('click', () => {
-  nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
-  hamburger.classList.toggle('active');
-});
-
-// Show message panel for all links except the Home link
-navLinks.forEach(link => {
-  link.addEventListener('click', (event) => {
-    if (event.target.classList.contains('home-link')) {
-      // Allow default behavior for Home link to work
-      return;
-    }
-
-    event.preventDefault(); // Prevent default link behavior for other links
-    const message = link.getAttribute('data-message');
-    messageContainer.textContent = message;
-    messagePanel.classList.add('active');
-    nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
-    hamburger.style.display = 'none'; // Hide hamburger icon
+    nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+    hamburger.classList.toggle('active');
   });
-});
 
-// Close message panel
-closeBtn.addEventListener('click', () => {
-  messagePanel.classList.remove('active');
-  hamburger.style.display = 'block'; // Show hamburger icon
-});
+  // Show message panel
+  navLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+      if (event.target.classList.contains('home-link')) {
+        window.location.href = '/'; // Refresh and go to the home page
+        return; // Allow default behavior for the Home link
+      }
+
+      event.preventDefault(); // Prevent default link behavior
+      const message = link.getAttribute('data-message');
+      messageContainer.textContent = message;
+      messagePanel.classList.add('active');
+      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
+      hamburger.style.display = 'none'; // Hide hamburger icon
+    });
+  });
+
+  // Close message panel
+  closeBtn.addEventListener('click', () => {
+    messagePanel.classList.remove('active');
+    hamburger.style.display = 'block'; // Show hamburger icon
+  });
+</script>
+
+</body>
+</html>
+
+That is.my script now , can you add that in the humberger icon, the home button clicked should go to that link as home 
