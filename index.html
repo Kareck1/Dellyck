@@ -9,22 +9,23 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      background-color: #fff; /* Changed background color to white */
     }
 
     header {
-      background-color: #333;
-      color: white;
+      background-color: #fff; /* Changed header background to white */
+      color: #333; /* Changed text color for contrast */
       padding: 1rem;
       text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
+      border-bottom: 1px solid #ddd; /* Optional: Adds a subtle border for separation */
     }
 
     .logo img {
-      width: 50px; /* Adjust the size */
+      width: 30px; /* Adjusted logo size */
       height: auto;
       cursor: pointer;
     }
@@ -33,12 +34,13 @@
       position: fixed;
       top: 0;
       right: 0;
-      background-color: #333;
+      background-color: #fff; /* Changed nav background to white */
       width: 200px;
       height: 100%;
       transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 5;
+      border-left: 1px solid #ddd; /* Optional: Adds a subtle border for separation */
     }
 
     nav ul {
@@ -53,21 +55,21 @@
     }
 
     nav ul li a {
-      color: white;
+      color: #333; /* Changed link color for contrast */
       text-decoration: none;
       font-size: 1.2rem;
       transition: background-color 0.3s ease;
     }
 
     nav ul li a:hover {
-      background-color: #555;
+      background-color: #eee; /* Adjusted hover background color */
       border-radius: 5px;
     }
 
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 1rem;
+      right: 0.5rem; /* Adjusted position to shift slightly left */
       z-index: 10;
       cursor: pointer;
       font-size: 1.5rem;
@@ -76,7 +78,7 @@
     }
 
     .hamburger.active {
-      background-color: #555;
+      background-color: #eee; /* Adjusted active background color */
       border-radius: 5px;
     }
 
@@ -86,13 +88,14 @@
     }
 
     footer {
-      background-color: #333;
-      color: white;
+      background-color: #fff; /* Changed footer background to white */
+      color: #333; /* Changed text color for contrast */
       text-align: center;
       padding: 1rem;
       position: fixed;
       width: 100%;
       bottom: 0;
+      border-top: 1px solid #ddd; /* Optional: Adds a subtle border for separation */
     }
 
     /* Sliding panel styles */
@@ -102,7 +105,7 @@
       left: 0;
       width: 300px;
       height: 400px;
-      background-color: #fff;
+      background-color: #fff; /* Changed panel background to white */
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       border-radius: 0 10px 10px 0;
       transform: translateX(-100%);
