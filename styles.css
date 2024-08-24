@@ -17,7 +17,7 @@ header {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 0.5rem;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -25,8 +25,8 @@ header {
 }
 
 .logo img {
-  width: 10px; /* Adjusted logo size to ensure it is not too large */
-  height: 50;
+  width: 20px; /* Adjusted logo size to ensure it is not too large */
+  height: auto;
   max-width: 50%; /* Prevents image from stretching */
   cursor: pointer;
 }
