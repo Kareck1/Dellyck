@@ -20,15 +20,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: fixed; /* Makes the header fixed */
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000; /* Ensures the header is always on top */
+      position: relative;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
       margin-left: 10px;
       display: flex;
@@ -36,7 +32,7 @@
     }
 
     .logo img {
-      width: 35px; /* Adjusted size to be slightly smaller */
+      width: 40px; /* Adjusted logo size */
       height: auto;
       cursor: pointer;
     }
@@ -93,7 +89,7 @@
     }
 
     .main-content {
-      padding: 5rem 2rem 2rem; /* Adjusted to ensure content is not hidden behind header */
+      padding: 2rem;
       text-align: center;
     }
 
