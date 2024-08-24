@@ -17,11 +17,20 @@
       color: white;
       padding: 1rem;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .logo {
       font-size: 2rem;
       font-weight: bold;
+    }
+
+    .logo img {
+      max-width: 150px; /* Adjust size as needed */
+      height: auto;
+      margin-right: 15px;
     }
 
     nav {
@@ -62,10 +71,10 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 1rem; /* Adjusted for right alignment */
+      right: 1rem;
       z-index: 10;
       cursor: pointer;
-      font-size: 1.5rem; /* Smaller size */
+      font-size: 1.5rem;
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
@@ -108,7 +117,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 1.1rem; /* Increased font size */
+      font-size: 1.1rem;
     }
 
     #message-panel.active {
@@ -141,7 +150,10 @@
 <body>
 
 <header>
-  <div class="logo">Dellyck</div>
+  <div class="logo">
+    <img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo">
+    Dellyck
+  </div>
 </header>
 
 <div class="hamburger">☰</div>
@@ -190,15 +202,15 @@
     // Function to handle navigation link clicks
     const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
-        window.location.href = 'https://kareck1.github.io/Dellyck/'; // Corrected Home link behavior
-        return; // Allow default behavior for the Home link
+        window.location.href = 'https://kareck1.github.io/Dellyck/';
+        return;
       }
 
-      event.preventDefault(); // Prevent default link behavior
+      event.preventDefault();
       const message = event.target.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
+      nav.style.transform = 'translateX(100%)';
     };
 
     // Toggle hamburger menu on click
@@ -210,8 +222,8 @@
     // Close message panel
     closeBtn.addEventListener('click', () => {
       messagePanel.classList.remove('active');
-      nav.style.transform = 'translateX(0)'; // Ensure the nav is visible
-      hamburger.classList.add('active'); // Show hamburger icon
+      nav.style.transform = 'translateX(0)';
+      hamburger.classList.add('active');
     });
   });
 </script>
