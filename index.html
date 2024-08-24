@@ -27,11 +27,11 @@
     nav {
       position: fixed;
       top: 0;
-      left: 0; /* Changed from right to left */
+      right: 0;
       background-color: #333;
       width: 200px;
       height: 100%;
-      transform: translateX(-100%); /* Changed from translateX(100%) to translateX(-100%) */
+      transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 5;
     }
@@ -62,10 +62,10 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 1rem; /* Moved to the right */
+      right: 1rem; /* Adjusted for right alignment */
       z-index: 10;
       cursor: pointer;
-      font-size: 1.5rem; /* Made smaller */
+      font-size: 1.5rem; /* Smaller size */
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
@@ -94,13 +94,13 @@
     #message-panel {
       position: fixed;
       top: 0;
-      right: 0; /* Changed from left to right */
+      left: 0;
       width: 300px;
       height: 400px;
       background-color: #fff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      border-radius: 10px 0 0 10px; /* Adjusted border radius */
-      transform: translateX(100%); /* Changed from translateX(-100%) to translateX(100%) */
+      border-radius: 0 10px 10px 0;
+      transform: translateX(-100%);
       transition: transform 0.3s ease;
       z-index: 15;
       padding: 1rem;
@@ -118,7 +118,7 @@
     #close-btn {
       position: absolute;
       top: 0.5rem;
-      left: 0.5rem; /* Changed from right to left */
+      right: 0.5rem;
       font-size: 1.5rem;
       cursor: pointer;
       background-color: #f4f4f4;
@@ -173,40 +173,46 @@
 </div>
 
 <script>
-  // Toggle hamburger menu
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
-  const messagePanel = document.getElementById('message-panel');
-  const messageContainer = document.getElementById('message-container');
-  const closeBtn = document.getElementById('close-btn');
-  const navLinks = document.querySelectorAll('.nav-link');
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+    const messagePanel = document.getElementById('message-panel');
+    const messageContainer = document.getElementById('message-container');
+    const closeBtn = document.getElementById('close-btn');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-  hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(-100%)' ? 'translateX(0)' : 'translateX(-100%)';
-    hamburger.classList.toggle('active');
-  });
+    // Function to toggle hamburger menu
+    const toggleHamburgerMenu = () => {
+      nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+      hamburger.classList.toggle('active');
+    };
 
-  // Show message panel
-  navLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
+    // Function to handle navigation link clicks
+    const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
         window.location.href = 'https://kareck1.github.io/Dellyck/'; // Corrected Home link behavior
         return; // Allow default behavior for the Home link
       }
 
       event.preventDefault(); // Prevent default link behavior
-      const message = link.getAttribute('data-message');
+      const message = event.target.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(-100%)'; // Close the hamburger menu
+      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
       hamburger.style.display = 'none'; // Hide hamburger icon
-    });
-  });
+    };
 
-  // Close message panel
-  closeBtn.addEventListener('click', () => {
-    messagePanel.classList.remove('active');
-    hamburger.style.display = 'block'; // Show hamburger icon
+    // Toggle hamburger menu on click
+    hamburger.addEventListener('click', toggleHamburgerMenu);
+
+    // Handle navigation link clicks
+    navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
+
+    // Close message panel
+    closeBtn.addEventListener('click', () => {
+      messagePanel.classList.remove('active');
+      hamburger.style.display = 'block'; // Show hamburger icon
+    });
   });
 </script>
 
