@@ -199,7 +199,6 @@
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
       nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
-      hamburger.style.display = 'none'; // Hide hamburger icon
     };
 
     // Toggle hamburger menu on click
@@ -211,7 +210,8 @@
     // Close message panel
     closeBtn.addEventListener('click', () => {
       messagePanel.classList.remove('active');
-      hamburger.style.display = 'block'; // Show hamburger icon
+      nav.style.transform = 'translateX(0)'; // Ensure the nav is visible
+      hamburger.classList.add('active'); // Show hamburger icon
     });
   });
 </script>
