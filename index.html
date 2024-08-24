@@ -187,13 +187,12 @@
   hamburger.classList.toggle('active');
 });
 
-// Show message panel
+// Show message panel for all links except the Home link
 navLinks.forEach(link => {
   link.addEventListener('click', (event) => {
     if (event.target.classList.contains('home-link')) {
-      // For the Home link, navigate to the specified URL
-      window.location.href = 'https://kareck1.github.io/Dellyck/#home';
-      return; // Exit the function, no further action required
+      // Allow default behavior for Home link to work
+      return;
     }
 
     event.preventDefault(); // Prevent default link behavior for other links
