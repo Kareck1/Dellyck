@@ -183,33 +183,30 @@
   const homeLink = document.querySelector('.home-link');
 
   hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
-    hamburger.classList.toggle('active');
+  nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+  hamburger.classList.toggle('active');
+});
+
+// Show message panel
+navLinks.forEach(link => {
+  link.addEventListener('click', (event) => {
+    if (event.target.classList.contains('home-link')) {
+      // For the Home link, navigate to the specified URL
+      window.location.href = 'https://kareck1.github.io/Dellyck/#home';
+      return; // Exit the function, no further action required
+    }
+
+    event.preventDefault(); // Prevent default link behavior for other links
+    const message = link.getAttribute('data-message');
+    messageContainer.textContent = message;
+    messagePanel.classList.add('active');
+    nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
+    hamburger.style.display = 'none'; // Hide hamburger icon
   });
+});
 
-  // Show message panel
-  navLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-      if (event.target.classList.contains('home-link')) {
-        window.location.href = '/'; // Refresh and go to the home page
-        return; // Allow default behavior for the Home link
-      }
-
-      event.preventDefault(); // Prevent default link behavior
-      const message = link.getAttribute('data-message');
-      messageContainer.textContent = message;
-      messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
-      hamburger.style.display = 'none'; // Hide hamburger icon
-    });
-  });
-
-  // Close message panel
-  closeBtn.addEventListener('click', () => {
-    messagePanel.classList.remove('active');
-    hamburger.style.display = 'block'; // Show hamburger icon
-  });
-</script>
-
-</body>
-</html>
+// Close message panel
+closeBtn.addEventListener('click', () => {
+  messagePanel.classList.remove('active');
+  hamburger.style.display = 'block'; // Show hamburger icon
+});
