@@ -18,19 +18,21 @@
       padding: 1rem;
       text-align: center;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     .logo {
       font-size: 2rem;
       font-weight: bold;
+      margin-left: 10px;
     }
 
     .logo img {
-      max-width: 150px; /* Adjust size as needed */
+      width: 50px; /* Adjust the size */
       height: auto;
-      margin-right: 15px;
+      cursor: pointer;
     }
 
     nav {
@@ -150,10 +152,8 @@
 <body>
 
 <header>
-  <div class="logo">
-    <img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo">
-    Dellyck
-  </div>
+  <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo" class="logo-image"></a>
+  <div class="logo">Dellyck</div>
 </header>
 
 <div class="hamburger">☰</div>
@@ -202,15 +202,15 @@
     // Function to handle navigation link clicks
     const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
-        window.location.href = 'https://kareck1.github.io/Dellyck/';
-        return;
+        window.location.href = 'https://kareck1.github.io/Dellyck/'; 
+        return; 
       }
 
-      event.preventDefault();
+      event.preventDefault(); 
       const message = event.target.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)';
+      nav.style.transform = 'translateX(100%)'; 
     };
 
     // Toggle hamburger menu on click
