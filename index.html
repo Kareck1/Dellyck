@@ -23,23 +23,22 @@
     .logo {
       display: flex;
       align-items: center;
-      justify-content: center;
       position: absolute;
       left: 1rem; /* Adjust the distance from the left edge */
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.5rem; /* Adjusted to be smaller */
-      font-weight: bold;
     }
 
     .logo img {
-      width: 40px; /* Adjust the logo size */
+      width: 60px; /* Adjust the logo size */
       height: auto;
       margin-right: 0.5rem; /* Space between logo and text */
     }
 
     .logo-text {
-      font-size: 1.5rem; /* Match the text size with the logo size */
+      font-size: 2rem; /* Adjusted text size to match logo */
+      font-weight: bold;
+      color: white;
     }
 
     nav {
@@ -80,10 +79,10 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 1rem; /* Adjusted for right alignment */
+      right: 1rem;
       z-index: 10;
       cursor: pointer;
-      font-size: 1.5rem; /* Smaller size */
+      font-size: 1.5rem;
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
@@ -108,7 +107,6 @@
       bottom: 0;
     }
 
-    /* Sliding panel styles */
     #message-panel {
       position: fixed;
       top: 0;
@@ -126,7 +124,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 1.1rem; /* Increased font size */
+      font-size: 1.1rem;
     }
 
     #message-panel.active {
