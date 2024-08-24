@@ -17,15 +17,6 @@
       color: white;
       padding: 1rem;
       text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .logo-img {
-      width: 50px; /* Adjust as needed */
-      height: auto;
-      margin-right: 10px; /* Space between logo and text */
     }
 
     .logo {
@@ -150,17 +141,14 @@
 <body>
 
 <header>
-  <a href="#">
-    <img src="logo.png" alt="Dellyck Logo" class="logo-img" />
-  </a>
   <div class="logo">Dellyck</div>
 </header>
 
 <div class="hamburger">☰</div>
 
 <nav>
-     <ul>
-    <li><a href="#home" class="nav-link home-link">Home</a></li>
+  <ul>
+    <li><a href="https://kareck1.github.io/Dellyck/" class="nav-link home-link">Home</a></li>
     <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
     <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
     <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
@@ -203,7 +191,7 @@
   navLinks.forEach(link => {
     link.addEventListener('click', (event) => {
       if (event.target.classList.contains('home-link')) {
-        window.location.href = '/'; // Refresh and go to the home page
+        window.location.href = 'https://kareck1.github.io/Dellyck/'; // Corrected Home link behavior
         return; // Allow default behavior for the Home link
       }
 
