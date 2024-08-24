@@ -27,11 +27,11 @@
     nav {
       position: fixed;
       top: 0;
-      right: 0;
+      left: 0; /* Changed from right to left */
       background-color: #333;
       width: 200px;
       height: 100%;
-      transform: translateX(100%);
+      transform: translateX(-100%); /* Changed from translateX(100%) to translateX(-100%) */
       transition: transform 0.3s ease;
       z-index: 5;
     }
@@ -62,10 +62,10 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      left: 1rem;
+      right: 1rem; /* Moved to the right */
       z-index: 10;
       cursor: pointer;
-      font-size: 2rem;
+      font-size: 1.5rem; /* Made smaller */
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
@@ -94,13 +94,13 @@
     #message-panel {
       position: fixed;
       top: 0;
-      left: 0;
+      right: 0; /* Changed from left to right */
       width: 300px;
       height: 400px;
       background-color: #fff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      border-radius: 0 10px 10px 0;
-      transform: translateX(-100%);
+      border-radius: 10px 0 0 10px; /* Adjusted border radius */
+      transform: translateX(100%); /* Changed from translateX(-100%) to translateX(100%) */
       transition: transform 0.3s ease;
       z-index: 15;
       padding: 1rem;
@@ -118,7 +118,7 @@
     #close-btn {
       position: absolute;
       top: 0.5rem;
-      right: 0.5rem;
+      left: 0.5rem; /* Changed from right to left */
       font-size: 1.5rem;
       cursor: pointer;
       background-color: #f4f4f4;
@@ -182,7 +182,7 @@
   const navLinks = document.querySelectorAll('.nav-link');
 
   hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+    nav.style.transform = nav.style.transform === 'translateX(-100%)' ? 'translateX(0)' : 'translateX(-100%)';
     hamburger.classList.toggle('active');
   });
 
@@ -198,7 +198,7 @@
       const message = link.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
+      nav.style.transform = 'translateX(-100%)'; // Close the hamburger menu
       hamburger.style.display = 'none'; // Hide hamburger icon
     });
   });
