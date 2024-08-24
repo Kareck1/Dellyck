@@ -17,22 +17,29 @@
       color: white;
       padding: 1rem;
       text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      position: relative; /* For positioning the logo and text */
     }
 
     .logo {
-      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 1rem; /* Adjust the distance from the left edge */
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem; /* Adjusted to be smaller */
       font-weight: bold;
-      margin-left: 10px;
     }
 
     .logo img {
-      width: 50px; /* Adjust the size */
+      width: 40px; /* Adjust the logo size */
       height: auto;
-      cursor: pointer;
+      margin-right: 0.5rem; /* Space between logo and text */
+    }
+
+    .logo-text {
+      font-size: 1.5rem; /* Match the text size with the logo size */
     }
 
     nav {
@@ -73,10 +80,10 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 1rem;
+      right: 1rem; /* Adjusted for right alignment */
       z-index: 10;
       cursor: pointer;
-      font-size: 1.5rem;
+      font-size: 1.5rem; /* Smaller size */
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
@@ -119,7 +126,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 1.1rem;
+      font-size: 1.1rem; /* Increased font size */
     }
 
     #message-panel.active {
@@ -152,8 +159,10 @@
 <body>
 
 <header>
-  <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo" class="logo-image"></a>
-  <div class="logo">Dellyck</div>
+  <div class="logo">
+    <img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo">
+    <div class="logo-text">Dellyck</div>
+  </div>
 </header>
 
 <div class="hamburger">☰</div>
@@ -202,15 +211,15 @@
     // Function to handle navigation link clicks
     const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
-        window.location.href = 'https://kareck1.github.io/Dellyck/'; 
-        return; 
+        window.location.href = 'https://kareck1.github.io/Dellyck/'; // Corrected Home link behavior
+        return; // Allow default behavior for the Home link
       }
 
-      event.preventDefault(); 
+      event.preventDefault(); // Prevent default link behavior
       const message = event.target.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)'; 
+      nav.style.transform = 'translateX(100%)'; // Close the hamburger menu
     };
 
     // Toggle hamburger menu on click
@@ -222,8 +231,8 @@
     // Close message panel
     closeBtn.addEventListener('click', () => {
       messagePanel.classList.remove('active');
-      nav.style.transform = 'translateX(0)';
-      hamburger.classList.add('active');
+      nav.style.transform = 'translateX(0)'; // Ensure the nav is visible
+      hamburger.classList.add('active'); // Show hamburger icon
     });
   });
 </script>
