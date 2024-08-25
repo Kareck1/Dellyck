@@ -25,7 +25,7 @@
 
     .logo img {
       width: 20%; /* Use percentage for responsive sizing */
-      max-width: 100px; /* Maximum size */
+      max-width: 120px; /* Increased max-width for better visibility */
       height: auto;
       cursor: pointer;
     }
@@ -68,8 +68,8 @@
 
     .hamburger {
       position: fixed;
-      top: 1rem; /* Adjusted top position */
-      right: 1rem; /* Adjusted right position */
+      top: 1rem;
+      right: 0.5rem; /* Adjusted to prevent horizontal scrolling */
       z-index: 10;
       cursor: pointer;
       font-size: 2rem; /* Increased font size */
@@ -92,9 +92,15 @@
       color: #333;
       text-align: center;
       padding: 1rem;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
+      position: static; /* Static for mobile */
+    }
+
+    @media (min-width: 768px) {
+      footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+      }
     }
 
     /* Sliding panel styles */
@@ -151,8 +157,8 @@
         font-size: 1.8rem;
       }
       .logo img {
-        width: 25%;
-        max-width: 80px;
+        width: 30%; /* Larger size on smaller devices */
+        max-width: 100px;
       }
       nav {
         width: 100%;
@@ -215,11 +221,12 @@
     // Function to handle navigation link clicks
     const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
-        window.location.href = 'https://kareck1.github.io/Dellyck/'; 
-        return; 
+        window.location.href = 'https://kareck1.github.io/Dellyck/';
+        messagePanel.classList.remove('active'); // Close the panel when navigating home
+        return;
       }
 
-      event.preventDefault(); 
+      event.preventDefault();
       const message = event.target.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
@@ -242,4 +249,4 @@
 </script>
 
 </body>
-</html
+</html>
