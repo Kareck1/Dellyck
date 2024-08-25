@@ -224,6 +224,21 @@
       background-color: #0056b3;
     }
 
+    .user-info {
+      display: none;
+      padding: 1rem;
+    }
+
+    .user-info button {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+    }
+
+    .user-info button:hover {
+      background-color: #cc0000;
+    }
+
     @media (max-width: 768px) {
       .hamburger {
         font-size: 1.8rem;
@@ -263,6 +278,10 @@
     <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
     <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
   </ul>
+  <div class="user-info" id="user-info">
+    <span id="username-display"></span>
+    <button onclick="logout()">Logout</button>
+  </div>
 </nav>
 
 <div class="main-content">
@@ -317,6 +336,8 @@
     const messageContainer = document.getElementById('message-container');
     const closeBtn = document.getElementById('close-btn');
     const navLinks = document.querySelectorAll('.nav-link');
+    const userInfo = document.getElementById('user-info');
+    const usernameDisplay = document.getElementById('username-display');
 
     const toggleHamburgerMenu = () => {
       nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
@@ -346,35 +367,76 @@
       nav.style.transform = 'translateX(0)';
       hamburger.classList.add('active');
     });
+
+    // Check if user is logged in
+    const checkLoginStatus = () => {
+      const username = localStorage.getItem('username');
+      if (username) {
+        usernameDisplay.textContent = `Welcome, ${username}`;
+        userInfo.style.display = 'block';
+        document.querySelector('.auth-buttons').style.display = 'none';
+      } else {
+        userInfo.style.display = 'none';
+        document.querySelector('.auth-buttons').style.display = 'flex';
+      }
+    };
+
+    // Call on page load
+    checkLoginStatus();
+
+    window.showCreateAccountForm = () => {
+      document.getElementById('create-account-form').style.display = 'block';
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('message-panel').classList.add('active');
+    };
+
+    window.showLoginForm = () => {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('create-account-form').style.display = 'none';
+      document.getElementById('message-panel').classList.add('active');
+    };
+
+    window.validateCreateAccountForm = () => {
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const terms = document.getElementById('terms').checked;
+
+      if (email && phone && username && password && terms) {
+        localStorage.setItem('username', username);
+        alert('Account created successfully.');
+        document.getElementById('message-panel').classList.remove('active');
+        checkLoginStatus();
+        return false; // Prevent form submission for demo
+      } else {
+        alert('Please fill in all fields and agree to the terms.');
+        return false; // Prevent form submission
+      }
+    };
+
+    window.validateLoginForm = () => {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      if (email && password) {
+        // Simulate successful login
+        alert('Login successful.');
+        document.getElementById('message-panel').classList.remove('active');
+        checkLoginStatus();
+        return false; // Prevent form submission for demo
+      } else {
+        alert('Please fill in all fields.');
+        return false; // Prevent form submission
+      }
+    };
+
+    window.logout = () => {
+      localStorage.removeItem('username');
+      alert('Logged out successfully.');
+      checkLoginStatus();
+    };
   });
-
-  const showCreateAccountForm = () => {
-    document.getElementById('create-account-form').style.display = 'block';
-    document.getElementById('login-form').style.display = 'none';
-    document.getElementById('message-panel').classList.add('active');
-  };
-
-  const showLoginForm = () => {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('create-account-form').style.display = 'none';
-    document.getElementById('message-panel').classList.add('active');
-  };
-
-  const validateCreateAccountForm = () => {
-    // Implement basic form validation here
-    // Add more comprehensive validation as needed
-    alert('Account creation form submitted.');
-    document.getElementById('message-panel').classList.remove('active');
-    return false; // Prevent form submission for demo
-  };
-
-  const validateLoginForm = () => {
-    // Implement basic form validation here
-    // Add more comprehensive validation as needed
-    alert('Login form submitted.');
-    document.getElementById('message-panel').classList.remove('active');
-    return false; // Prevent form submission for demo
-  };
 </script>
 
 </body>
