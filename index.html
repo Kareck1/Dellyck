@@ -154,7 +154,7 @@
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       border-radius: 0 10px 10px 0;
       transform: translateX(-100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.5s ease;
       z-index: 15;
       padding: 1rem;
       display: flex;
@@ -188,6 +188,40 @@
       padding: 1rem;
       font-size: 1rem;
       text-align: center;
+    }
+
+    #create-account-form,
+    #login-form {
+      width: 100%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin: 0.5rem 0;
+    }
+
+    input {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
     }
 
     @media (max-width: 768px) {
@@ -244,35 +278,35 @@
 <!-- Sliding Panel -->
 <div id="message-panel">
   <span id="close-btn">&times;</span>
-  <div id="message-container"></div>
-</div>
+  <div id="message-container">
+    <div id="create-account-form" style="display:none;">
+      <h2>Create Account</h2>
+      <form onsubmit="return validateCreateAccountForm()">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I agree to the terms and conditions</label>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
 
-<!-- Create Account Form -->
-<div id="create-account-form" style="display:none;">
-  <h2>Create Account</h2>
-  <form onsubmit="return validateCreateAccountForm()">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" required><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
-    <input type="checkbox" id="terms" name="terms" required>
-    <label for="terms">I agree to the terms and conditions</label><br><br>
-    <button type="submit">Submit</button>
-  </form>
-</div>
-
-<!-- Login Form -->
-<div id="login-form" style="display:none;">
-  <h2>Login</h2>
-  <form onsubmit="return validateLoginForm()">
-    <label for="login-email">Email:</label>
-    <input type="email" id="login-email" name="email" required><br><br>
-    <label for="login-password">Password:</label>
-    <input type="password" id="login-password" name="password" required><br><br>
-    <button type="submit">Login</button>
-  </form>
+    <div id="login-form" style="display:none;">
+      <h2>Login</h2>
+      <form onsubmit="return validateLoginForm()">
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" name="email" required>
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -317,17 +351,20 @@
   const showCreateAccountForm = () => {
     document.getElementById('create-account-form').style.display = 'block';
     document.getElementById('login-form').style.display = 'none';
+    document.getElementById('message-panel').classList.add('active');
   };
 
   const showLoginForm = () => {
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('create-account-form').style.display = 'none';
+    document.getElementById('message-panel').classList.add('active');
   };
 
   const validateCreateAccountForm = () => {
     // Implement basic form validation here
     // Add more comprehensive validation as needed
     alert('Account creation form submitted.');
+    document.getElementById('message-panel').classList.remove('active');
     return false; // Prevent form submission for demo
   };
 
@@ -335,6 +372,7 @@
     // Implement basic form validation here
     // Add more comprehensive validation as needed
     alert('Login form submitted.');
+    document.getElementById('message-panel').classList.remove('active');
     return false; // Prevent form submission for demo
   };
 </script>
