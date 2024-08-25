@@ -191,7 +191,8 @@
     }
 
     #create-account-form,
-    #login-form {
+    #login-form,
+    #account-info-form {
       width: 100%;
     }
 
@@ -277,6 +278,7 @@
     <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
     <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
     <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
+    <li><a href="#" onclick="showAccountInfoForm()">My Account</a></li>
   </ul>
   <div class="user-info" id="user-info">
     <span id="username-display"></span>
@@ -323,6 +325,21 @@
         <label for="login-password">Password:</label>
         <input type="password" id="login-password" name="password" required>
         <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <div id="account-info-form" style="display:none;">
+      <h2>My Account</h2>
+      <form onsubmit="return updateAccountInfo()">
+        <label for="account-email">Email:</label>
+        <input type="email" id="account-email" name="email" required>
+        <label for="account-phone">Phone Number:</label>
+        <input type="tel" id="account-phone" name="phone" required>
+        <label for="account-username">Username:</label>
+        <input type="text" id="account-username" name="username" required>
+        <label for="account-password">Password:</label>
+        <input type="password" id="account-password" name="password">
+        <button type="submit">Update</button>
       </form>
     </div>
   </div>
@@ -387,13 +404,27 @@
     window.showCreateAccountForm = () => {
       document.getElementById('create-account-form').style.display = 'block';
       document.getElementById('login-form').style.display = 'none';
+      document.getElementById('account-info-form').style.display = 'none';
       document.getElementById('message-panel').classList.add('active');
     };
 
     window.showLoginForm = () => {
       document.getElementById('login-form').style.display = 'block';
       document.getElementById('create-account-form').style.display = 'none';
+      document.getElementById('account-info-form').style.display = 'none';
       document.getElementById('message-panel').classList.add('active');
+    };
+
+    window.showAccountInfoForm = () => {
+      document.getElementById('account-info-form').style.display = 'block';
+      document.getElementById('create-account-form').style.display = 'none';
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('message-panel').classList.add('active');
+
+      // Pre-fill the account info form with the current details
+      document.getElementById('account-email').value = localStorage.getItem('email') || '';
+      document.getElementById('account-phone').value = localStorage.getItem('phone') || '';
+      document.getElementById('account-username').value = localStorage.getItem('username') || '';
     };
 
     window.validateCreateAccountForm = () => {
@@ -405,6 +436,8 @@
 
       if (email && phone && username && password && terms) {
         localStorage.setItem('username', username);
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
         alert('Account created successfully.');
         document.getElementById('message-panel').classList.remove('active');
         checkLoginStatus();
@@ -422,6 +455,30 @@
       if (email && password) {
         // Simulate successful login
         alert('Login successful.');
+        localStorage.setItem('email', email);
+        document.getElementById('message-panel').classList.remove('active');
+        checkLoginStatus();
+        return false; // Prevent form submission for demo
+      } else {
+        alert('Please fill in all fields.');
+        return false; // Prevent form submission
+      }
+    };
+
+    window.updateAccountInfo = () => {
+      const email = document.getElementById('account-email').value;
+      const phone = document.getElementById('account-phone').value;
+      const username = document.getElementById('account-username').value;
+      const password = document.getElementById('account-password').value;
+
+      if (email && phone && username) {
+        localStorage.setItem('email', email);
+        localStorage.setItem('phone', phone);
+        localStorage.setItem('username', username);
+        if (password) {
+          // Simulate password update (not stored in localStorage for demo)
+          alert('Account information updated successfully.');
+        }
         document.getElementById('message-panel').classList.remove('active');
         checkLoginStatus();
         return false; // Prevent form submission for demo
@@ -433,6 +490,8 @@
 
     window.logout = () => {
       localStorage.removeItem('username');
+      localStorage.removeItem('email');
+      localStorage.removeItem('phone');
       alert('Logged out successfully.');
       checkLoginStatus();
     };
