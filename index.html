@@ -192,7 +192,7 @@
 
     #create-account-form,
     #login-form,
-    #account-info-form {
+    #user-info-form {
       width: 100%;
     }
 
@@ -278,7 +278,7 @@
     <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
     <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
     <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
-    <li><a href="#" onclick="showAccountInfoForm()">My Account</a></li>
+    <li><a href="#" class="nav-link" id="my-account-link">My Account</a></li>
   </ul>
   <div class="user-info" id="user-info">
     <span id="username-display"></span>
@@ -328,18 +328,14 @@
       </form>
     </div>
 
-    <div id="account-info-form" style="display:none;">
-      <h2>My Account</h2>
-      <form onsubmit="return updateAccountInfo()">
-        <label for="account-email">Email:</label>
-        <input type="email" id="account-email" name="email" required>
-        <label for="account-phone">Phone Number:</label>
-        <input type="tel" id="account-phone" name="phone" required>
-        <label for="account-username">Username:</label>
-        <input type="text" id="account-username" name="username" required>
-        <label for="account-password">Password:</label>
-        <input type="password" id="account-password" name="password">
-        <button type="submit">Update</button>
+    <div id="user-info-form" style="display:none;">
+      <h2>User Information</h2>
+      <form onsubmit="return validateUserInfoForm()">
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" name="username" value="" required>
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" name="password" value="">
+        <button type="submit">Update Info</button>
       </form>
     </div>
   </div>
@@ -355,6 +351,8 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const userInfo = document.getElementById('user-info');
     const usernameDisplay = document.getElementById('username-display');
+    const myAccountLink = document.getElementById('my-account-link');
+    const userInfoForm = document.getElementById('user-info-form');
 
     const toggleHamburgerMenu = () => {
       nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
@@ -385,46 +383,41 @@
       hamburger.classList.add('active');
     });
 
-    // Check if user is logged in
     const checkLoginStatus = () => {
       const username = localStorage.getItem('username');
       if (username) {
-        usernameDisplay.textContent = 
+        usernameDisplay.textContent = `Welcome, ${username}`;
         userInfo.style.display = 'block';
         document.querySelector('.auth-buttons').style.display = 'none';
+        myAccountLink.textContent = 'My Account';
       } else {
         userInfo.style.display = 'none';
         document.querySelector('.auth-buttons').style.display = 'flex';
+        myAccountLink.textContent = 'Login / Create Account';
       }
     };
 
-    // Call on page load
     checkLoginStatus();
 
     window.showCreateAccountForm = () => {
       document.getElementById('create-account-form').style.display = 'block';
       document.getElementById('login-form').style.display = 'none';
-      document.getElementById('account-info-form').style.display = 'none';
+      document.getElementById('user-info-form').style.display = 'none';
       document.getElementById('message-panel').classList.add('active');
     };
 
     window.showLoginForm = () => {
       document.getElementById('login-form').style.display = 'block';
       document.getElementById('create-account-form').style.display = 'none';
-      document.getElementById('account-info-form').style.display = 'none';
+      document.getElementById('user-info-form').style.display = 'none';
       document.getElementById('message-panel').classList.add('active');
     };
 
-    window.showAccountInfoForm = () => {
-      document.getElementById('account-info-form').style.display = 'block';
+    window.showUserInfoForm = () => {
+      document.getElementById('user-info-form').style.display = 'block';
       document.getElementById('create-account-form').style.display = 'none';
       document.getElementById('login-form').style.display = 'none';
       document.getElementById('message-panel').classList.add('active');
-
-      // Pre-fill the account info form with the current details
-      document.getElementById('account-email').value = localStorage.getItem('email') || '';
-      document.getElementById('account-phone').value = localStorage.getItem('phone') || '';
-      document.getElementById('account-username').value = localStorage.getItem('username') || '';
     };
 
     window.validateCreateAccountForm = () => {
@@ -436,8 +429,6 @@
 
       if (email && phone && username && password && terms) {
         localStorage.setItem('username', username);
-        localStorage.setItem('email', email);
-        localStorage.setItem('phone', phone);
         alert('Account created successfully.');
         document.getElementById('message-panel').classList.remove('active');
         checkLoginStatus();
@@ -455,7 +446,6 @@
       if (email && password) {
         // Simulate successful login
         alert('Login successful.');
-        localStorage.setItem('email', email);
         document.getElementById('message-panel').classList.remove('active');
         checkLoginStatus();
         return false; // Prevent form submission for demo
@@ -465,36 +455,36 @@
       }
     };
 
-    window.updateAccountInfo = () => {
-      const email = document.getElementById('account-email').value;
-      const phone = document.getElementById('account-phone').value;
-      const username = document.getElementById('account-username').value;
-      const password = document.getElementById('account-password').value;
+    window.validateUserInfoForm = () => {
+      const newUsername = document.getElementById('new-username').value;
+      const newPassword = document.getElementById('new-password').value;
 
-      if (email && phone && username) {
-        localStorage.setItem('email', email);
-        localStorage.setItem('phone', phone);
-        localStorage.setItem('username', username);
-        if (password) {
-          // Simulate password update (not stored in localStorage for demo)
-          alert('Account information updated successfully.');
-        }
-        document.getElementById('message-panel').classList.remove('active');
-        checkLoginStatus();
-        return false; // Prevent form submission for demo
-      } else {
-        alert('Please fill in all fields.');
-        return false; // Prevent form submission
+      if (newUsername) {
+        localStorage.setItem('username', newUsername);
       }
+      if (newPassword) {
+        // Handle password change if needed
+      }
+      alert('Information updated successfully.');
+      document.getElementById('message-panel').classList.remove('active');
+      checkLoginStatus();
+      return false; // Prevent form submission for demo
     };
 
     window.logout = () => {
       localStorage.removeItem('username');
-      localStorage.removeItem('email');
-      localStorage.removeItem('phone');
       alert('Logged out successfully.');
       checkLoginStatus();
     };
+
+    myAccountLink.addEventListener('click', () => {
+      const username = localStorage.getItem('username');
+      if (username) {
+        showUserInfoForm();
+      } else {
+        showLoginForm();
+      }
+    });
   });
 </script>
 
