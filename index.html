@@ -13,30 +13,47 @@
     }
 
     header {
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
       color: #333;
       padding: 1rem;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
     }
 
     .logo img {
-      width: 20%; /* Use percentage for responsive sizing */
-      max-width: 120px; /* Increased max-width for better visibility */
+      max-width: 80px; /* Adjust as needed */
       height: auto;
-      cursor: pointer;
+    }
+
+    .animated-text {
+      margin: 0 auto;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      animation: fadeIn 2s ease-in-out infinite alternate;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
     }
 
     nav {
       position: fixed;
       top: 0;
       right: 0;
-      background-color: #ffffff; /* White background */
-      width: 75%; /* Responsive width */
-      max-width: 300px; /* Maximum width */
+      background-color: #ffffff;
+      width: 75%;
+      max-width: 300px;
       height: 100%;
       transform: translateX(100%);
       transition: transform 0.3s ease;
@@ -69,38 +86,33 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 0.5rem; /* Adjusted to prevent horizontal scrolling */
+      right: 0.5rem;
       z-index: 10;
       cursor: pointer;
-      font-size: 2rem; /* Increased font size */
+      font-size: 2rem;
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
 
     .hamburger.active {
-      background-color: #ddd; /* Light background for active state */
+      background-color: #ddd;
       border-radius: 5px;
     }
 
     .main-content {
       padding: 2rem;
       text-align: center;
+      margin-top: 4rem;
     }
 
     footer {
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
       color: #333;
       text-align: center;
       padding: 1rem;
-      position: static; /* Static for mobile */
-    }
-
-    @media (min-width: 768px) {
-      footer {
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-      }
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
 
     /* Sliding panel styles */
@@ -108,10 +120,10 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 75%; /* Responsive width */
-      max-width: 300px; /* Maximum width */
+      width: 75%;
+      max-width: 300px;
       height: 100%;
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       border-radius: 0 10px 10px 0;
       transform: translateX(-100%);
@@ -151,14 +163,12 @@
       text-align: center;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .hamburger {
         font-size: 1.8rem;
       }
       .logo img {
-        width: 30%; /* Larger size on smaller devices */
-        max-width: 100px;
+        max-width: 60px;
       }
       nav {
         width: 100%;
@@ -172,7 +182,10 @@
 <body>
 
 <header>
-    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.PNG?raw=true" alt="Dellyck Logo" class="logo-image"></a>
+  <div class="logo">
+    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.PNG?raw=true" alt="Dellyck Logo"></a>
+  </div>
+  <div class="animated-text">DELLYCK</div>
 </header>
 
 <div class="hamburger">☰</div>
@@ -212,17 +225,15 @@
     const closeBtn = document.getElementById('close-btn');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Function to toggle hamburger menu
     const toggleHamburgerMenu = () => {
       nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
       hamburger.classList.toggle('active');
     };
 
-    // Function to handle navigation link clicks
     const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
         window.location.href = 'https://kareck1.github.io/Dellyck/';
-        messagePanel.classList.remove('active'); // Close the panel when navigating home
+        messagePanel.classList.remove('active');
         return;
       }
 
@@ -233,13 +244,10 @@
       nav.style.transform = 'translateX(100%)'; 
     };
 
-    // Toggle hamburger menu on click
     hamburger.addEventListener('click', toggleHamburgerMenu);
 
-    // Handle navigation link clicks
     navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
 
-    // Close message panel
     closeBtn.addEventListener('click', () => {
       messagePanel.classList.remove('active');
       nav.style.transform = 'translateX(0)';
