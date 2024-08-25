@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
   <style>
-    /* General Styles */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -13,7 +12,6 @@
       background-color: #ffffff; /* White background */
     }
 
-    /* Header Styles */
     header {
       background-color: #ffffff; /* White background */
       color: #333;
@@ -26,13 +24,12 @@
     }
 
     .logo img {
-      width: 0.5%; /* Reduced percentage for smaller logo */
-      max-width: 20px; /* Smaller maximum size */
+      width: 20%; /* Use percentage for responsive sizing */
+      max-width: 100px; /* Maximum size */
       height: auto;
       cursor: pointer;
     }
 
-    /* Navigation Styles */
     nav {
       position: fixed;
       top: 0;
@@ -69,7 +66,6 @@
       border-radius: 5px;
     }
 
-    /* Hamburger Styles */
     .hamburger {
       position: fixed;
       top: 1rem; /* Adjusted top position */
@@ -86,13 +82,11 @@
       border-radius: 5px;
     }
 
-    /* Main Content Styles */
     .main-content {
       padding: 2rem;
       text-align: center;
     }
 
-    /* Footer Styles */
     footer {
       background-color: #ffffff; /* White background */
       color: #333;
@@ -103,7 +97,7 @@
       bottom: 0;
     }
 
-    /* Sliding Panel Styles */
+    /* Sliding panel styles */
     #message-panel {
       position: fixed;
       top: 0;
@@ -151,14 +145,14 @@
       text-align: center;
     }
 
-    /* Responsive Adjustments */
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       .hamburger {
         font-size: 1.8rem;
       }
       .logo img {
-        width: 20%;
-        max-width: 60px;
+        width: 25%;
+        max-width: 80px;
       }
       nav {
         width: 100%;
@@ -172,7 +166,7 @@
 <body>
 
 <header>
-  <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo" class="logo"></a>
+  <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.png?raw=true" alt="Dellyck Logo" class="logo-image"></a>
 </header>
 
 <div class="hamburger">☰</div>
@@ -214,23 +208,22 @@
 
     // Function to toggle hamburger menu
     const toggleHamburgerMenu = () => {
-      const isActive = nav.style.transform === 'translateX(0)';
-      nav.style.transform = isActive ? 'translateX(100%)' : 'translateX(0)';
-      hamburger.classList.toggle('active', !isActive);
+      nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+      hamburger.classList.toggle('active');
     };
 
     // Function to handle navigation link clicks
     const handleNavLinkClick = (event) => {
       if (event.target.classList.contains('home-link')) {
-        window.location.href = 'https://kareck1.github.io/Dellyck/';
-        return;
+        window.location.href = 'https://kareck1.github.io/Dellyck/'; 
+        return; 
       }
 
-      event.preventDefault();
+      event.preventDefault(); 
       const message = event.target.getAttribute('data-message');
       messageContainer.textContent = message;
       messagePanel.classList.add('active');
-      nav.style.transform = 'translateX(100%)';
+      nav.style.transform = 'translateX(100%)'; 
     };
 
     // Toggle hamburger menu on click
@@ -243,10 +236,10 @@
     closeBtn.addEventListener('click', () => {
       messagePanel.classList.remove('active');
       nav.style.transform = 'translateX(0)';
-      hamburger.classList.remove('active');
+      hamburger.classList.add('active');
     });
   });
 </script>
 
 </body>
-</html>
+</html
