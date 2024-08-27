@@ -132,6 +132,32 @@
       margin-top: 4rem;
     }
 
+    .tab-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .tab-box {
+      width: 200px;
+      height: 150px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tab-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
     footer {
       background-color: #ffffff;
       color: #333;
@@ -290,6 +316,18 @@
   <h1>Welcome to Dellyck</h1>
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
+
+  <!-- Tab Boxes -->
+  <div class="tab-boxes">
+    <div class="tab-box" id="movies-tab">
+      <h2>Movies</h2>
+      <!-- Placeholder for movie thumbnails -->
+    </div>
+    <div class="tab-box" id="games-tab">
+      <h2>Games</h2>
+      <!-- Placeholder for game thumbnails -->
+    </div>
+  </div>
 </div>
 
 <footer>
