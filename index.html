@@ -49,31 +49,6 @@
       to { opacity: 1; }
     }
 
-    .auth-buttons {
-      margin-top: 1rem;
-    }
-
-    .auth-buttons button {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 0.5rem;
-      font-size: 0.9rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .create-account {
-      background-color: #007bff;
-      color: #fff;
-    }
-
-    .login {
-      background-color: #fff;
-      color: #007bff;
-      border: 1px solid #007bff;
-    }
-
     nav {
       position: fixed;
       top: 0;
@@ -168,117 +143,43 @@
       width: 100%;
     }
 
-    #message-panel {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 75%;
-      max-width: 300px;
-      height: 100%;
-      background-color: #ffffff;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      border-radius: 0 10px 10px 0;
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-      z-index: 15;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.1rem;
-    }
-
-    #message-panel.active {
-      transform: translateX(0);
-    }
-
-    #close-btn {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background-color: #f4f4f4;
-      border-radius: 50%;
-      padding: 0.3rem;
-      transition: background-color 0.3s ease;
-    }
-
-    #close-btn:hover {
-      background-color: #ddd;
-    }
-
-    #message-container {
-      padding: 1rem;
-      font-size: 1rem;
+    #games-page {
+      display: none;
+      padding: 2rem;
       text-align: center;
     }
 
-    #create-account-form,
-    #login-form,
-    #user-info-form {
-      width: 100%;
-    }
-
-    form {
+    .game-list {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
 
-    label {
-      margin: 0.5rem 0;
-    }
-
-    input {
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    button[type="submit"] {
-      background-color: #007bff;
-      color: #fff;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 5px;
+    .game-item {
+      width: 150px;
+      height: 150px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      background-color: #f0f0f0;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    button[type="submit"]:hover {
-      background-color: #0056b3;
+    .game-item:hover {
+      background-color: #ddd;
     }
 
-    .user-info {
-      display: none;
-      padding: 1rem;
-    }
-
-    .user-info button {
-      background-color: #ff4d4d;
-      color: #fff;
+    iframe {
+      width: 100%;
+      height: 500px;
       border: none;
     }
 
-    .user-info button:hover {
-      background-color: #cc0000;
-    }
-
-    @media (max-width: 768px) {
-      .hamburger {
-        font-size: 1.8rem;
-      }
-      .logo img {
-        max-width: 60px;
-      }
-      nav {
-        width: 100%;
-      }
-      #message-panel {
-        width: 100%;
-      }
-    }
   </style>
 </head>
 <body>
@@ -288,136 +189,63 @@
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.PNG?raw=true" alt="Dellyck Logo"></a>
   </div>
   <div class="animated-text">DELLYCK</div>
-  <div class="auth-buttons">
-    <button class="create-account" onclick="showCreateAccountForm()">Create Account</button>
-    <button class="login" onclick="showLoginForm()">Login</button>
-  </div>
 </header>
 
 <div class="hamburger">☰</div>
 
 <nav>
   <ul>
-    <li><a href="https://kareck1.github.io/Dellyck/" class="nav-link home-link">Home</a></li>
-    <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
-    <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
-    <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
-    <li><a href="#" class="nav-link" id="my-account-link">My Account</a></li>
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('games-page')">Games</a></li>
   </ul>
-  <div class="user-info" id="user-info">
-    <span id="username-display"></span>
-    <button onclick="logout()">Logout</button>
-  </div>
 </nav>
 
-<div class="main-content">
+<div class="main-content" id="home">
   <h1>Welcome to Dellyck</h1>
   <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
   <div class="tab-boxes">
-    <div class="tab-box" onclick="window.location.href='games.html';">Games</div>
-    <div class="tab-box" onclick="window.location.href='movies.html';">Movies</div>
+    <div class="tab-box" onclick="showPage('games-page')">Games</div>
   </div>
+</div>
+
+<div id="games-page" class="main-content">
+  <h2>Games</h2>
+  <div class="game-list">
+    <div class="game-item" onclick="loadGame('tetris')">Tetris</div>
+    <div class="game-item" onclick="loadGame('pacman')">Pac-Man</div>
+    <div class="game-item" onclick="loadGame('snake')">Snake</div>
+    <!-- Add more games here -->
+  </div>
+  <iframe id="game-iframe" style="display: none;"></iframe>
 </div>
 
 <footer>
   <p>Dellyck Company © 2024</p>
 </footer>
 
-<div id="message-panel">
-  <span id="close-btn">&times;</span>
-  <div id="message-container"></div>
-</div>
-
-<div id="create-account-form" style="display: none;">
-  <h2>Create Account</h2>
-  <form id="create-form">
-    <label for="new-username">Username:</label>
-    <input type="text" id="new-username" required>
-    <label for="new-password">Password:</label>
-    <input type="password" id="new-password" required>
-    <button type="submit">Create Account</button>
-  </form>
-</div>
-
-<div id="login-form" style="display: none;">
-  <h2>Login</h2>
-  <form id="login-form">
-    <label for="username">Username:</label>
-    <input type="text" id="username" required>
-    <label for="password">Password:</label>
-    <input type="password" id="password" required>
-    <button type="submit">Login</button>
-  </form>
-</div>
-
-<div id="user-info-form" style="display: none;">
-  <h2>User Information</h2>
-  <form id="user-form">
-    <label for="user-username">Username:</label>
-    <input type="text" id="user-username" required>
-    <label for="user-password">Password:</label>
-    <input type="password" id="user-password" required>
-    <button type="submit">Update Information</button>
-  </form>
-</div>
-
 <script>
   document.querySelector('.hamburger').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
   });
 
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-      const message = this.getAttribute('data-message');
-      if (message) {
-        document.querySelector('#message-container').textContent = message;
-        document.querySelector('#message-panel').classList.add('active');
-      }
+  function showPage(pageId) {
+    document.querySelectorAll('.main-content').forEach(page => {
+      page.style.display = 'none';
     });
-  });
-
-  document.querySelector('#close-btn').addEventListener('click', function() {
-    document.querySelector('#message-panel').classList.remove('active');
-  });
-
-  function showCreateAccountForm() {
-    document.getElementById('create-account-form').style.display = 'block';
+    document.getElementById(pageId).style.display = 'block';
   }
 
-  function showLoginForm() {
-    document.getElementById('login-form').style.display = 'block';
+  function loadGame(game) {
+    const gameIframe = document.getElementById('game-iframe');
+    if (game === 'tetris') {
+      gameIframe.src = 'https://kareck1.github.io/games/tetris.html';
+    } else if (game === 'pacman') {
+      gameIframe.src = 'https://kareck1.github.io/games/pacman.html';
+    } else if (game === 'snake') {
+      gameIframe.src = 'https://kareck1.github.io/games/snake.html';
+    }
+    gameIframe.style.display = 'block';
   }
-
-  function logout() {
-    document.getElementById('user-info').style.display = 'none';
-    document.querySelector('.auth-buttons').style.display = 'block';
-  }
-
-  document.getElementById('create-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Account created!');
-    document.getElementById('create-account-form').style.display = 'none';
-  });
-
-  document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    document.querySelector('.auth-buttons').style.display = 'none';
-    document.getElementById('user-info').style.display = 'block';
-    document.getElementById('username-display').textContent = document.getElementById('username').value;
-    document.getElementById('login-form').style.display = 'none';
-  });
-
-  document.getElementById('user-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Information updated!');
-    document.getElementById('user-info-form').style.display = 'none';
-  });
-
-  document.getElementById('my-account-link').addEventListener('click', function() {
-    document.getElementById('user-info-form').style.display = 'block';
-  });
 </script>
 
 </body>
