@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ffffff;
+      background-color: #ffffff; /* White background */
     }
 
     header {
@@ -31,7 +31,7 @@
     }
 
     .logo img {
-      max-width: 80px;
+      max-width: 80px; /* Adjust as needed */
       height: auto;
     }
 
@@ -168,79 +168,102 @@
       width: 100%;
     }
 
-    /* Sliding panels styles */
-    .panel {
+    /* Sliding panel styles */
+    #message-panel {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 75%;
+      max-width: 300px;
+      height: 100%;
       background-color: #ffffff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      border-radius: 0 0 0 10px;
-      transform: scale(0);
-      transform-origin: top left;
+      border-radius: 0 10px 10px 0;
+      transform: translateX(-100%);
       transition: transform 0.5s ease;
       z-index: 15;
       padding: 1rem;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
       font-size: 1.1rem;
     }
 
-    .panel.active {
-      transform: scale(1);
+    #message-panel.active {
+      transform: translateX(0);
     }
 
-    .panel .close-btn {
+    #close-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 2rem;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.5rem;
       cursor: pointer;
       background-color: #f4f4f4;
       border-radius: 50%;
-      padding: 0.5rem;
+      padding: 0.3rem;
       transition: background-color 0.3s ease;
     }
 
-    .panel .close-btn:hover {
+    #close-btn:hover {
       background-color: #ddd;
     }
 
-    .panel #exit-btn {
-      margin-top: auto;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
+    #message-container {
       padding: 1rem;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .panel #exit-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .game-sub-panel {
-      margin: 1rem;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      width: 100%;
+      font-size: 1rem;
       text-align: center;
     }
 
-    .game-sub-panel a {
-      text-decoration: none;
-      color: #007bff;
+    #create-account-form,
+    #login-form,
+    #user-info-form {
+      width: 100%;
     }
 
-    .game-sub-panel a:hover {
-      text-decoration: underline;
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin: 0.5rem 0;
+    }
+
+    input {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .user-info {
+      display: none;
+      padding: 1rem;
+    }
+
+    .user-info button {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+    }
+
+    .user-info button:hover {
+      background-color: #cc0000;
     }
 
     @media (max-width: 768px) {
@@ -253,8 +276,8 @@
       nav {
         width: 100%;
       }
-      .panel {
-        width: 100vw;
+      #message-panel {
+        width: 100%;
       }
     }
   </style>
@@ -272,7 +295,7 @@
   </div>
 </header>
 
-<div class="hamburger">☰</div>
+<div class="hamburger">â˜°</div>
 
 <nav>
   <ul>
@@ -291,97 +314,217 @@
 
 <div class="main-content">
   <h1>Welcome to Dellyck</h1>
-  <p class="bold-text">Your solution for innovative technology experiences.</p>
+  <p class="bold-text">Your solution for innovative digital experiences.</p>
+  <p>Welcome to Dellyck where innovation meets convenience.</p>
+
+  <!-- Tab Boxes -->
   <div class="tab-boxes">
-    <div class="tab-box" id="movies-tab">Movies</div>
-    <div class="tab-box" id="games-tab">Games</div>
+    <div class="tab-box" id="movies-tab">
+      <h2>Movies</h2>
+      <!-- Placeholder for movie thumbnails -->
+    </div>
+    <div class="tab-box" id="games-tab">
+      <h2>Games</h2>
+      <!-- Placeholder for game thumbnails -->
+    </div>
   </div>
 </div>
 
 <footer>
-  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
+  <p>&copy; 2024 Dellyck. All rights reserved.</p>
 </footer>
 
-<!-- Sliding Panels -->
-<div id="message-panel" class="panel">
-  <div id="close-btn" class="close-btn">✖</div>
-  <div id="message-container"></div>
-  <button id="exit-btn">Exit</button>
+<!-- Sliding Panel -->
+<div id="message-panel">
+  <span id="close-btn">&times;</span>
+  <div id="message-container">
+    <div id="create-account-form" style="display:none;">
+      <h2>Create Account</h2>
+      <form onsubmit="return validateCreateAccountForm()">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I agree to the terms and conditions</label>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div id="login-form" style="display:none;">
+      <h2>Login</h2>
+      <form onsubmit="return validateLoginForm()">
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" name="email" required>
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <div id="user-info-form" style="display:none;">
+      <h2>User Information</h2>
+      <form onsubmit="return validateUserInfoForm()">
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" name="username" value="" required>
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" name="password" value="">
+        <button type="submit">Update Info</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script>
-  const nav = document.querySelector('nav');
-  const hamburger = document.querySelector('.hamburger');
-  const messagePanel = document.getElementById('message-panel');
-  const messageContainer = document.getElementById('message-container');
-  const closeBtn = document.getElementById('close-btn');
-  const exitBtn = document.getElementById('exit-btn');
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+    const messagePanel = document.getElementById('message-panel');
+    const messageContainer = document.getElementById('message-container');
+    const closeBtn = document.getElementById('close-btn');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const userInfo = document.getElementById('user-info');
+    const usernameDisplay = document.getElementById('username-display');
+    const myAccountLink = document.getElementById('my-account-link');
+    const userInfoForm = document.getElementById('user-info-form');
 
-  function toggleNav() {
-    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
-    hamburger.classList.toggle('active');
-  }
+    const toggleHamburgerMenu = () => {
+      nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+      hamburger.classList.toggle('active');
+    };
 
-  function showPanel(content) {
-    messageContainer.innerHTML = content;
-    messagePanel.classList.add('active');
-  }
+    const handleNavLinkClick = (event) => {
+      if (event.target.classList.contains('home-link')) {
+        window.location.href = 'https://kareck1.github.io/Dellyck/';
+        messagePanel.classList.remove('active');
+        return;
+      }
 
-  function hidePanel() {
-    messagePanel.classList.remove('active');
-  }
+      event.preventDefault();
+      const message = event.target.getAttribute('data-message');
+      messageContainer.textContent = message;
+      messagePanel.classList.add('active');
+      nav.style.transform = 'translateX(100%)'; 
+    };
 
-  function showCreateAccountForm() {
-    showPanel('<h2>Create Account</h2><form id="create-account-form"><label for="new-username">Username:</label><input type="text" id="new-username" required><label for="new-password">Password:</label><input type="password" id="new-password" required><button type="submit">Create Account</button></form>');
-  }
+    hamburger.addEventListener('click', toggleHamburgerMenu);
 
-  function showLoginForm() {
-    showPanel('<h2>Login</h2><form id="login-form"><label for="username">Username:</label><input type="text" id="username" required><label for="password">Password:</label><input type="password" id="password" required><button type="submit">Login</button></form>');
-  }
+    navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
 
-  function logout() {
-    document.getElementById('user-info').style.display = 'none';
-    document.querySelector('.auth-buttons').style.display = 'block';
-    alert('Logged out successfully');
-  }
+    closeBtn.addEventListener('click', () => {
+      messagePanel.classList.remove('active');
+      nav.style.transform = 'translateX(0)';
+      hamburger.classList.add('active');
+    });
 
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-      showPanel(this.getAttribute('data-message'));
+    const checkLoginStatus = () => {
+      const username = localStorage.getItem('username');
+      if (username) {
+        usernameDisplay.textContent = `Welcome, ${username}`;
+        userInfo.style.display = 'block';
+        document.querySelector('.auth-buttons').style.display = 'none';
+        myAccountLink.textContent = 'My Account';
+      } else {
+        userInfo.style.display = 'none';
+        document.querySelector('.auth-buttons').style.display = 'flex';
+        myAccountLink.textContent = 'Login / Create Account';
+      }
+    };
+
+    checkLoginStatus();
+
+    window.showCreateAccountForm = () => {
+      document.getElementById('create-account-form').style.display = 'block';
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('user-info-form').style.display = 'none';
+      document.getElementById('message-panel').classList.add('active');
+    };
+
+    window.showLoginForm = () => {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('create-account-form').style.display = 'none';
+      document.getElementById('user-info-form').style.display = 'none';
+      document.getElementById('message-panel').classList.add('active');
+    };
+
+    window.showUserInfoForm = () => {
+      document.getElementById('user-info-form').style.display = 'block';
+      document.getElementById('create-account-form').style.display = 'none';
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('message-panel').classList.add('active');
+    };
+
+    window.validateCreateAccountForm = () => {
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const terms = document.getElementById('terms').checked;
+
+      if (email && phone && username && password && terms) {
+        localStorage.setItem('username', username);
+        alert('Account created successfully.');
+        document.getElementById('message-panel').classList.remove('active');
+        checkLoginStatus();
+        return false; // Prevent form submission for demo
+      } else {
+        alert('Please fill in all fields and agree to the terms.');
+        return false; // Prevent form submission
+      }
+    };
+
+    window.validateLoginForm = () => {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      if (email && password) {
+        // Simulate successful login
+        alert('Login successful.');
+        document.getElementById('message-panel').classList.remove('active');
+        checkLoginStatus();
+        return false; // Prevent form submission for demo
+      } else {
+        alert('Please fill in all fields.');
+        return false; // Prevent form submission
+      }
+    };
+
+    window.validateUserInfoForm = () => {
+      const newUsername = document.getElementById('new-username').value;
+      const newPassword = document.getElementById('new-password').value;
+
+      if (newUsername) {
+        localStorage.setItem('username', newUsername);
+      }
+      if (newPassword) {
+        // Handle password change if needed
+      }
+      alert('Information updated successfully.');
+      document.getElementById('message-panel').classList.remove('active');
+      checkLoginStatus();
+      return false; // Prevent form submission for demo
+    };
+
+    window.logout = () => {
+      localStorage.removeItem('username');
+      alert('Logged out successfully.');
+      checkLoginStatus();
+    };
+
+    myAccountLink.addEventListener('click', () => {
+      const username = localStorage.getItem('username');
+      if (username) {
+        showUserInfoForm();
+      } else {
+        showLoginForm();
+      }
     });
   });
-
-  hamburger.addEventListener('click', toggleNav);
-  closeBtn.addEventListener('click', hidePanel);
-  exitBtn.addEventListener('click', hidePanel);
-
-  // Tab functionality
-  document.getElementById('movies-tab').addEventListener('click', function() {
-    showPanel(`
-      <h2>Movies</h2>
-      <p>Explore our movie collection.</p>
-      <button id="exit-btn">Exit</button>
-    `);
-  });
-
-  document.getElementById('games-tab').addEventListener('click', function() {
-    showPanel(`
-      <h2>Games</h2>
-      <div class="game-sub-panel"><a href="https://example.com/game1" class="game-link">Game 1</a></div>
-      <div class="game-sub-panel"><a href="https://example.com/game2" class="game-link">Game 2</a></div>
-      <div class="game-sub-panel"><a href="https://example.com/game3" class="game-link">Game 3</a></div>
-      <button id="exit-btn">Exit</button>
-    `);
-  });
-
-  // Handle game links (example)
-  document.getElementById('message-container').addEventListener('click', function(e) {
-    if (e.target.classList.contains('game-link')) {
-      window.location.href = e.target.getAttribute('href');
-    }
-  });
-
 </script>
 
 </body>
-</html>
+  </html>
