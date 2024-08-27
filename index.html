@@ -168,61 +168,61 @@
       width: 100%;
     }
 
-    /* Sliding panel styles */
-    .slide-panel {
+    /* Panels styles */
+    .panel {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background-color: #ffffff;
-      transform: translateX(100%);
-      transition: transform 0.5s ease;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease-in-out;
       z-index: 15;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem;
+      padding: 1rem;
+      font-size: 1.1rem;
     }
 
-    .slide-panel.active {
+    .panel.active {
       transform: translateX(0);
     }
 
-    .panel-header {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .back-button {
-      align-self: flex-start;
-      margin-bottom: 2rem;
-      font-size: 1rem;
-      color: #007bff;
-      background: none;
-      border: none;
+    .panel .back-btn, .panel .exit-btn {
+      font-size: 1.5rem;
       cursor: pointer;
-    }
-
-    .exit-button {
-      margin-top: 2rem;
-      padding: 0.5rem 1rem;
-      background-color: red;
-      color: white;
+      margin: 1rem;
+      background-color: #f4f4f4;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
+      padding: 0.5rem;
+      transition: background-color 0.3s ease;
     }
 
-    /* Tetris game placeholder */
-    .game-placeholder {
-      width: 300px;
-      height: 300px;
-      border: 1px solid #ddd;
+    .panel .back-btn:hover, .panel .exit-btn:hover {
+      background-color: #ddd;
+    }
+
+    .panel-content {
+      width: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background-color: #f0f0f0;
+    }
+
+    .panel-content .game-links a {
+      display: block;
+      margin: 0.5rem;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .panel-content .game-links a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -233,6 +233,9 @@
         max-width: 60px;
       }
       nav {
+        width: 100%;
+      }
+      .panel {
         width: 100%;
       }
     }
@@ -288,56 +291,59 @@
   <p>&copy; 2024 Dellyck. All rights reserved.</p>
 </footer>
 
-<!-- Sliding Panels for Movies and Games -->
-<div id="movies-panel" class="slide-panel">
-  <button class="back-button" onclick="goBack()">← Back</button>
-  <div class="panel-header">Movies</div>
-  <div class="game-placeholder">Movie Content Here</div>
-  <button class="exit-button" onclick="closePanel()">Exit</button>
+<!-- Movies Panel -->
+<div id="movies-panel" class="panel">
+  <button class="back-btn" onclick="closePanel('movies-panel')">&larr; Back</button>
+  <button class="exit-btn" onclick="closePanel('movies-panel')">Exit</button>
+  <div class="panel-content">
+    <!-- Add your movie sub-tabs and links here -->
+    <h2>Movies</h2>
+    <div class="game-links">
+      <a href="https://www.imdb.com/title/tt0111161/" target="_blank">The Shawshank Redemption</a>
+      <a href="https://www.imdb.com/title/tt0068646/" target="_blank">The Godfather</a>
+      <a href="https://www.imdb.com/title/tt0071562/" target="_blank">The Godfather Part II</a>
+      <!-- Add more movies as needed -->
+    </div>
+  </div>
 </div>
 
-<div id="games-panel" class="slide-panel">
-  <button class="back-button" onclick="goBack()">← Back</button>
-  <div class="panel-header">Games</div>
-  <div class="game-placeholder">Tetris Game Here</div>
-  <button class="exit-button" onclick="closePanel()">Exit</button>
+<!-- Games Panel -->
+<div id="games-panel" class="panel">
+  <button class="back-btn" onclick="closePanel('games-panel')">&larr; Back</button>
+  <button class="exit-btn" onclick="closePanel('games-panel')">Exit</button>
+  <div class="panel-content">
+    <!-- Add your game sub-tabs and links here -->
+    <h2>Games</h2>
+    <div class="game-links">
+      <a href="https://www.minecraft.net/" target="_blank">Minecraft</a>
+      <a href="https://www.fortnite.com/" target="_blank">Fortnite</a>
+      <a href="https://www.valvesoftware.com/en/index" target="_blank">Half-Life</a>
+      <!-- Add more games as needed -->
+    </div>
+  </div>
 </div>
 
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
-  const moviesTab = document.getElementById('movies-tab');
-  const gamesTab = document.getElementById('games-tab');
-  const moviesPanel = document.getElementById('movies-panel');
-  const gamesPanel = document.getElementById('games-panel');
-
-  hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(0)' ? 'translateX(100%)' : 'translateX(0)';
+  document.querySelector('.hamburger').addEventListener('click', function() {
+    document.querySelector('nav').style.transform = 'translateX(0)';
   });
 
-  moviesTab.addEventListener('click', () => {
-    moviesPanel.classList.add('active');
+  document.querySelector('nav').addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      document.querySelector('nav').style.transform = 'translateX(100%)';
+    }
   });
 
-  gamesTab.addEventListener('click', () => {
-    gamesPanel.classList.add('active');
+  document.querySelector('#movies-tab').addEventListener('click', function() {
+    document.getElementById('movies-panel').classList.add('active');
   });
 
-  function closePanel() {
-    moviesPanel.classList.remove('active');
-    gamesPanel.classList.remove('active');
-  }
+  document.querySelector('#games-tab').addEventListener('click', function() {
+    document.getElementById('games-panel').classList.add('active');
+  });
 
-  function goBack() {
-    history.back();
-  }
-
-  function showCreateAccountForm() {
-    alert('Create account form');
-  }
-
-  function showLoginForm() {
-    alert('Login form');
+  function closePanel(panelId) {
+    document.getElementById(panelId).classList.remove('active');
   }
 </script>
 
