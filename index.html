@@ -168,102 +168,79 @@
       width: 100%;
     }
 
-    /* Sliding panel styles */
-    #message-panel {
+    /* Sliding panels styles */
+    .panel {
       position: fixed;
       top: 0;
       left: 0;
-      width: 75%;
-      max-width: 300px;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background-color: #ffffff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      border-radius: 0 10px 10px 0;
-      transform: translateX(-100%);
+      border-radius: 0 0 0 10px;
+      transform: scale(0);
+      transform-origin: top left;
       transition: transform 0.5s ease;
       z-index: 15;
       padding: 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       font-size: 1.1rem;
     }
 
-    #message-panel.active {
-      transform: translateX(0);
+    .panel.active {
+      transform: scale(1);
     }
 
-    #close-btn {
+    .panel .close-btn {
       position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      font-size: 1.5rem;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
       cursor: pointer;
       background-color: #f4f4f4;
       border-radius: 50%;
-      padding: 0.3rem;
+      padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
 
-    #close-btn:hover {
+    .panel .close-btn:hover {
       background-color: #ddd;
     }
 
-    #message-container {
-      padding: 1rem;
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    #create-account-form,
-    #login-form,
-    #user-info-form {
-      width: 100%;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    label {
-      margin: 0.5rem 0;
-    }
-
-    input {
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    button[type="submit"] {
+    .panel #exit-btn {
+      margin-top: auto;
       background-color: #007bff;
       color: #fff;
-      padding: 0.5rem;
       border: none;
       border-radius: 5px;
+      padding: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    button[type="submit"]:hover {
+    .panel #exit-btn:hover {
       background-color: #0056b3;
     }
 
-    .user-info {
-      display: none;
+    .game-sub-panel {
+      margin: 1rem;
       padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 100%;
+      text-align: center;
     }
 
-    .user-info button {
-      background-color: #ff4d4d;
-      color: #fff;
-      border: none;
+    .game-sub-panel a {
+      text-decoration: none;
+      color: #007bff;
     }
 
-    .user-info button:hover {
-      background-color: #cc0000;
+    .game-sub-panel a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -276,8 +253,8 @@
       nav {
         width: 100%;
       }
-      #message-panel {
-        width: 100%;
+      .panel {
+        width: 100vw;
       }
     }
   </style>
@@ -326,8 +303,8 @@
 </footer>
 
 <!-- Sliding Panels -->
-<div id="message-panel">
-  <div id="close-btn">✖</div>
+<div id="message-panel" class="panel">
+  <div id="close-btn" class="close-btn">✖</div>
   <div id="message-container"></div>
   <button id="exit-btn">Exit</button>
 </div>
@@ -345,8 +322,8 @@
     hamburger.classList.toggle('active');
   }
 
-  function showPanel(message) {
-    messageContainer.innerHTML = message;
+  function showPanel(content) {
+    messageContainer.innerHTML = content;
     messagePanel.classList.add('active');
   }
 
@@ -380,11 +357,21 @@
 
   // Tab functionality
   document.getElementById('movies-tab').addEventListener('click', function() {
-    showPanel('<h2>Movies</h2><p>Explore our movie collection.</p>');
+    showPanel(`
+      <h2>Movies</h2>
+      <p>Explore our movie collection.</p>
+      <button id="exit-btn">Exit</button>
+    `);
   });
 
   document.getElementById('games-tab').addEventListener('click', function() {
-    showPanel('<h2>Games</h2><p>Explore our game collection.</p>');
+    showPanel(`
+      <h2>Games</h2>
+      <div class="game-sub-panel"><a href="https://example.com/game1" class="game-link">Game 1</a></div>
+      <div class="game-sub-panel"><a href="https://example.com/game2" class="game-link">Game 2</a></div>
+      <div class="game-sub-panel"><a href="https://example.com/game3" class="game-link">Game 3</a></div>
+      <button id="exit-btn">Exit</button>
+    `);
   });
 
   // Handle game links (example)
