@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
     }
 
     header {
@@ -31,7 +31,7 @@
     }
 
     .logo img {
-      max-width: 80px; /* Adjust as needed */
+      max-width: 80px;
       height: auto;
     }
 
@@ -168,61 +168,102 @@
       width: 100%;
     }
 
-    /* Panels styles */
-    .panel {
+    /* Sliding panel styles */
+    #message-panel {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 75%;
+      max-width: 300px;
       height: 100%;
       background-color: #ffffff;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      border-radius: 0 10px 10px 0;
       transform: translateX(-100%);
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.5s ease;
       z-index: 15;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 1rem;
       font-size: 1.1rem;
     }
 
-    .panel.active {
+    #message-panel.active {
       transform: translateX(0);
     }
 
-    .panel .back-btn, .panel .exit-btn {
+    #close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
       font-size: 1.5rem;
       cursor: pointer;
-      margin: 1rem;
       background-color: #f4f4f4;
-      border: none;
-      border-radius: 5px;
-      padding: 0.5rem;
+      border-radius: 50%;
+      padding: 0.3rem;
       transition: background-color 0.3s ease;
     }
 
-    .panel .back-btn:hover, .panel .exit-btn:hover {
+    #close-btn:hover {
       background-color: #ddd;
     }
 
-    .panel-content {
+    #message-container {
+      padding: 1rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    #create-account-form,
+    #login-form,
+    #user-info-form {
       width: 100%;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
 
-    .panel-content .game-links a {
-      display: block;
-      margin: 0.5rem;
-      color: #007bff;
-      text-decoration: none;
-      font-size: 1.2rem;
+    label {
+      margin: 0.5rem 0;
     }
 
-    .panel-content .game-links a:hover {
-      text-decoration: underline;
+    input {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .user-info {
+      display: none;
+      padding: 1rem;
+    }
+
+    .user-info button {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+    }
+
+    .user-info button:hover {
+      background-color: #cc0000;
     }
 
     @media (max-width: 768px) {
@@ -235,7 +276,7 @@
       nav {
         width: 100%;
       }
-      .panel {
+      #message-panel {
         width: 100%;
       }
     }
@@ -273,78 +314,86 @@
 
 <div class="main-content">
   <h1>Welcome to Dellyck</h1>
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
-
-  <!-- Tab Boxes -->
+  <p class="bold-text">Your solution for innovative technology experiences.</p>
   <div class="tab-boxes">
-    <div class="tab-box" id="movies-tab">
-      <h2>Movies</h2>
-    </div>
-    <div class="tab-box" id="games-tab">
-      <h2>Games</h2>
-    </div>
+    <div class="tab-box" id="movies-tab">Movies</div>
+    <div class="tab-box" id="games-tab">Games</div>
   </div>
 </div>
 
 <footer>
-  <p>&copy; 2024 Dellyck. All rights reserved.</p>
+  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
 </footer>
 
-<!-- Movies Panel -->
-<div id="movies-panel" class="panel">
-  <button class="back-btn" onclick="closePanel('movies-panel')">&larr; Back</button>
-  <button class="exit-btn" onclick="closePanel('movies-panel')">Exit</button>
-  <div class="panel-content">
-    <!-- Add your movie sub-tabs and links here -->
-    <h2>Movies</h2>
-    <div class="game-links">
-      <a href="https://www.imdb.com/title/tt0111161/" target="_blank">The Shawshank Redemption</a>
-      <a href="https://www.imdb.com/title/tt0068646/" target="_blank">The Godfather</a>
-      <a href="https://www.imdb.com/title/tt0071562/" target="_blank">The Godfather Part II</a>
-      <!-- Add more movies as needed -->
-    </div>
-  </div>
-</div>
-
-<!-- Games Panel -->
-<div id="games-panel" class="panel">
-  <button class="back-btn" onclick="closePanel('games-panel')">&larr; Back</button>
-  <button class="exit-btn" onclick="closePanel('games-panel')">Exit</button>
-  <div class="panel-content">
-    <!-- Add your game sub-tabs and links here -->
-    <h2>Games</h2>
-    <div class="game-links">
-      <a href="https://www.minecraft.net/" target="_blank">Minecraft</a>
-      <a href="https://www.fortnite.com/" target="_blank">Fortnite</a>
-      <a href="https://www.valvesoftware.com/en/index" target="_blank">Half-Life</a>
-      <!-- Add more games as needed -->
-    </div>
-  </div>
+<!-- Sliding Panels -->
+<div id="message-panel">
+  <div id="close-btn">✖</div>
+  <div id="message-container"></div>
+  <button id="exit-btn">Exit</button>
 </div>
 
 <script>
-  document.querySelector('.hamburger').addEventListener('click', function() {
-    document.querySelector('nav').style.transform = 'translateX(0)';
+  const nav = document.querySelector('nav');
+  const hamburger = document.querySelector('.hamburger');
+  const messagePanel = document.getElementById('message-panel');
+  const messageContainer = document.getElementById('message-container');
+  const closeBtn = document.getElementById('close-btn');
+  const exitBtn = document.getElementById('exit-btn');
+
+  function toggleNav() {
+    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
+    hamburger.classList.toggle('active');
+  }
+
+  function showPanel(message) {
+    messageContainer.innerHTML = message;
+    messagePanel.classList.add('active');
+  }
+
+  function hidePanel() {
+    messagePanel.classList.remove('active');
+  }
+
+  function showCreateAccountForm() {
+    showPanel('<h2>Create Account</h2><form id="create-account-form"><label for="new-username">Username:</label><input type="text" id="new-username" required><label for="new-password">Password:</label><input type="password" id="new-password" required><button type="submit">Create Account</button></form>');
+  }
+
+  function showLoginForm() {
+    showPanel('<h2>Login</h2><form id="login-form"><label for="username">Username:</label><input type="text" id="username" required><label for="password">Password:</label><input type="password" id="password" required><button type="submit">Login</button></form>');
+  }
+
+  function logout() {
+    document.getElementById('user-info').style.display = 'none';
+    document.querySelector('.auth-buttons').style.display = 'block';
+    alert('Logged out successfully');
+  }
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      showPanel(this.getAttribute('data-message'));
+    });
   });
 
-  document.querySelector('nav').addEventListener('click', function(e) {
-    if (e.target.tagName === 'A') {
-      document.querySelector('nav').style.transform = 'translateX(100%)';
+  hamburger.addEventListener('click', toggleNav);
+  closeBtn.addEventListener('click', hidePanel);
+  exitBtn.addEventListener('click', hidePanel);
+
+  // Tab functionality
+  document.getElementById('movies-tab').addEventListener('click', function() {
+    showPanel('<h2>Movies</h2><p>Explore our movie collection.</p>');
+  });
+
+  document.getElementById('games-tab').addEventListener('click', function() {
+    showPanel('<h2>Games</h2><p>Explore our game collection.</p>');
+  });
+
+  // Handle game links (example)
+  document.getElementById('message-container').addEventListener('click', function(e) {
+    if (e.target.classList.contains('game-link')) {
+      window.location.href = e.target.getAttribute('href');
     }
   });
 
-  document.querySelector('#movies-tab').addEventListener('click', function() {
-    document.getElementById('movies-panel').classList.add('active');
-  });
-
-  document.querySelector('#games-tab').addEventListener('click', function() {
-    document.getElementById('games-panel').classList.add('active');
-  });
-
-  function closePanel(panelId) {
-    document.getElementById(panelId).classList.remove('active');
-  }
 </script>
 
 </body>
