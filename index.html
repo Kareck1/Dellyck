@@ -132,6 +132,32 @@
       margin-top: 4rem;
     }
 
+    .tab-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .tab-box {
+      width: 200px;
+      height: 150px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tab-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
     footer {
       background-color: #ffffff;
       color: #333;
@@ -240,6 +266,17 @@
       background-color: #cc0000;
     }
 
+    .game-iframe {
+      width: 100%;
+      height: 600px; /* Adjust height as needed */
+      border: none;
+      display: none;
+    }
+
+    .game-iframe.active {
+      display: block;
+    }
+
     @media (max-width: 768px) {
       .hamburger {
         font-size: 1.8rem;
@@ -253,63 +290,6 @@
       #message-panel {
         width: 100%;
       }
-    }
-
-    /* Games Section */
-    #games-section {
-      margin-top: 2rem;
-    }
-
-    .games-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .game {
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .game img {
-      width: 200px; /* Adjust size as needed */
-      height: auto;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    #game-player {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 20;
-    }
-
-    #game-player iframe {
-      border: none;
-    }
-
-    #game-player button {
-      margin-bottom: 1rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: #ff4d4d;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #game-player button:hover {
-      background-color: #cc0000;
     }
   </style>
 </head>
@@ -330,58 +310,43 @@
 
 <nav>
   <ul>
-    <li><a href="https://kareck1.github.io/Dellyck/" class="nav-link home-link">Home</a></li>
-    <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
-    <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
-    <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
-    <li><a href="#games" class="nav-link">Games</a></li>
+    <li><a href="https://kareck1.github.io/Dellyck/">Home</a></li>
+    <li><a href="#movies-tab">Movies</a></li>
+    <li><a href="#games-tab">Games</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
-<div id="message-panel">
-  <span id="close-btn">&times;</span>
-  <div id="message-container"></div>
-</div>
 
 <div class="main-content">
   <h1>Welcome to Dellyck</h1>
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
-  
-  <!-- Games Section -->
-  <div id="games-section">
-    <h2>Play Games</h2>
-    <div class="games-container">
-      <div class="game" onclick="playGame('https://example.com/game1')">
-        <img src="https://example.com/thumbnail1.jpg" alt="Game 1 Thumbnail">
-        <p>Game 1</p>
+
+  <!-- Tab Boxes -->
+  <div class="tab-boxes">
+    <div class="tab-box" id="movies-tab">
+      <h2>Movies</h2>
+      <!-- Placeholder for movie thumbnails -->
+    </div>
+    <div class="tab-box" id="games-tab">
+      <h2>Games</h2>
+      <div class="tab-box" onclick="showGame('game1')">
+        <h3>Tic-Tac-Toe</h3>
       </div>
-      <div class="game" onclick="playGame('https://example.com/game2')">
-        <img src="https://example.com/thumbnail2.jpg" alt="Game 2 Thumbnail">
-        <p>Game 2</p>
+      <div class="tab-box" onclick="showGame('game2')">
+        <h3>Snake Game</h3>
       </div>
-      <div class="game" onclick="playGame('https://example.com/game3')">
-        <img src="https://example.com/thumbnail3.jpg" alt="Game 3 Thumbnail">
-        <p>Game 3</p>
+      <div class="tab-box" onclick="showGame('game3')">
+        <h3>Pong</h3>
       </div>
-      <div class="game" onclick="playGame('https://example.com/game4')">
-        <img src="https://example.com/thumbnail4.jpg" alt="Game 4 Thumbnail">
-        <p>Game 4</p>
-      </div>
-      <div class="game" onclick="playGame('https://example.com/game5')">
-        <img src="https://example.com/thumbnail5.jpg" alt="Game 5 Thumbnail">
-        <p>Game 5</p>
-      </div>
-      <!-- Add more games similarly -->
     </div>
   </div>
-
-  <!-- Hidden iframe to load games -->
-  <div id="game-player" style="display:none;">
-    <button onclick="closeGame()">Close</button>
-    <iframe id="game-frame" width="100%" height="600px"></iframe>
-  </div>
+  
+  <!-- Game iframes -->
+  <iframe id="game1" class="game-iframe" src="https://example.com/tic-tac-toe"></iframe>
+  <iframe id="game2" class="game-iframe" src="https://example.com/snake-game"></iframe>
+  <iframe id="game3" class="game-iframe" src="https://example.com/pong"></iframe>
 </div>
 
 <footer>
@@ -389,61 +354,22 @@
 </footer>
 
 <script>
-  document.querySelector('.hamburger').addEventListener('click', function() {
-    document.querySelector('nav').style.transform = 
-      document.querySelector('nav').style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
-  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const showGame = (gameId) => {
+      // Hide all game iframes
+      document.querySelectorAll('.game-iframe').forEach(iframe => iframe.classList.remove('active'));
+      // Show the selected game iframe
+      document.getElementById(gameId).classList.add('active');
+    };
 
-  document.querySelectorAll('.nav-link').forEach(function(link) {
-    link.addEventListener('click', function(event) {
-      const message = this.getAttribute('data-message');
-      if (message) {
-        event.preventDefault();
-        document.getElementById('message-container').innerText = message;
-        document.getElementById('message-panel').classList.add('active');
-      }
+    // Example function to show a specific game
+    document.querySelectorAll('#games-tab .tab-box').forEach(box => {
+      box.addEventListener('click', (event) => {
+        const gameId = event.currentTarget.textContent.trim().toLowerCase().replace(/ /g, '');
+        showGame(gameId);
+      });
     });
   });
-
-  document.getElementById('close-btn').addEventListener('click', function() {
-    document.getElementById('message-panel').classList.remove('active');
-  });
-
-  function playGame(gameUrl) {
-    document.getElementById('game-frame').src = gameUrl;
-    document.getElementById('game-player').style.display = 'flex';
-  }
-
-  function closeGame() {
-    document.getElementById('game-frame').src = '';
-    document.getElementById('game-player').style.display = 'none';
-  }
-
-  function showCreateAccountForm() {
-    document.getElementById('message-container').innerHTML = `
-      <form id="create-account-form">
-        <label for="create-username">Username:</label>
-        <input type="text" id="create-username" name="username" required>
-        <label for="create-password">Password:</label>
-        <input type="password" id="create-password" name="password" required>
-        <button type="submit">Create Account</button>
-      </form>
-    `;
-    document.getElementById('message-panel').classList.add('active');
-  }
-
-  function showLoginForm() {
-    document.getElementById('message-container').innerHTML = `
-      <form id="login-form">
-        <label for="login-username">Username:</label>
-        <input type="text" id="login-username" name="username" required>
-        <label for="login-password">Password:</label>
-        <input type="password" id="login-password" name="password" required>
-        <button type="submit">Login</button>
-      </form>
-    `;
-    document.getElementById('message-panel').classList.add('active');
-  }
 </script>
 
 </body>
