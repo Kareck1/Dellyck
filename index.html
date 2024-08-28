@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
     }
 
     header {
@@ -31,7 +31,7 @@
     }
 
     .logo img {
-      max-width: 80px; /* Adjust as needed */
+      max-width: 80px;
       height: auto;
     }
 
@@ -297,7 +297,6 @@
   <div class="tab-boxes">
     <div class="tab-box" id="movies-tab">
       <h2>Movies</h2>
-      <!-- Placeholder for movie thumbnails -->
     </div>
     <div class="tab-box" id="games-tab">
       <h2>Games</h2>
@@ -305,142 +304,101 @@
   </div>
 </div>
 
-<!-- Sliding Panels for Movies and Games -->
-<div id="movies-panel" class="panel">
-  <div class="panel-header">
-    <h2>Movies</h2>
-    <span class="panel-close" onclick="closePanel('movies-panel')">&times;</span>
-  </div>
-  <div class="panel-content">
-    <p>Here you can display movie thumbnails or links.</p>
-    <!-- Add content for movies here -->
-  </div>
-  <button onclick="closePanel('movies-panel')" class="exit-button">Exit</button>
+<footer>
+  &copy; 2023 Dellyck Company. All Rights Reserved.
+</footer>
+
+<!-- Sliding Panel -->
+<div id="message-panel">
+  <div id="close-btn">&times;</div>
+  <div id="message-container"></div>
 </div>
 
+<!-- Panel HTML structure -->
 <div id="games-panel" class="panel">
   <div class="panel-header">
     <h2>Games</h2>
-    <span class="panel-close" onclick="closePanel('games-panel')">&times;</span>
+    <span class="panel-close">&times;</span>
   </div>
   <div class="panel-content">
-    <p>Here you can add game sub-tabs or links to games.</p>
-    <!-- Example of game links -->
-    <ul>
-      <li><a href="https://example.com/game1" target="_blank">Game 1</a></li>
-      <li><a href="https://example.com/game2" target="_blank">Game 2</a></li>
-      <li><a href="https://example.com/game3" target="_blank">Game 3</a></li>
-    </ul>
+    <!-- Game links will go here -->
+    <p>Game links coming soon!</p>
   </div>
-  <button onclick="closePanel('games-panel')" class="exit-button">Exit</button>
+</div>
+
+<div id="movies-panel" class="panel">
+  <div class="panel-header">
+    <h2>Movies</h2>
+    <span class="panel-close">&times;</span>
+  </div>
+  <div class="panel-content">
+    <!-- Movie links will go here -->
+    <p>Movie links coming soon!</p>
+  </div>
 </div>
 
 <script>
-  // Function to show sliding panels for Movies and Games
-  document.getElementById('movies-tab').addEventListener('click', function() {
-    openPanel('movies-panel');
+  document.querySelector('.hamburger').addEventListener('click', function() {
+    this.classList.toggle('active');
+    const nav = document.querySelector('nav');
+    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
   });
+
+  // Panel open/close logic for movies and games
+  function openPanel(panelId) {
+    const panel = document.getElementById(panelId);
+    panel.classList.add('open');
+  }
+
+  function closePanel(panelId) {
+    const panel = document.getElementById(panelId);
+    panel.classList.remove('open');
+  }
 
   document.getElementById('games-tab').addEventListener('click', function() {
     openPanel('games-panel');
   });
 
-  function openPanel(panelId) {
-    document.getElementById(panelId).classList.add('open');
-  }
-
-  function closePanel(panelId) {
-    document.getElementById(panelId).classList.remove('open');
-  }
-
-<!-- JavaScript -->
-<script>
-  // Hamburger Menu Functionality
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('nav');
-
-  hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
-    hamburger.classList.toggle('active');
+  document.getElementById('movies-tab').addEventListener('click', function() {
+    openPanel('movies-panel');
   });
 
-  // Message Panel Functionality
-  const navLinks = document.querySelectorAll('.nav-link');
-  const messagePanel = document.getElementById('message-panel');
-  const closeBtn = document.getElementById('close-btn');
-  const messagePanelContent = document.getElementById('message-panel-content');
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-      const message = link.getAttribute('data-message');
-      if (message) {
-        event.preventDefault();
-        messagePanelContent.textContent = message;
-        messagePanel.classList.add('active');
-      }
+  document.querySelectorAll('.panel-close').forEach(function(closeButton) {
+    closeButton.addEventListener('click', function() {
+      const panel = closeButton.closest('.panel');
+      panel.classList.remove('open');
     });
   });
 
-  closeBtn.addEventListener('click', () => {
-    messagePanel.classList.remove('active');
+  // Slide-in message panel
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const message = link.getAttribute('data-message');
+      document.getElementById('message-container').innerText = message;
+      document.getElementById('message-panel').classList.add('active');
+    });
   });
 
-  // My Account Panel Functionality
-  const myAccountLink = document.getElementById('my-account-link');
-  const userInfo = document.getElementById('user-info');
-
-  myAccountLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    userInfo.style.display = userInfo.style.display === 'block' ? 'none' : 'block';
+  document.getElementById('close-btn').addEventListener('click', function() {
+    document.getElementById('message-panel').classList.remove('active');
   });
 
-  // Tab Panel Functionality for Games and Movies
-  const moviesTab = document.getElementById('movies-tab');
-  const gamesTab = document.getElementById('games-tab');
+  // Placeholder function for create account and login
+  function showCreateAccountForm() {
+    alert('Create Account form will be shown here.');
+  }
 
-  const createPanel = (id, title, content) => {
-    const panel = document.createElement('div');
-    panel.id = id;
-    panel.className = 'panel';
-    panel.innerHTML = `
-      <div class="panel-header">
-        <span>${title}</span>
-        <span class="panel-close" onclick="closePanel('${id}')">&times;</span>
-      </div>
-      <div class="panel-content">${content}</div>
-    `;
-    document.body.appendChild(panel);
-    return panel;
-  };
+  function showLoginForm() {
+    alert('Login form will be shown here.');
+  }
 
-  const moviesPanel = createPanel('movies-panel', 'Movies', '<p>Movies content here...</p>');
-  const gamesPanel = createPanel('games-panel', 'Games', `
-    <ul>
-      <li><a href="https://example.com/game1">Game 1</a></li>
-      <li><a href="https://example.com/game2">Game 2</a></li>
-      <li><a href="https://example.com/game3">Game 3</a></li>
-    </ul>
-  `);
-
-  const openPanel = (panel) => {
-    panel.classList.add('open');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-  };
-
-  const closePanel = (id) => {
-    const panel = document.getElementById(id);
-    panel.classList.remove('open');
-    document.body.style.overflow = ''; // Restore scrolling
-  };
-
-  moviesTab.addEventListener('click', () => openPanel(moviesPanel));
-  gamesTab.addEventListener('click', () => openPanel(gamesPanel));
-
-  // Close Panel Functionality on Close Button Click
-  window.closePanel = closePanel; // Make it globally accessible
-
+  // Placeholder logout function
+  function logout() {
+    alert('Logging out...');
+  }
 </script>
-
 
 </body>
 </html>
