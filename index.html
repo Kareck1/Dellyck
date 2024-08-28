@@ -353,28 +353,94 @@
     document.getElementById(panelId).classList.remove('open');
   }
 
-  // Hamburger menu functionality
+<!-- JavaScript -->
+<script>
+  // Hamburger Menu Functionality
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('nav');
-  
+
   hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
     hamburger.classList.toggle('active');
   });
 
-  // Placeholder functions for authentication buttons
-  function showCreateAccountForm() {
-    alert('Create Account functionality goes here.');
-  }
+  // Message Panel Functionality
+  const navLinks = document.querySelectorAll('.nav-link');
+  const messagePanel = document.getElementById('message-panel');
+  const closeBtn = document.getElementById('close-btn');
+  const messagePanelContent = document.getElementById('message-panel-content');
 
-  function showLoginForm() {
-    alert('Login functionality goes here.');
-  }
+  navLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+      const message = link.getAttribute('data-message');
+      if (message) {
+        event.preventDefault();
+        messagePanelContent.textContent = message;
+        messagePanel.classList.add('active');
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    messagePanel.classList.remove('active');
+  });
+
+  // My Account Panel Functionality
+  const myAccountLink = document.getElementById('my-account-link');
+  const userInfo = document.getElementById('user-info');
+
+  myAccountLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    userInfo.style.display = userInfo.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Tab Panel Functionality for Games and Movies
+  const moviesTab = document.getElementById('movies-tab');
+  const gamesTab = document.getElementById('games-tab');
+
+  const createPanel = (id, title, content) => {
+    const panel = document.createElement('div');
+    panel.id = id;
+    panel.className = 'panel';
+    panel.innerHTML = `
+      <div class="panel-header">
+        <span>${title}</span>
+        <span class="panel-close" onclick="closePanel('${id}')">&times;</span>
+      </div>
+      <div class="panel-content">${content}</div>
+    `;
+    document.body.appendChild(panel);
+    return panel;
+  };
+
+  const moviesPanel = createPanel('movies-panel', 'Movies', '<p>Movies content here...</p>');
+  const gamesPanel = createPanel('games-panel', 'Games', `
+    <ul>
+      <li><a href="https://example.com/game1">Game 1</a></li>
+      <li><a href="https://example.com/game2">Game 2</a></li>
+      <li><a href="https://example.com/game3">Game 3</a></li>
+    </ul>
+  `);
+
+  const openPanel = (panel) => {
+    panel.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  };
+
+  const closePanel = (id) => {
+    const panel = document.getElementById(id);
+    panel.classList.remove('open');
+    document.body.style.overflow = ''; // Restore scrolling
+  };
+
+  moviesTab.addEventListener('click', () => openPanel(moviesPanel));
+  gamesTab.addEventListener('click', () => openPanel(gamesPanel));
+
+  // Close Panel Functionality on Close Button Click
+  window.closePanel = closePanel; // Make it globally accessible
+
 </script>
 
-<footer>
-  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
