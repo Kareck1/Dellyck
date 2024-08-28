@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
     }
 
     header {
@@ -31,7 +31,7 @@
     }
 
     .logo img {
-      max-width: 80px; /* Adjust as needed */
+      max-width: 80px;
       height: auto;
     }
 
@@ -168,7 +168,6 @@
       width: 100%;
     }
 
-    /* Sliding panel styles */
     #message-panel {
       position: fixed;
       top: 0;
@@ -210,13 +209,6 @@
       background-color: #ddd;
     }
 
-    #message-container {
-      padding: 1rem;
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    /* Panel animations */
     .panel {
       position: absolute;
       top: 0;
@@ -297,7 +289,6 @@
   <div class="tab-boxes">
     <div class="tab-box" id="movies-tab">
       <h2>Movies</h2>
-      <!-- Placeholder for movie thumbnails -->
     </div>
     <div class="tab-box" id="games-tab">
       <h2>Games</h2>
@@ -305,76 +296,120 @@
   </div>
 </div>
 
-<!-- Sliding Panels for Movies and Games -->
-<div id="movies-panel" class="panel">
-  <div class="panel-header">
-    <h2>Movies</h2>
-    <span class="panel-close" onclick="closePanel('movies-panel')">&times;</span>
-  </div>
-  <div class="panel-content">
-    <p>Here you can display movie thumbnails or links.</p>
-    <!-- Add content for movies here -->
-  </div>
-  <button onclick="closePanel('movies-panel')" class="exit-button">Exit</button>
-</div>
+<footer>
+  &copy; 2024 Dellyck Company. All rights reserved.
+</footer>
 
-<div id="games-panel" class="panel">
-  <div class="panel-header">
-    <h2>Games</h2>
-    <span class="panel-close" onclick="closePanel('games-panel')">&times;</span>
-  </div>
-  <div class="panel-content">
-    <p>Here you can add game sub-tabs or links to games.</p>
-    <!-- Example of game links -->
-    <ul>
-      <li><a href="https://example.com/game1" target="_blank">Game 1</a></li>
-      <li><a href="https://example.com/game2" target="_blank">Game 2</a></li>
-      <li><a href="https://example.com/game3" target="_blank">Game 3</a></li>
-    </ul>
-  </div>
-  <button onclick="closePanel('games-panel')" class="exit-button">Exit</button>
-</div>
-
+<!-- JavaScript -->
 <script>
-  // Function to show sliding panels for Movies and Games
-  document.getElementById('movies-tab').addEventListener('click', function() {
-    openPanel('movies-panel');
-  });
-
-  document.getElementById('games-tab').addEventListener('click', function() {
-    openPanel('games-panel');
-  });
-
-  function openPanel(panelId) {
-    document.getElementById(panelId).classList.add('open');
-  }
-
-  function closePanel(panelId) {
-    document.getElementById(panelId).classList.remove('open');
-  }
-
-  // Hamburger menu functionality
+  // Hamburger Menu Functionality
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('nav');
-  
+
+  hamburger.addEventListener('click', () =>
+    // Hamburger Menu Functionality
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+
   hamburger.addEventListener('click', () => {
-    nav.style.transform = nav.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
+    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
     hamburger.classList.toggle('active');
   });
 
-  // Placeholder functions for authentication buttons
+  // Navigation Link Functionality
+  const navLinks = document.querySelectorAll('.nav-link');
+  const messagePanel = document.getElementById('message-panel');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const message = link.getAttribute('data-message');
+      if (message) {
+        document.getElementById('message-text').textContent = message;
+        messagePanel.classList.add('active');
+      }
+    });
+  });
+
+  document.getElementById('close-btn').addEventListener('click', () => {
+    messagePanel.classList.remove('active');
+  });
+
+  // Tab Panel Functionality
+  const moviesTab = document.getElementById('movies-tab');
+  const gamesTab = document.getElementById('games-tab');
+  const moviesPanel = document.createElement('div');
+  const gamesPanel = document.createElement('div');
+
+  moviesPanel.className = 'panel';
+  gamesPanel.className = 'panel';
+
+  moviesPanel.innerHTML = `
+    <div class="panel-header">
+      <span>Movies</span>
+      <span class="panel-close" onclick="closePanel(moviesPanel)">×</span>
+    </div>
+    <div class="panel-content">
+      <!-- Add content or links related to Movies here -->
+    </div>
+  `;
+
+  gamesPanel.innerHTML = `
+    <div class="panel-header">
+      <span>Games</span>
+      <span class="panel-close" onclick="closePanel(gamesPanel)">×</span>
+    </div>
+    <div class="panel-content">
+      <!-- Add content or links related to Games here -->
+    </div>
+  `;
+
+  document.body.appendChild(moviesPanel);
+  document.body.appendChild(gamesPanel);
+
+  moviesTab.addEventListener('click', () => {
+    moviesPanel.classList.add('open');
+  });
+
+  gamesTab.addEventListener('click', () => {
+    gamesPanel.classList.add('open');
+  });
+
+  function closePanel(panel) {
+    panel.classList.remove('open');
+  }
+
+  // Create Account and Login Functions
   function showCreateAccountForm() {
-    alert('Create Account functionality goes here.');
+    alert('Create Account Form Placeholder');
+    // Implement your logic for showing create account form
   }
 
   function showLoginForm() {
-    alert('Login functionality goes here.');
+    alert('Login Form Placeholder');
+    // Implement your logic for showing login form
+  }
+
+  // My Account Functionality
+  const myAccountLink = document.getElementById('my-account-link');
+  const userInfo = document.getElementById('user-info');
+  const usernameDisplay = document.getElementById('username-display');
+
+  myAccountLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (userInfo.style.display === 'none') {
+      userInfo.style.display = 'block';
+      usernameDisplay.textContent = 'Username'; // Replace with actual username
+    } else {
+      userInfo.style.display = 'none';
+    }
+  });
+
+  function logout() {
+    // Implement your logout logic here
+    alert('Logged out');
   }
 </script>
-
-<footer>
-  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
