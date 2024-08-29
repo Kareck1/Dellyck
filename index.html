@@ -11,7 +11,6 @@
       padding: 0;
       background-color: #ffffff;
     }
-
     header {
       background-color: #ffffff;
       color: #333;
@@ -23,18 +22,15 @@
       flex-direction: column;
       border-bottom: 1px solid #ddd;
     }
-
     .logo {
       position: absolute;
       top: 10px;
       left: 10px;
     }
-
     .logo img {
       max-width: 80px;
       height: auto;
     }
-
     .animated-text {
       margin: 0;
       font-size: 2.5rem;
@@ -43,16 +39,13 @@
       animation: fadeIn 2s ease-in-out infinite alternate;
       text-align: center;
     }
-
     @keyframes fadeIn {
       from { opacity: 0.5; }
       to { opacity: 1; }
     }
-
     .auth-buttons {
       margin-top: 1rem;
     }
-
     .auth-buttons button {
       padding: 0.5rem 1rem;
       border: none;
@@ -62,18 +55,15 @@
       font-size: 0.9rem;
       transition: background-color 0.3s ease;
     }
-
     .create-account {
       background-color: #007bff;
       color: #fff;
     }
-
     .login {
       background-color: #fff;
       color: #007bff;
       border: 1px solid #007bff;
     }
-
     nav {
       position: fixed;
       top: 0;
@@ -86,34 +76,25 @@
       transition: transform 0.3s ease;
       z-index: 5;
     }
-
-    nav.active {
-      transform: translateX(0%);
-    }
-
     nav ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-
     nav ul li {
       padding: 1rem;
       text-align: center;
     }
-
     nav ul li a {
       color: #333;
       text-decoration: none;
       font-size: 1.2rem;
       transition: background-color 0.3s ease;
     }
-
     nav ul li a:hover {
       background-color: #ddd;
       border-radius: 5px;
     }
-
     .hamburger {
       position: fixed;
       top: 1rem;
@@ -124,25 +105,21 @@
       padding: 0.5rem;
       transition: background-color 0.3s ease;
     }
-
     .hamburger.active {
       background-color: #ddd;
       border-radius: 5px;
     }
-
     .main-content {
       padding: 2rem;
       text-align: center;
       margin-top: 4rem;
     }
-
     .tab-boxes {
       display: flex;
       justify-content: center;
       gap: 1rem;
       margin-top: 2rem;
     }
-
     .tab-box {
       width: 200px;
       height: 150px;
@@ -155,13 +132,21 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: bold;
+      font-size: 1.5rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .tab-box:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
     footer {
       background-color: #ffffff;
       color: #333;
@@ -171,7 +156,6 @@
       bottom: 0;
       width: 100%;
     }
-
     /* Sliding panel styles */
     #message-panel {
       position: fixed;
@@ -193,11 +177,9 @@
       align-items: center;
       font-size: 1.1rem;
     }
-
     #message-panel.active {
       transform: translateX(0);
     }
-
     #close-btn {
       position: absolute;
       top: 0.5rem;
@@ -209,17 +191,14 @@
       padding: 0.3rem;
       transition: background-color 0.3s ease;
     }
-
     #close-btn:hover {
       background-color: #ddd;
     }
-
     #message-container {
       padding: 1rem;
       font-size: 1rem;
       text-align: center;
     }
-
     /* Panel animations */
     .panel {
       position: absolute;
@@ -231,12 +210,10 @@
       display: none;
       transform-origin: top;
     }
-
     .panel.open {
       display: block;
       animation: slideIn 0.5s ease forwards;
     }
-
     @keyframes slideIn {
       0% {
         transform: scale(0.5);
@@ -247,7 +224,6 @@
         opacity: 1;
       }
     }
-
     .panel-header {
       display: flex;
       justify-content: space-between;
@@ -255,12 +231,10 @@
       background-color: #007bff;
       color: white;
     }
-
     .panel-close {
       cursor: pointer;
       font-size: 1.5rem;
     }
-
     .panel-exit {
       position: absolute;
       bottom: 1rem;
@@ -274,18 +248,15 @@
       font-size: 1.5rem;
       transition: background-color 0.3s ease;
     }
-
     .panel-exit:hover {
       background-color: darkred;
     }
-
     .game-tabs {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 1rem;
       margin: 1rem 0;
     }
-
     .game-tab {
       background-color: #007bff;
       color: white;
@@ -301,6 +272,7 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
+      font-weight: bold;
     }
 
     .game-tab:hover {
@@ -309,7 +281,6 @@
   </style>
 </head>
 <body>
-
 <header>
   <div class="logo">
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.PNG?raw=true" alt="Dellyck Logo"></a>
@@ -318,6 +289,7 @@
 </header>
 
 <div class="hamburger">☰</div>
+<div class="hamburger" onclick="window.location.href='https://kareck1.github.io/Dellyck/#home'">☰</div>
 
 <nav>
   <ul>
@@ -327,16 +299,19 @@
     <li><a href="#contact" class="nav-link" data-message="Get in touch with us through our contact form or follow us on social media.">Contact</a></li>
   </ul>
 </nav>
-
 <div class="main-content">
   <h1>Welcome to Dellyck</h1>
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
-  
+
 <div id="message-panel">
   <div id="message-container"></div>
   <span id="close-btn">&times;</span>
 </div>
+  <div id="message-panel">
+    <div id="message-container"></div>
+    <span id="close-btn">&times;</span>
+  </div>
 
 <div class="main-content">
   <div class="tab-boxes">
@@ -344,7 +319,6 @@
     <div id="movies-tab" class="tab-box">Movies</div>
   </div>
 </div>
-
 <!-- Game Panel -->
 <div id="games-panel" class="panel">
   <div class="panel-header">
@@ -362,7 +336,6 @@
     <button class="panel-exit">Exit</button>
   </div>
 </div>
-
 <!-- Movie Panel -->
 <div id="movies-panel" class="panel">
   <div class="panel-header">
@@ -374,50 +347,44 @@
     <button class="panel-exit">Exit</button>
   </div>
 </div>
-
 <footer>
   <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
 </footer>
 
 <script>
-  // Hamburger menu toggle functionality
   document.querySelector('.hamburger').addEventListener('click', function() {
+    this.classList.toggle('active');
     const nav = document.querySelector('nav');
-    nav.classList.toggle('active');
+    nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
+    window.location.href = 'https://kareck1.github.io/Dellyck/#home';
   });
 
   function openPanel(panelId) {
     const panel = document.getElementById(panelId);
     panel.classList.add('open');
   }
-
   function closePanel(panelId) {
     const panel = document.getElementById(panelId);
     panel.classList.remove('open');
   }
-
   document.getElementById('games-tab').addEventListener('click', function() {
     openPanel('games-panel');
   });
-
   document.getElementById('movies-tab').addEventListener('click', function() {
     openPanel('movies-panel');
   });
-
   document.querySelectorAll('.panel-close').forEach(function(closeButton) {
     closeButton.addEventListener('click', function() {
       const panel = closeButton.closest('.panel');
       panel.classList.remove('open');
     });
   });
-
   document.querySelectorAll('.panel-exit').forEach(function(exitButton) {
     exitButton.addEventListener('click', function() {
       const panel = exitButton.closest('.panel');
       panel.classList.remove('open');
     });
   });
-
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -427,11 +394,9 @@
       document.getElementById('message-panel').classList.add('active');
     });
   });
-
   document.getElementById('close-btn').addEventListener('click', function() {
     document.getElementById('message-panel').classList.remove('active');
   });
 </script>
-
 </body>
 </html>
