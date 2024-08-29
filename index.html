@@ -87,6 +87,10 @@
       z-index: 5;
     }
 
+    nav.active {
+      transform: translateX(0%);
+    }
+
     nav ul {
       list-style: none;
       padding: 0;
@@ -151,15 +155,6 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-weight: bold;
-      font-size: 1.5rem;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
     }
 
     .tab-box:hover {
@@ -300,7 +295,12 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       animation: pulse 1.5s infinite;
-      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .game-tab:hover {
@@ -317,7 +317,7 @@
   <div class="animated-text">DELLYCK</div>
 </header>
 
-<div class="hamburger" onclick="window.location.href='https://kareck1.github.io/Dellyck/#home'">☰</div>
+<div class="hamburger">☰</div>
 
 <nav>
   <ul>
@@ -333,11 +333,12 @@
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
   
-  <div id="message-panel">
-    <div id="message-container"></div>
-    <span id="close-btn">&times;</span>
-  </div>
+<div id="message-panel">
+  <div id="message-container"></div>
+  <span id="close-btn">&times;</span>
+</div>
 
+<div class="main-content">
   <div class="tab-boxes">
     <div id="games-tab" class="tab-box">Games</div>
     <div id="movies-tab" class="tab-box">Movies</div>
@@ -379,8 +380,10 @@
 </footer>
 
 <script>
+  // Hamburger menu toggle functionality
   document.querySelector('.hamburger').addEventListener('click', function() {
-    window.location.href = 'https://kareck1.github.io/Dellyck/#home';
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('active');
   });
 
   function openPanel(panelId) {
