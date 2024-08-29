@@ -155,7 +155,6 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-weight: bold; /* Bold text for tabs */
     }
 
     .tab-box:hover {
@@ -178,11 +177,12 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 75%;
+      max-width: 300px;
       height: 100%;
       background-color: #ffffff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-      border-radius: 0;
+      border-radius: 0 10px 10px 0;
       transform: translateX(-100%);
       transition: transform 0.5s ease;
       z-index: 15;
@@ -222,16 +222,14 @@
 
     /* Panel animations */
     .panel {
-      position: fixed;
+      position: absolute;
       top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       background-color: white;
       z-index: 20;
       display: none;
       transform-origin: top;
-      transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
     .panel.open {
@@ -323,13 +321,18 @@
 
 <nav>
   <ul>
-    <li><a href="https://kareck1.github.io/Dellyck/#home" class="nav-link home-link">Home</a></li>
+    <li><a href="https://kareck1.github.io/Dellyck/" class="nav-link home-link">Home</a></li>
     <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
     <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your digital needs.">Services</a></li>
     <li><a href="#contact" class="nav-link" data-message="Get in touch with us through our contact form or follow us on social media.">Contact</a></li>
   </ul>
 </nav>
 
+<div class="main-content">
+  <h1>Welcome to Dellyck</h1>
+  <p class="bold-text">Your solution for innovative digital experiences.</p>
+  <p>Welcome to Dellyck where innovation meets convenience.</p>
+  
 <div id="message-panel">
   <div id="message-container"></div>
   <span id="close-btn">&times;</span>
