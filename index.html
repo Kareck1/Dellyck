@@ -49,31 +49,6 @@
       to { opacity: 1; }
     }
 
-    .auth-buttons {
-      margin-top: 1rem;
-    }
-
-    .auth-buttons button {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 0.5rem;
-      font-size: 0.9rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .create-account {
-      background-color: #007bff;
-      color: #fff;
-    }
-
-    .login {
-      background-color: #fff;
-      color: #007bff;
-      border: 1px solid #007bff;
-    }
-
     nav {
       position: fixed;
       top: 0;
@@ -265,10 +240,6 @@
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.PNG?raw=true" alt="Dellyck Logo"></a>
   </div>
   <div class="animated-text">DELLYCK</div>
-  <div class="auth-buttons">
-    <button class="create-account" onclick="showCreateAccountForm()">Create Account</button>
-    <button class="login" onclick="showLoginForm()">Login</button>
-  </div>
 </header>
 
 <div class="hamburger">☰</div>
@@ -280,12 +251,7 @@
     <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
     <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
     <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
-    <li><a href="#" class="nav-link" id="my-account-link">My Account</a></li>
   </ul>
-  <div class="user-info" id="user-info">
-    <span id="username-display"></span>
-    <button onclick="logout()">Logout</button>
-  </div>
 </nav>
 
 <div class="main-content">
@@ -344,40 +310,14 @@
     nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
   });
 
-  // Panel open/close logic for movies and games
-  function openPanel(panelId) {
-    const panel = document.getElementById(panelId);
-    panel.classList.add('open');
-  }
-
-  function closePanel(panelId) {
-    const panel = document.getElementById(panelId);
-    panel.classList.remove('open');
-  }
-
-  document.getElementById('games-tab').addEventListener('click', function() {
-    openPanel('games-panel');
-  });
-
-  document.getElementById('movies-tab').addEventListener('click', function() {
-    openPanel('movies-panel');
-  });
-
-  document.querySelectorAll('.panel-close').forEach(function(closeButton) {
-    closeButton.addEventListener('click', function() {
-      const panel = closeButton.closest('.panel');
-      panel.classList.remove('open');
-    });
-  });
-
-  // Slide-in message panel
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const message = link.getAttribute('data-message');
-      document.getElementById('message-container').innerText = message;
-      document.getElementById('message-panel').classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const message = this.dataset.message;
+      const panel = document.getElementById('message-panel');
+      const messageContainer = document.getElementById('message-container');
+      messageContainer.innerText = message;
+      panel.classList.add('active');
     });
   });
 
@@ -385,18 +325,24 @@
     document.getElementById('message-panel').classList.remove('active');
   });
 
-  // Placeholder function for create account and login
-  function showCreateAccountForm() {
-    alert('Create Account form will be shown here.');
-  }
+  document.getElementById('movies-tab').addEventListener('click', function() {
+    openPanel('movies-panel');
+  });
 
-  function showLoginForm() {
-    alert('Login form will be shown here.');
-  }
+  document.getElementById('games-tab').addEventListener('click', function() {
+    openPanel('games-panel');
+  });
 
-  // Placeholder logout function
-  function logout() {
-    alert('Logging out...');
+  document.querySelectorAll('.panel-close').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const panel = this.closest('.panel');
+      panel.classList.remove('open');
+    });
+  });
+
+  function openPanel(panelId) {
+    const panel = document.getElementById(panelId);
+    panel.classList.add('open');
   }
 </script>
 
