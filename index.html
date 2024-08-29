@@ -256,6 +256,52 @@
       cursor: pointer;
       font-size: 1.5rem;
     }
+
+    .panel-exit {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .panel-exit:hover {
+      background-color: darkred;
+    }
+
+    .game-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .game-tab {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .game-tab:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -273,58 +319,50 @@
   <ul>
     <li><a href="https://kareck1.github.io/Dellyck/" class="nav-link home-link">Home</a></li>
     <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your needs.">Services</a></li>
-    <li><a href="#careers" class="nav-link" data-message="Join our team and be part of a company that's shaping the future.">Careers</a></li>
-    <li><a href="#contact" class="nav-link" data-message="Get in touch with us for any inquiries or support.">Contact</a></li>
+    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your digital needs.">Services</a></li>
+    <li><a href="#contact" class="nav-link" data-message="Get in touch with us through our contact form or follow us on social media.">Contact</a></li>
   </ul>
 </nav>
 
-<div class="main-content">
-  <h1>Welcome to Dellyck</h1>
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
+<div id="message-panel">
+  <div id="message-container"></div>
+  <span id="close-btn">&times;</span>
+</div>
 
-  <!-- Tab Boxes -->
+<div class="main-content">
   <div class="tab-boxes">
-    <div class="tab-box" id="movies-tab">
-      <h2>Movies</h2>
-    </div>
-    <div class="tab-box" id="games-tab">
-      <h2>Games</h2>
-    </div>
+    <div id="games-tab" class="tab-box">Games</div>
+    <div id="movies-tab" class="tab-box">Movies</div>
   </div>
 </div>
 
-<footer>
-  &copy; 2023 Dellyck Company. All Rights Reserved.
-</footer>
-
-<!-- Sliding Panel -->
-<div id="message-panel">
-  <div id="close-btn">&times;</div>
-  <div id="message-container"></div>
-</div>
-
-<!-- Panel HTML structure -->
+<!-- Game Panel -->
 <div id="games-panel" class="panel">
   <div class="panel-header">
     <h2>Games</h2>
     <span class="panel-close">&times;</span>
   </div>
   <div class="panel-content">
-    <!-- Game links will go here -->
-    <p>Game links coming soon!</p>
+    <!-- Animated game tabs -->
+    <div class="game-tabs">
+      <div class="game-tab">Game 1</div>
+      <div class="game-tab">Game 2</div>
+      <div class="game-tab">Game 3</div>
+      <div class="game-tab">Game 4</div>
+    </div>
+    <button class="panel-exit">Exit</button>
   </div>
 </div>
 
+<!-- Movie Panel -->
 <div id="movies-panel" class="panel">
   <div class="panel-header">
     <h2>Movies</h2>
     <span class="panel-close">&times;</span>
   </div>
   <div class="panel-content">
-    <!-- Movie links will go here -->
     <p>Movie links coming soon!</p>
+    <button class="panel-exit">Exit</button>
   </div>
 </div>
 
@@ -335,7 +373,6 @@
     nav.style.transform = nav.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
   });
 
-  // Panel open/close logic for movies and games
   function openPanel(panelId) {
     const panel = document.getElementById(panelId);
     panel.classList.add('open');
@@ -361,7 +398,13 @@
     });
   });
 
-  // Slide-in message panel
+  document.querySelectorAll('.panel-exit').forEach(function(exitButton) {
+    exitButton.addEventListener('click', function() {
+      const panel = exitButton.closest('.panel');
+      panel.classList.remove('open');
+    });
+  });
+
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
