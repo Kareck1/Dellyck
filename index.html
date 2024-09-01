@@ -9,7 +9,15 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ffffff;
+      background: linear-gradient(45deg, #ffcccb, #d5f4e6);
+      background-size: 400% 400%;
+      animation: backgroundAnimation 10s ease infinite;
+    }
+
+    @keyframes backgroundAnimation {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
     }
 
     header {
@@ -139,13 +147,13 @@
     .tab-boxes {
       display: flex;
       justify-content: center;
-      gap: 2rem; /* Adjusted gap */
+      gap: 2rem;
       margin-top: 2rem;
     }
 
     .tab-box {
-      width: 250px; /* Adjusted width */
-      height: 200px; /* Adjusted height */
+      width: 250px;
+      height: 200px;
       border: 2px solid #ddd;
       border-radius: 10px;
       background-color: #f9f9f9;
@@ -155,13 +163,13 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-size: 1.5rem; /* Adjusted font size */
-      font-weight: bold; /* Bold text */
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
     .tab-box:hover {
-      transform: scale(1.1); /* Enhanced hover effect */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     footer {
@@ -174,13 +182,12 @@
       width: 100%;
     }
 
-    /* Sliding panel styles */
     #message-panel {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
+      width: 100%;
+      height: 100%;
       background-color: #ffffff;
       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
       border-radius: 0;
@@ -221,7 +228,6 @@
       text-align: center;
     }
 
-    /* Panel animations */
     .panel {
       position: absolute;
       top: 0;
@@ -326,112 +332,80 @@
   <ul>
     <!-- Home link removed -->
     <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#services" class="nav-link" data-message="Explore our diverse range of services designed to meet your digital needs.">Services</a></li>
-    <li><a href="#contact" class="nav-link" data-message="Get in touch with us through our contact form or follow us on social media.">Contact</a></li>
+    <li><a href="#services" class="nav-link" data-message="Explore our array of innovative technology solutions and services.">Services</a></li>
+    <li><a href="#contact" class="nav-link" data-message="Get in touch with us through our interactive contact form.">Contact</a></li>
+    <li><a href="#movies" class="tab-box" data-message="Discover a range of curated movies tailored just for you.">Movies</a></li>
+    <li><a href="#games" class="tab-box" data-message="Play the latest and greatest games with our recommendations.">Games</a></li>
   </ul>
 </nav>
 
 <div class="main-content">
-  <h1>Welcome to Dellyck</h1>
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
-
-  <div id="message-panel">
-    <div id="message-container"></div>
-    <span id="close-btn">&times;</span>
-  </div>
-
+  <h1>Welcome to Dellyck Company</h1>
   <div class="tab-boxes">
-    <div id="games-tab" class="tab-box">Games</div>
-    <div id="movies-tab" class="tab-box">Movies</div>
+    <div class="tab-box" id="movies-tab">Movies</div>
+    <div class="tab-box" id="games-tab">Games</div>
   </div>
 </div>
 
-<!-- Game Panel -->
-<div id="games-panel" class="panel">
-  <div class="panel-header">
-    <h2>Games</h2>
-    <span class="panel-close">&times;</span>
-  </div>
-  <div class="panel-content">
-    <!-- Animated game tabs -->
-    <div class="game-tabs">
-      <div class="game-tab">Game 1</div>
-      <div class="game-tab">Game 2</div>
-      <div class="game-tab">Game 3</div>
-      <div class="game-tab">Game 4</div>
-    </div>
-    <button class="panel-exit">Exit</button>
-  </div>
+<footer>
+  <p>&copy; 2024 Dellyck Company</p>
+</footer>
+
+<div id="message-panel">
+  <span id="close-btn">&times;</span>
+  <div id="message-container"></div>
 </div>
 
-<!-- Movie Panel -->
 <div id="movies-panel" class="panel">
   <div class="panel-header">
     <h2>Movies</h2>
     <span class="panel-close">&times;</span>
   </div>
-  <div class="panel-content">
-    <p>Movie links coming soon!</p>
-    <button class="panel-exit">Exit</button>
+  <div id="movies-content">
+    <!-- Movie content goes here -->
   </div>
+  <button id="movies-exit" class="panel-exit">X</button>
 </div>
 
-<footer>
-  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
-</footer>
+<div id="games-panel" class="panel">
+  <div class="panel-header">
+    <h2>Games</h2>
+    <span class="panel-close">&times;</span>
+  </div>
+  <div id="games-content">
+    <!-- Game content goes here -->
+  </div>
+  <button id="games-exit" class="panel-exit">X</button>
+</div>
 
 <script>
-  // Hamburger menu toggle functionality
-  document.querySelector('.hamburger').addEventListener('click', function() {
-    const nav = document.querySelector('nav');
-    nav.classList.toggle('active');
-  });
-
-  function openPanel(panelId) {
-    const panel = document.getElementById(panelId);
-    panel.classList.add('open');
-  }
-
-  function closePanel(panelId) {
-    const panel = document.getElementById(panelId);
-    panel.classList.remove('open');
-  }
-
-  document.getElementById('games-tab').addEventListener('click', function() {
-    openPanel('games-panel');
-  });
-
-  document.getElementById('movies-tab').addEventListener('click', function() {
-    openPanel('movies-panel');
-  });
-
-  document.querySelectorAll('.panel-close').forEach(function(closeButton) {
-    closeButton.addEventListener('click', function() {
-      const panel = closeButton.closest('.panel');
-      panel.classList.remove('open');
+  document.querySelectorAll('.tab-box').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const panelId = this.id === 'movies-tab' ? 'movies-panel' : 'games-panel';
+      document.getElementById(panelId).classList.add('open');
     });
   });
 
-  document.querySelectorAll('.panel-exit').forEach(function(exitButton) {
-    exitButton.addEventListener('click', function() {
-      const panel = exitButton.closest('.panel');
-      panel.classList.remove('open');
+  document.querySelectorAll('.panel-close, .panel-exit').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.closest('.panel').classList.remove('open');
     });
   });
 
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const message = link.getAttribute('data-message');
-      document.getElementById('message-container').innerText = message;
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      document.getElementById('message-container').innerText = this.getAttribute('data-message');
       document.getElementById('message-panel').classList.add('active');
     });
   });
 
   document.getElementById('close-btn').addEventListener('click', function() {
     document.getElementById('message-panel').classList.remove('active');
+  });
+
+  document.querySelector('.hamburger').addEventListener('click', function() {
+    document.querySelector('nav').classList.toggle('active');
+    this.classList.toggle('active');
   });
 </script>
 
