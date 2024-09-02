@@ -6,22 +6,13 @@
   <title>Dellyck Company</title>
   <style>
     body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: url('https://github.com/Kareck1/Dellyck/raw/main/background-image.png') center center no-repeat, linear-gradient(45deg, #ffcccb, #d5f4e6);
-  background-size: cover, 400% 400%;
-  background-blend-mode: overlay;
-  animation: backgroundAnimation 10s ease infinite;
-}
-
-    body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(45deg, #ffcccb, #d5f4e6);
-      background-size: 400% 400%;
+      background: linear-gradient(45deg, #ffcccb, #d5f4e6), url('https://github.com/Kareck1/Dellyck/raw/main/background-image.png') center center no-repeat;
+      background-size: cover;
       animation: backgroundAnimation 10s ease infinite;
+      background-blend-mode: overlay;
     }
 
     @keyframes backgroundAnimation {
@@ -232,12 +223,6 @@
       background-color: #ddd;
     }
 
-    #message-container {
-      padding: 1rem;
-      font-size: 1rem;
-      text-align: center;
-    }
-
     .panel {
       position: absolute;
       top: 0;
@@ -342,78 +327,106 @@
   <ul>
     <!-- Home link removed -->
     <li><a href="#about" class="nav-link" data-message="We're a Rwanda based company breaking down barriers between people and technology to create a seamless digital experience.">About</a></li>
-    <li><a href="#services" class="nav-link" data-message="Explore our array of innovative technology solutions and services.">Services</a></li>
-    <li><a href="#contact" class="nav-link" data-message="Get in touch with us through our interactive contact form.">Contact</a></li>
+    <li><a href="#services" class="nav-link" data-message="Explore our innovative range of services designed to revolutionize your interaction with technology.">Services</a></li>
+    <li><a href="#contact" class="nav-link" data-message="Contact us today to find out how we can help you leverage technology in new and exciting ways.">Contact</a></li>
   </ul>
 </nav>
 
 <div class="main-content">
-  <h1>Welcome to Dellyck Company</h1>
   <div class="tab-boxes">
-    <div class="tab-box" id="movies-tab">Movies</div>
-    <div class="tab-box" id="games-tab">Games</div>
+    <div class="tab-box" data-panel="movies-panel">Movies</div>
+    <div class="tab-box" data-panel="games-panel">Games</div>
   </div>
+</div>
+
+<div id="message-panel">
+  <span id="close-btn">✕</span>
+  <div id="message-content"></div>
+</div>
+
+<div class="panel" id="games-panel">
+  <div class="panel-header">
+    <h2>Games</h2>
+    <div class="panel-close">✕</div>
+  </div>
+  <div class="game-tabs">
+    <div class="game-tab" data-url="https://game1.com">Game 1</div>
+    <div class="game-tab" data-url="https://game2.com">Game 2</div>
+    <div class="game-tab" data-url="https://game3.com">Game 3</div>
+    <div class="game-tab" data-url="https://game4.com">Game 4</div>
+    <div class="game-tab" data-url="https://game5.com">Game 5</div>
+  </div>
+  <button class="panel-exit">Exit</button>
+</div>
+
+<div class="panel" id="movies-panel">
+  <div class="panel-header">
+    <h2>Movies</h2>
+    <div class="panel-close">✕</div>
+  </div>
+  <button class="panel-exit">Exit</button>
 </div>
 
 <footer>
   <p>&copy; 2024 Dellyck Company</p>
 </footer>
 
-<div id="message-panel">
-  <span id="close-btn">&times;</span>
-  <div id="message-container"></div>
-</div>
-
-<div id="movies-panel" class="panel">
-  <div class="panel-header">
-    <h2>Movies</h2>
-    <span class="panel-close">&times;</span>
-  </div>
-  <div id="movies-content">
-    <!-- Movie content goes here -->
-  </div>
-  <button id="movies-exit" class="panel-exit">X</button>
-</div>
-
-<div id="games-panel" class="panel">
-  <div class="panel-header">
-    <h2>Games</h2>
-    <span class="panel-close">&times;</span>
-  </div>
-  <div id="games-content">
-    <!-- Game content goes here -->
-  </div>
-  <button id="games-exit" class="panel-exit">X</button>
-</div>
-
 <script>
-  document.querySelectorAll('.tab-box').forEach(tab => {
-    tab.addEventListener('click', function() {
-      const panelId = this.id === 'movies-tab' ? 'movies-panel' : 'games-panel';
-      document.getElementById(panelId).classList.add('open');
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  const messagePanel = document.getElementById('message-panel');
+  const closeBtn = document.getElementById('close-btn');
+  const messageContent = document.getElementById('message-content');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const tabBoxes = document.querySelectorAll('.tab-box');
+  const panels = document.querySelectorAll('.panel');
+  const gameTabs = document.querySelectorAll('.game-tab');
+  const panelExits = document.querySelectorAll('.panel-exit');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const message = e.target.dataset.message;
+      messageContent.textContent = message;
+      messagePanel.classList.add('active');
     });
   });
 
-  document.querySelectorAll('.panel-close, .panel-exit').forEach(btn => {
-    btn.addEventListener('click', function() {
-      this.closest('.panel').classList.remove('open');
+  closeBtn.addEventListener('click', () => {
+    messagePanel.classList.remove('active');
+  });
+
+  tabBoxes.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const panelId = tab.dataset.panel;
+      const panel = document.getElementById(panelId);
+      panel.classList.add('open');
     });
   });
 
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-      document.getElementById('message-container').innerText = this.getAttribute('data-message');
-      document.getElementById('message-panel').classList.add('active');
+  document.querySelectorAll('.panel-close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', (e) => {
+      const panel = e.target.closest('.panel');
+      panel.classList.remove('open');
     });
   });
 
-  document.getElementById('close-btn').addEventListener('click', function() {
-    document.getElementById('message-panel').classList.remove('active');
+  panelExits.forEach(exit => {
+    exit.addEventListener('click', (e) => {
+      const panel = e.target.closest('.panel');
+      panel.classList.remove('open');
+    });
   });
 
-  document.querySelector('.hamburger').addEventListener('click', function() {
-    document.querySelector('nav').classList.toggle('active');
-    this.classList.toggle('active');
+  gameTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      const url = e.target.dataset.url;
+      window.open(url, '_blank');
+    });
   });
 </script>
 
