@@ -325,11 +325,12 @@
 </header>
 
 <div class="hamburger">☰</div>
+
 <nav>
   <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#home" id="home-nav">Home</a></li>
+    <li><a href="#about" id="about-nav">About</a></li>
+    <li><a href="#contact" id="contact-nav">Contact</a></li>
   </ul>
 </nav>
 
@@ -377,11 +378,56 @@
   <button class="panel-exit" id="games-panel-exit">Exit</button>
 </div>
 
+<div id="about-panel" class="panel">
+  <div class="panel-header">
+    <span>About</span>
+    <span class="panel-close" id="about-panel-close">×</span>
+  </div>
+  <div id="about-panel-content" class="panel-content">
+    <p>About the page: You can create various content here.</p>
+  </div>
+  <button class="panel-exit" id="about-panel-exit">Exit</button>
+</div>
+
+<div id="contact-panel" class="panel">
+  <div class="panel-header">
+    <span>Contact</span>
+    <span class="panel-close" id="contact-panel-close">×</span>
+  </div>
+  <div id="contact-panel-content" class="panel-content">
+    <p>Email: example@gmail.com</p>
+    <p>Location: 123 Main St, Anytown, USA</p>
+    <p>Phone: +1 234 567 890</p>
+  </div>
+  <button class="panel-exit" id="contact-panel-exit">Exit</button>
+</div>
+
 <script>
+  // Hamburger menu functionality
   document.querySelector('.hamburger').addEventListener('click', () => {
     document.querySelector('nav').classList.toggle('active');
   });
 
+  // Navigation links
+  document.getElementById('home-nav').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('nav').classList.remove('active');
+  });
+
+  document.getElementById('about-nav').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('about-panel').classList.add('open');
+    document.querySelector('nav').classList.remove('active');
+  });
+
+  document.getElementById('contact-nav').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('contact-panel').classList.add('open');
+    document.querySelector('nav').classList.remove('active');
+  });
+
+  // Tab functionality for movies and games
   document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
       const panelId = e.target.id.replace('-tab', '-panel');
@@ -389,12 +435,14 @@
     });
   });
 
+  // Panel close buttons
   document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
     button.addEventListener('click', () => {
       button.closest('.panel').classList.remove('open');
     });
   });
 
+  // Message panel
   document.getElementById('close-btn').addEventListener('click', () => {
     document.getElementById('message-panel').classList.remove('active');
   });
