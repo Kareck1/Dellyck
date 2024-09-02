@@ -9,6 +9,430 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background: url('https://github.com/Kareck1/Dellyck/raw/main/background-image.png') center center no-repeat, linear-gradient(45deg, #ffcccb, #d5f4e6);
+      background-size: contain, 100% 100%;
+      background-blend-mode: overlay;
+      background-attachment: fixed;
+    }
+
+    header {
+      background-color: #ffffff;
+      color: #333;
+      padding: 1rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-bottom: 1px solid #ddd;
+      z-index: 2; /* Ensure header is above background */
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .logo img {
+      max-width: 80px;
+      height: auto;
+    }
+
+    .animated-text {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      animation: fadeIn 2s ease-in-out infinite alternate;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    .auth-buttons {
+      margin-top: 1rem;
+    }
+
+    .auth-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0.5rem;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .create-account {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .login {
+      background-color: #fff;
+      color: #007bff;
+      border: 1px solid #007bff;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #f0f0f0;
+      width: 75%;
+      max-width: 400px;
+      height: 24%;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 5;
+    }
+
+    nav.active {
+      transform: translateX(0%);
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 1rem;
+      right: 0.5rem;
+      z-index: 10;
+      cursor: pointer;
+      font-size: 2rem;
+      padding: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .hamburger.active {
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+
+    .main-content {
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .tab-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tab-box {
+      width: 150px; /* Reduced size */
+      height: 120px; /* Reduced size */
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1.2rem; /* Adjusted font size */
+      font-weight: bold;
+    }
+
+    .tab-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      background-color: #ffffff;
+      color: #333;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #message-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      border-radius: 0;
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+      z-index: 15;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    #message-panel.active {
+      transform: translateX(0);
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background-color: #f4f4f4;
+      border-radius: 50%;
+      padding: 0.3rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #close-btn:hover {
+      background-color: #ddd;
+    }
+
+    #message-container {
+      padding: 1rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .panel {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 20;
+      display: none;
+      transform-origin: top;
+    }
+
+    .panel.open {
+      display: block;
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      background-color: #007bff;
+      color: white;
+    }
+
+    .panel-close {
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .panel-exit {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .panel-exit:hover {
+      background-color: darkred;
+    }
+
+    .game-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .game-tab {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .game-tab:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/logo.PNG?raw=true" alt="Dellyck Logo"></a>
+  </div>
+  <div class="animated-text">DELLYCK</div>
+</header>
+
+<div class="hamburger">☰</div>
+<nav>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="main-content">
+  <div class="tab-boxes">
+    <div class="tab-box" id="movies-tab">Movies</div>
+    <div class="tab-box" id="games-tab">Games</div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
+</footer>
+
+<!-- Panels for Movies and Games -->
+<div class="panel" id="movies-panel">
+  <div class="panel-header">
+    <span>Movies</span>
+    <span class="panel-close" id="close-movies-panel">×</span>
+  </div>
+  <div class="game-tabs">
+    <!-- Add your movie tabs here -->
+    <div class="game-tab">Movie 1</div>
+    <div class="game-tab">Movie 2</div>
+    <div class="game-tab">Movie 3</div>
+    <div class="game-tab">Movie 4</div>
+    <div class="game-tab">Movie 5</div>
+  </div>
+  <button class="panel-exit" id="exit-movies-panel">Exit</button>
+</div>
+
+<div class="panel" id="games-panel">
+  <div class="panel-header">
+    <span>Games</span>
+    <span class="panel-close" id="close-games-panel">×</span>
+  </div>
+  <div class="game-tabs">
+    <!-- Add your game tabs here -->
+    <div class="game-tab">Game 1</div>
+    <div class="game-tab">Game 2</div>
+    <div class="game-tab">Game 3</div>
+    <div class="game-tab">Game 4</div>
+    <div class="game-tab">Game 5</div>
+  </div>
+  <button class="panel-exit" id="exit-games-panel">Exit</button>
+</div>
+
+<script>
+  // Toggle navigation menu
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+
+  // Toggle panels
+  const moviesTab = document.getElementById('movies-tab');
+  const gamesTab = document.getElementById('games-tab');
+  const moviesPanel = document.getElementById('movies-panel');
+  const gamesPanel = document.getElementById('games-panel');
+  const closeMoviesPanel = document.getElementById('close-movies-panel');
+  const closeGamesPanel = document.getElementById('close-games-panel');
+  const exitMoviesPanel = document.getElementById('exit-movies-panel');
+  const exitGamesPanel = document.getElementById('exit-games-panel');
+
+  moviesTab.addEventListener('click', () => {
+    moviesPanel.classList.add('open');
+  });
+
+  gamesTab.addEventListener('click', () => {
+    gamesPanel.classList.add('open');
+  });
+
+  closeMoviesPanel.addEventListener('click', () => {
+    moviesPanel.classList.remove('open');
+  });
+
+  closeGamesPanel.addEventListener('click', () => {
+    gamesPanel.classList.remove('open');
+  });
+
+  exitMoviesPanel.addEventListener('click', () => {
+    moviesPanel.classList.remove('open');
+  });
+
+  exitGamesPanel.addEventListener('click', () => {
+    gamesPanel.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dellyck Company</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(45deg, #ffcccb, #d5f4e6), url('https://github.com/Kareck1/Dellyck/raw/main/background-image.png') center center no-repeat;
       background-size: cover;
       animation: backgroundAnimation 10s ease infinite;
