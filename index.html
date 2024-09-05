@@ -283,32 +283,41 @@
       background-color: darkred;
     }
 
-    .game-tabs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0;
-    }
+.game-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust size as needed */
+  gap: 1rem;
+  margin: 1rem 0;
+}
 
-    .game-tab {
-      background-color: #007bff;
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      animation: pulse 1.5s infinite;
-    }
+.game-tab {
+  background-size: cover; /* Cover the entire tab with the image */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 150px; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-tab:hover {
+  transform: scale(1.05);
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: add overlay color */
+}
+
 
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
-    }
-
-    .game-tab:hover {
-      background-color: #0056b3;
     }
   </style>
 </head>
@@ -370,15 +379,16 @@
   </div>
   <div id="games-panel-content" class="panel-content">
     <div class="game-tabs">
-      <div class="game-tab">Game 1</div>
-      <div class="game-tab">Game 2</div>
-      <div class="game-tab">Game 3</div>
-      <div class="game-tab">Game 4</div>
-      <div class="game-tab">Game 5</div>
+      <div class="game-tab" data-url="https://example.com/game1" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true');">Game 1</div>
+      <div class="game-tab" data-url="https://example.com/game2" style="background-image: url('path/to/thumbnail2.jpg');">Game 2</div>
+      <div class="game-tab" data-url="https://example.com/game3" style="background-image: url('path/to/thumbnail3.jpg');">Game 3</div>
+      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('path/to/thumbnail4.jpg');">Game 4</div>
+      <div class="game-tab" data-url="https://example.com/game5" style="background-image: url('path/to/thumbnail5.jpg');">Game 5</div>
     </div>
   </div>
   <button class="panel-exit" id="games-panel-exit">Exit</button>
 </div>
+
 
 <div id="about-panel" class="panel">
   <div class="panel-header">
