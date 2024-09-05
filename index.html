@@ -9,11 +9,20 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: url('https://github.com/Kareck1/Dellyck/blob/main/background-image.jpg?raw=true') center center no-repeat, linear-gradient(45deg, #ffcccb, #d5f4e6);
-      background-size: cover, 50% 100%;
-      background-blend-mode: normal;
-      background-attachment: fixed;
+      background: linear-gradient(45deg, #ffcccb, #d5f4e6);
     }
+
+    /* Video background styling */
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Place it behind all content */
+    }
+
     header {
       color: #333;
       padding: 1rem;
@@ -131,6 +140,7 @@
       background-color: #ddd;
       border-radius: 5px;
     }
+
     .main-content {
       padding: 1rem;
       text-align: center;
@@ -147,8 +157,8 @@
     }
 
     .tab-box {
-      width: 180px; /* Reduced size */
-      height: 150px; /* Reduced size */
+      width: 180px;
+      height: 150px;
       border: 3px solid #ddd;
       border-radius: 10px;
       background-color: #f9f9f9;
@@ -158,7 +168,7 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-size: 1.4rem; /* Adjusted font size */
+      font-size: 1.4rem;
       font-weight: bold;
     }
 
@@ -313,146 +323,109 @@
 </head>
 <body>
 
+<!-- Video background -->
+<video autoplay muted loop id="background-video">
+  <source src="https://kareck1.github.io/Dellyck/hero-video.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
 <header>
   <div class="logo">
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true"></a>
   </div>
   <div class="animated-text">DELLYCK</div>
 </header>
-<div class="main-content">
-  <h1>Welcome to Dellyck</h1>
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
-</div>
 
-<div class="hamburger">☰</div>
-
-<nav>
+<!-- Navigation menu -->
+<nav id="navMenu">
   <ul>
-    <li><a href="#home" id="home-nav">Home</a></li>
-    <li><a href="#about" id="about-nav">About</a></li>
-    <li><a href="#contact" id="contact-nav">Contact</a></li>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#">Movies</a></li>
+    <li><a href="#">Games</a></li>
   </ul>
 </nav>
 
+<!-- Hamburger button -->
+<div class="hamburger" id="hamburgerBtn">☰</div>
+
+<!-- Main content -->
 <div class="main-content">
   <div class="tab-boxes">
-    <div class="tab-box" id="movies-tab">Movies</div>
-    <div class="tab-box" id="games-tab">Games</div>
+    <div class="tab-box" id="moviesTab">Movies</div>
+    <div class="tab-box" id="gamesTab">Games</div>
   </div>
 </div>
 
+<!-- Games Panel -->
+<div class="panel" id="gamesPanel">
+  <div class="panel-header">
+    <h2>Games</h2>
+    <span class="panel-close" id="closeGames">X</span>
+  </div>
+  <div class="game-tabs">
+    <div class="game-tab"><a href="https://example.com/game1">Game 1</a></div>
+    <div class="game-tab"><a href="https://example.com/game2">Game 2</a></div>
+    <div class="game-tab"><a href="https://example.com/game3">Game 3</a></div>
+  </div>
+  <button class="panel-exit" id="exitGames">Exit</button>
+</div>
+
+<!-- Movies Panel -->
+<div class="panel" id="moviesPanel">
+  <div class="panel-header">
+    <h2>Movies</h2>
+    <span class="panel-close" id="closeMovies">X</span>
+  </div>
+  <div id="message-container">Movies panel content</div>
+  <button class="panel-exit" id="exitMovies">Exit</button>
+</div>
+
+<!-- Footer -->
 <footer>
-  <p>© 2024 Dellyck Company. All rights reserved.</p>
+  <p>&copy; 2024 Dellyck Company. All rights reserved.</p>
 </footer>
 
-<div id="message-panel">
-  <div id="close-btn">×</div>
-  <div id="message-container"></div>
-</div>
-
-<div id="movies-panel" class="panel">
-  <div class="panel-header">
-    <span>Movies</span>
-    <span class="panel-close" id="movies-panel-close">×</span>
-  </div>
-  <div id="movies-panel-content" class="panel-content">
-    <!-- Content for movies -->
-  </div>
-  <button class="panel-exit" id="movies-panel-exit">Exit</button>
-</div>
-
-<div id="games-panel" class="panel">
-  <div class="panel-header">
-    <span>Games</span>
-    <span class="panel-close" id="games-panel-close">×</span>
-  </div>
-  <div id="games-panel-content" class="panel-content">
-    <div class="game-tabs">
-      <div class="game-tab">Game 1</div>
-      <div class="game-tab">Game 2</div>
-      <div class="game-tab">Game 3</div>
-      <div class="game-tab">Game 4</div>
-      <div class="game-tab">Game 5</div>
-    </div>
-  </div>
-  <button class="panel-exit" id="games-panel-exit">Exit</button>
-</div>
-
-<div id="about-panel" class="panel">
-  <div class="panel-header">
-    <span>About</span>
-    <span class="panel-close" id="about-panel-close">×</span>
-  </div>
-  <div id="about-panel-content" class="panel-content">
-    <p>About the page: You can create various content here.</p>
-  </div>
-  <button class="panel-exit" id="about-panel-exit">Exit</button>
-</div>
-
-<div id="contact-panel" class="panel">
-  <div class="panel-header">
-    <span>Contact</span>
-    <span class="panel-close" id="contact-panel-close">×</span>
-  </div>
-  <div id="contact-panel-content" class="panel-content">
-    <p>Email: example@gmail.com</p>
-    <p>Location: 123 Main St, Anytown, USA</p>
-    <p>Phone: +1 234 567 890</p>
-  </div>
-  <button class="panel-exit" id="contact-panel-exit">Exit</button>
-</div>
-
+<!-- JavaScript to control the panels and hamburger -->
 <script>
-  // Hamburger menu functionality
-  document.querySelector('.hamburger').addEventListener('click', () => {
-    document.querySelector('nav').classList.toggle('active');
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navMenu = document.getElementById('navMenu');
+  const moviesTab = document.getElementById('moviesTab');
+  const gamesTab = document.getElementById('gamesTab');
+  const moviesPanel = document.getElementById('moviesPanel');
+  const gamesPanel = document.getElementById('gamesPanel');
+  const closeMovies = document.getElementById('closeMovies');
+  const closeGames = document.getElementById('closeGames');
+  const exitMovies = document.getElementById('exitMovies');
+  const exitGames = document.getElementById('exitGames');
+
+  hamburgerBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburgerBtn.classList.toggle('active');
   });
 
-  // Navigation links
-  document.getElementById('home-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelector('nav').classList.remove('active');
+  moviesTab.addEventListener('click', () => {
+    moviesPanel.classList.add('open');
   });
 
-  document.getElementById('about-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('about-panel').classList.add('open');
-    document.querySelector('nav').classList.remove('active');
+  gamesTab.addEventListener('click', () => {
+    gamesPanel.classList.add('open');
   });
 
-  document.getElementById('contact-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('contact-panel').classList.add('open');
-    document.querySelector('nav').classList.remove('active');
+  closeMovies.addEventListener('click', () => {
+    moviesPanel.classList.remove('open');
   });
 
-  // Tab functionality for movies and games
-  document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      const panelId = e.target.id.replace('-tab', '-panel');
-      document.querySelector(`#${panelId}`).classList.add('open');
-    });
+  closeGames.addEventListener('click', () => {
+    gamesPanel.classList.remove('open');
   });
 
-  // Panel close buttons
-  document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
-    button.addEventListener('click', () => {
-      button.closest('.panel').classList.remove('open');
-    });
+  exitMovies.addEventListener('click', () => {
+    moviesPanel.classList.remove('open');
   });
 
-  // Message panel
-  document.getElementById('close-btn').addEventListener('click', () => {
-    document.getElementById('message-panel').classList.remove('active');
+  exitGames.addEventListener('click', () => {
+    gamesPanel.classList.remove('open');
   });
-
-  function showMessage(message) {
-    document.getElementById('message-container').innerText = message;
-    document.getElementById('message-panel').classList.add('active');
-  }
 </script>
-
 </body>
 </html>
