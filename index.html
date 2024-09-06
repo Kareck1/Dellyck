@@ -343,9 +343,64 @@
   </div>
 </div>
 <footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Button</title>
+  <style>
+    /* Button Styles */
+    .animated-button {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #00a3e0, #ffd100); /* Rwandan flag colors */
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Button Hover Effect */
+    .animated-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Button Animation */
+    .animated-button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all 0.6s ease;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    .animated-button:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
+
+</body>
+</html>
+
   <p>© 2024 Dellyck Company. All rights reserved.</p>
 </footer>
-<button onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
 <div id="message-panel">
   <div id="close-btn">×</div>
   <div id="message-container"></div>
