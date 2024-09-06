@@ -37,15 +37,14 @@
       height: auto;
     }
 
-.animated-text {
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: 900; /* Excessive boldness */
-  color: #333; /* Default color */
-  animation: pulse 1.5s infinite; /* Example animation */
-  text-align: center;
-}
-
+    .animated-text {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 900; /* Excessive boldness */
+      color: #333; /* Default color */
+      animation: pulse 1.5s infinite; /* Example animation */
+      text-align: center;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0.5; }
@@ -166,7 +165,7 @@
       bottom: 0;
       width: 100%;
       color: white;
-      height:
+      height: 3rem; /* Added height */
     }
 
     #message-panel {
@@ -274,36 +273,35 @@
       background-color: darkred;
     }
 
-.game-tabs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust size as needed */
-  gap: 1rem;
-  margin: 1rem 0;
-}
+    .game-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust size as needed */
+      gap: 1rem;
+      margin: 1rem 0;
+    }
 
-.game-tab {
-  background-size: cover; /* Cover the entire tab with the image */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent repeating the image */
-  color: white;
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 150px; /* Adjust height as needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .game-tab {
+      background-size: cover; /* Cover the entire tab with the image */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Prevent repeating the image */
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-size: 1rem;
+      font-weight: bold;
+      height: 150px; /* Adjust height as needed */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.game-tab:hover {
-  transform: scale(1.05);
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: add overlay color */
-}
-
+    .game-tab:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.5); /* Optional: add overlay color */
+    }
 
     @keyframes pulse {
       0% { transform: scale(1); }
@@ -316,149 +314,115 @@
 
 <header>
   <div class="logo">
-    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true"></a>
+    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true" alt="Dellyck Logo"></a>
   </div>
   <div class="animated-text">DELLYCK</div>
 </header>
 <div class="main-content">
-  <h1>Welcome to Dellyck</h1>
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
-</div>
+  <h1>Welcome to Dellyck Company</h1>
+  <p>Your one-stop solution for entertainment and more!</p>
 
-<div class="hamburger">☰</div>
-
-<nav>
-  <ul>
-    <li><a href="#home" id="home-nav">Home</a></li>
-    <li><a href="#about" id="about-nav">About</a></li>
-    <li><a href="#contact" id="contact-nav">Contact</a></li>
-  </ul>
-</nav>
-
-<div class="main-content">
   <div class="tab-boxes">
     <div class="tab-box" id="movies-tab">Movies</div>
     <div class="tab-box" id="games-tab">Games</div>
   </div>
-</div>
-<button onclick="window.location.href='https:appilink.company.site">OUR BLOG</button>
-<footer>
-  <p>© 2024 Dellyck Company. All rights reserved.</p>
-</footer>
 
-<div id="message-panel">
-  <div id="close-btn">×</div>
-  <div id="message-container"></div>
-</div>
+  <div id="message-panel">
+    <div id="close-btn">×</div>
+    <div id="message-container">This is a message panel.</div>
+  </div>
 
-<div id="movies-panel" class="panel">
-  <div class="panel-header">
-    <span>Movies</span>
-    <span class="panel-close" id="movies-panel-close">×</span>
-  </div>
-  <div id="movies-panel-content" class="panel-content">
-    <!-- Content for movies -->
-  </div>
-  <button class="panel-exit" id="movies-panel-exit">Exit</button>
-</div>
+  <nav id="nav-menu">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<div id="games-panel" class="panel">
-  <div class="panel-header">
-    <span>Games</span>
-    <span class="panel-close" id="games-panel-close">×</span>
+  <div class="hamburger" id="hamburger-menu">
+    ☰
   </div>
-  <div id="games-panel-content" class="panel-content">
+
+  <div class="panel" id="movies-panel">
+    <div class="panel-header">
+      <div>Movies</div>
+      <div class="panel-close">×</div>
+    </div>
+    <button class="panel-exit">Exit</button>
+  </div>
+
+  <div class="panel" id="games-panel">
+    <div class="panel-header">
+      <div>Games</div>
+      <div class="panel-close">×</div>
+    </div>
+    <button class="panel-exit">Exit</button>
     <div class="game-tabs">
-      <div class="game-tab" data-url="https://www.instagram.com/iam__kingderrick" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true');">Developer</div>
-      <div class="game-tab" data-url="https://example.com/game2" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/football.jpg?raw=true');">Football</div>
-      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/templerun.png?raw=true');">Temple run 2</div>
-      <div class="game-tab" data-url="hhttps://poki.com/en/g/moto-x3m" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/moto.jpg?raw=true');">Moto racing</div>
-      <div class="game-tab" data-url="https://poki.com/en/g/battle-forces" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/shooting.jpg?raw=true');">Battle</div>
-      <div class="game-tab" data-url="https://10fastfingers.com/" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Typing.jpg?raw=true');">Typing</div>
-      <div class="game-tab" data-url="https://example.com/game2" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/SNAKE.jpg?raw=true');">Snake</div>
-      <div class="game-tab" data-url="https://example.com/game3" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/block.jpg?raw=true');">Block Puzzle</div>
-      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/bike.jpg?raw=true');">Bike racing</div>
-      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Angrybirds.jpg?raw=true');">Angry birds</div>
+      <div class="game-tab" data-url="https://game1.com">Game 1</div>
+      <div class="game-tab" data-url="https://game2.com">Game 2</div>
+      <div class="game-tab" data-url="https://game3.com">Game 3</div>
+      <div class="game-tab" data-url="https://game4.com">Game 4</div>
+      <div class="game-tab" data-url="https://game5.com">Game 5</div>
     </div>
   </div>
-  <button class="panel-exit" id="games-panel-exit">Exit</button>
 </div>
 
-
-<div id="about-panel" class="panel">
-  <div class="panel-header">
-    <span>About</span>
-    <span class="panel-close" id="about-panel-close">×</span>
-  </div>
-  <div id="about-panel-content" class="panel-content">
-    <p>About the page: You can create various content here.</p>
-  </div>
-  <button class="panel-exit" id="about-panel-exit">Exit</button>
-</div>
-
-<div id="contact-panel" class="panel">
-  <div class="panel-header">
-    <span>Contact</span>
-    <span class="panel-close" id="contact-panel-close">×</span>
-  </div>
-  <div id="contact-panel-content" class="panel-content">
-    <p>Email: example@gmail.com</p>
-    <p>Location: 123 Main St, Anytown, USA</p>
-    <p>Phone: +1 234 567 890</p>
-  </div>
-  <button class="panel-exit" id="contact-panel-exit">Exit</button>
-</div>
+<footer>
+  &copy; 2024 Dellyck Company. All rights reserved.
+</footer>
 
 <script>
-  // Hamburger menu functionality
-  document.querySelector('.hamburger').addEventListener('click', () => {
-    document.querySelector('nav').classList.toggle('active');
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const navMenu = document.getElementById('nav-menu');
+  const moviesPanel = document.getElementById('movies-panel');
+  const gamesPanel = document.getElementById('games-panel');
+  const closeBtn = document.getElementById('close-btn');
+  const panelCloseBtns = document.querySelectorAll('.panel-close');
+  const panelExitBtns = document.querySelectorAll('.panel-exit');
+  const gameTabs = document.querySelectorAll('.game-tab');
+
+  hamburgerMenu.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburgerMenu.classList.toggle('active');
   });
 
-  // Navigation links
-  document.getElementById('home-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelector('nav').classList.remove('active');
+  document.getElementById('movies-tab').addEventListener('click', () => {
+    moviesPanel.classList.add('open');
   });
 
-  document.getElementById('about-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('about-panel').classList.add('open');
-    document.querySelector('nav').classList.remove('active');
+  document.getElementById('games-tab').addEventListener('click', () => {
+    gamesPanel.classList.add('open');
   });
 
-  document.getElementById('contact-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('contact-panel').classList.add('open');
-    document.querySelector('nav').classList.remove('active');
-  });
-
-  // Tab functionality for movies and games
-  document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      const panelId = e.target.id.replace('-tab', '-panel');
-      document.querySelector(`#${panelId}`).classList.add('open');
+  panelCloseBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.panel').classList.remove('open');
     });
   });
 
-  // Panel close buttons
-  document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
-    button.addEventListener('click', () => {
-      button.closest('.panel').classList.remove('open');
+  panelExitBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.panel').classList.remove('open');
     });
   });
 
-  // Message panel
-  document.getElementById('close-btn').addEventListener('click', () => {
-    document.getElementById('message-panel').classList.remove('active');
+  gameTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      window.location.href = tab.getAttribute('data-url');
+    });
   });
 
   function showMessage(message) {
-    document.getElementById('message-container').innerText = message;
-    document.getElementById('message-panel').classList.add('active');
+    const messagePanel = document.getElementById('message-panel');
+    const messageContainer = document.getElementById('message-container');
+    messageContainer.textContent = message;
+    messagePanel.classList.add('active');
   }
+
+  closeBtn.addEventListener('click', () => {
+    document.getElementById('message-panel').classList.remove('active');
+  });
 </script>
 
 </body>
