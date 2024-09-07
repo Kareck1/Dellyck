@@ -37,6 +37,27 @@
       max-width: 80px;
       height: auto;
     }
+    /* Ensure this CSS is within your stylesheet */
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Space between tabs and image */
+  position: relative;
+}
+
+.clickable-image {
+  width: 100%;
+  max-width: 600px; /* Adjust to fit your design */
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.clickable-image:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
+}
+
 
 .animated-text {
   margin: 0;
@@ -480,6 +501,14 @@
   </div>
   <button class="panel-exit" id="contact-panel-exit">Exit</button>
 </div>
+<div class="tab-boxes">
+  <!-- Existing tab elements -->
+</div>
+
+<!-- Add this below your tabs -->
+<div class="image-container">
+  <img src="https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true" alt="Clickable Image" class="clickable-image">
+</div>
 
 <script>
   // Hamburger menu functionality
@@ -530,6 +559,13 @@
     document.getElementById('message-container').innerText = message;
     document.getElementById('message-panel').classList.add('active');
   }
+  document.addEventListener('DOMContentLoaded', () => {
+  const image = document.querySelector('.clickable-image');
+  image.addEventListener('click', () => {
+    window.location.href = 'https://example.com'; // Replace with the URL you want to link to
+  });
+});
+
 </script>
 
 </body>
