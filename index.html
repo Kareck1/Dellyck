@@ -37,27 +37,6 @@
       max-width: 80px;
       height: auto;
     }
-    /* Ensure this CSS is within your stylesheet */
-.image-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0; /* Space between tabs and image */
-  position: normal;
-}
-
-.clickable-image {
-  width: 100%;
-  max-width: 500px; /* Adjust to fit your design */
-  height: auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.clickable-image:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
-}
-
 
 .animated-text {
   margin: 0;
@@ -132,7 +111,7 @@
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 2.5rem;
+      right: 0.5rem;
       z-index: 10;
       cursor: pointer;
       font-size: 2rem;
@@ -193,15 +172,31 @@
 
     }
 
-    footer {
-      background-color: none;
-      color: black;
-      text-align: center;
-      padding: 1rem;
-      position: bottom;
-      bottom: 0;
-      width: 100%;
+    .tab-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    min-height: calc(100vh - 60px); /* Adjust based on the height of the footer */
+    padding-bottom: 20px; /* Some space for the footer */
+}
+
+footer {
+    background-color: none;
+    color: Black;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    margin-top: 20px; /* Space above the footer */
+}
+
 
     #message-panel {
       position: fixed;
@@ -375,7 +370,6 @@
     <div class="tab-box" id="games-tab">Games</div>
   </div>
 </div>
- <!-- Add this below your tabs --> <div class="image-container">   <img src="https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true" alt="Clickable Image" class="clickable-image"> </div>
 <footer>
 <!DOCTYPE html>
 <html lang="en">
@@ -433,12 +427,14 @@
 </body>
 </html>
 
-  <p>© 2024 Dellyck Company. All rights reserved.</p>
-</footer>
-<div id="message-panel">
-  <div id="close-btn">×</div>
-  <div id="message-container"></div>
-</div>
+<body>
+    <div class="content">
+        <!-- Your content goes here -->
+    </div>
+    <footer>
+        &copy; 2024 Dellyck. All Rights Reserved.
+    </footer>
+</body>
 
 <div id="movies-panel" class="panel">
   <div class="panel-header">
@@ -497,9 +493,6 @@
   </div>
   <button class="panel-exit" id="contact-panel-exit">Exit</button>
 </div>
-<div class="tab-boxes">
-  <!-- Existing tab elements -->
-</div>
 
 <script>
   // Hamburger menu functionality
@@ -550,13 +543,6 @@
     document.getElementById('message-container').innerText = message;
     document.getElementById('message-panel').classList.add('active');
   }
-  document.addEventListener('DOMContentLoaded', () => {
-  const image = document.querySelector('.clickable-image');
-  image.addEventListener('click', () => {
-    window.location.href = 'https://example.com'; // Replace with the URL you want to link to
-  });
-});
-
 </script>
 
 </body>
