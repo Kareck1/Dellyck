@@ -42,12 +42,12 @@
   display: flex;
   justify-content: center;
   margin: 20px 0; /* Space between tabs and image */
-  position: relative;
+  position: normal;
 }
 
 .clickable-image {
   width: 100%;
-  max-width: 600px; /* Adjust to fit your design */
+  max-width: 500px; /* Adjust to fit your design */
   height: auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -193,17 +193,12 @@
 
     }
 
-    .tab-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
     footer {
       background-color: none;
       color: Black;
       text-align: center;
       padding: 1rem;
-      position: fixed;
+      position: bottom;
       bottom: 0;
       width: 100%;
     }
