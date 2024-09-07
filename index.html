@@ -177,26 +177,15 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.content {
-    min-height: calc(100vh - 60px); /* Adjust based on the height of the footer */
-    padding-bottom: 20px; /* Some space for the footer */
-}
-
-footer {
-    background-color: none;
-    color: Black;
-    text-align: center;
-    padding: 1rem;
-    width: 100%;
-    margin-top: 20px; /* Space above the footer */
-}
-
+    footer {
+      background-color: none;
+      color: Black;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
 
     #message-panel {
       position: fixed;
@@ -427,14 +416,12 @@ footer {
 </body>
 </html>
 
-<body>
-    <div class="content">
-        <!-- Your content goes here -->
-    </div>
-    <footer>
-        &copy; 2024 Dellyck. All Rights Reserved.
-    </footer>
-</body>
+  <p>© 2024 Dellyck Company. All rights reserved.</p>
+</footer>
+<div id="message-panel">
+  <div id="close-btn">×</div>
+  <div id="message-container"></div>
+</div>
 
 <div id="movies-panel" class="panel">
   <div class="panel-header">
