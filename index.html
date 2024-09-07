@@ -512,7 +512,7 @@
   document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
       const panelId = e.target.id.replace('-tab', '-panel');
-      document.querySelector(#${panelId}).classList.add('open');
+      document.querySelector(`#${panelId}`).classList.add('open');
     });
   });
 
