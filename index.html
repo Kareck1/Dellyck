@@ -3,108 +3,534 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dellcyk Login/Registration</title>
+  <title>Dellyck Company</title>
+ 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.pinimg.com/564x/79/7b/57/797b571b4f1631fd6e28428cb37dd1d9.jpg') center center no-repeat, linear-gradient(45deg, #ffcccb, #d5f4e6);
+      background-size: cover, 50% 100%;
+      background-blend-mode: normal;
+      background-attachment: fixed;
+    }
+    header {
+      color: #333;
+      padding: 1rem;
+      position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      flex-direction: column;
+      border-bottom: 1px solid #ddd;
+      z-index: 5; /* Ensure header is above background */
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .logo img {
+      max-width: 80px;
+      height: auto;
+    }
+
+.animated-text {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 900; /* Excessive boldness */
+  color: White; /* Default color */
+  animation: pulse 1.5s infinite; /* Example animation */
+  text-align: center;
+  text-shadow: 1px 1px 4px Blue; /* Adding a black outline */
+}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    .auth-buttons {
+      margin-top: 1rem;
+    }
+
+    .auth-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0.5rem;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #f0f0f0;
+      width: 75%;
+      max-width: 400px;
+      height: 24%;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 5;
+    }
+
+    nav.active {
+      transform: translateX(0%);
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
       margin: 0;
     }
-    .container {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      max-width: 400px;
-      width: 100%;
+
+    nav ul li {
+      padding: 1rem;
       text-align: center;
     }
-    .container h1 {
-      margin-bottom: 20px;
+
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
     }
-    .container input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+
+    nav ul li a:hover {
+      background-color: #ddd;
+      border-radius: 5px;
     }
-    .container button {
+
+    .hamburger {
+      position: fixed;
+      top: 1rem;
+      right: 0.5rem;
+      z-index: 10;
+      cursor: pointer;
+      font-size: 2rem;
+      padding: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .hamburger.active {
+      background-color: #ddd;
+      border-radius: 5px;
+    }
+.main-content {
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  color: white;
+  background: transparent;
+  animation: shine 2s infinite linear;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  text-fill-color: transparent;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+    .tab-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tab-box {
+      width: 180px; /* Reduced size */
+      height: 150px; /* Reduced size */
+      border: 3px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1.4rem; /* Adjusted font size */
+      font-weight: bold;
+      color: white;
+
+    }
+
+    .tab-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      background-color: none;
+      color: Black;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
       width: 100%;
-      padding: 10px;
-      background-color: #1877f2;
+    }
+
+    #message-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+      border-radius: 0;
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+      z-index: 15;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    #message-panel.active {
+      transform: translateX(0);
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background-color: #f4f4f4;
+      border-radius: 50%;
+      padding: 0.3rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #close-btn:hover {
+      background-color: #ddd;
+    }
+
+    #message-container {
+      padding: 1rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .panel {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 20;
+      display: none;
+      transform-origin: top;
+    }
+
+    .panel.open {
+      display: block;
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      background-color: #007bff;
+      color: white;
+    }
+
+    .panel-close {
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .panel-exit {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: red;
       color: white;
       border: none;
-      border-radius: 4px;
-      font-size: 1em;
+      border-radius: 50%;
+      padding: 1rem;
       cursor: pointer;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
     }
-    .container button:hover {
-      background-color: #145dbf;
+
+    .panel-exit:hover {
+      background-color: darkred;
     }
-    .toggle-link {
-      margin-top: 10px;
-    }
-    .toggle-link a {
-      color: #1877f2;
-      text-decoration: none;
-    }
-    .toggle-link a:hover {
-      text-decoration: underline;
+
+.game-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust size as needed */
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.game-tab {
+  background-size: cover; /* Cover the entire tab with the image */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  color: Black;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 150px; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-tab:hover {
+  transform: scale(1.05);
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: add overlay color */
+}
+
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <div class="container" id="authContainer">
-    <h1 id="authTitle">Login</h1>
-    <form id="authForm">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Log In</button>
-    </form>
-    <div class="toggle-link">
-      <p id="toggleText">Don't have an account? <a href="#" id="toggleLink">Sign Up</a></p>
-    </div>
+
+<header>
+  <div class="logo">
+    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true"></a>
   </div>
+  <div class="animated-text">DELLYCK</div>
+</header>
+<div class="main-content">
+  <p class="bold-text">Your solution for innovative digital experiences.</p>
+  <p>Welcome to Dellyck where innovation meets convenience.</p>
+</div>
 
-  <script>
-    const authTitle = document.getElementById('authTitle');
-    const authForm = document.getElementById('authForm');
-    const toggleLink = document.getElementById('toggleLink');
-    const toggleText = document.getElementById('toggleText');
-    let isLogin = true;
+<div class="hamburger">☰</div>
 
-    function handleAuth(event) {
-      event.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+<nav>
+  <ul>
+    <li><a href="#home" id="home-nav">Home</a></li>
+    <li><a href="#about" id="about-nav">About</a></li>
+    <li><a href="#contact" id="contact-nav">Contact</a></li>
+  </ul>
+</nav>
 
-      // Placeholder for actual authentication logic
-      if (isLogin) {
-        alert('Logging in with ' + username);
-        // Example redirection
-        window.location.href = '/dashboard.html';
-      } else {
-        alert('Registering with ' + username);
-        // Example redirection after registration
-        window.location.href = '/login.html';
-      }
+<div class="main-content">
+  <div class="tab-boxes">
+    <div class="tab-box" id="movies-tab">Movies</div>
+    <div class="tab-box" id="games-tab">Games</div>
+  </div>
+</div>
+<footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Button</title>
+  <style>
+    /* Button Styles */
+    .animated-button {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #00a3e0, #ffd100); /* Rwandan flag colors */
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    authForm.addEventListener('submit', handleAuth);
+    /* Button Hover Effect */
+    .animated-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
 
-    toggleLink.addEventListener('click', function() {
-      isLogin = !isLogin;
-      authTitle.textContent = isLogin ? 'Login' : 'Sign Up';
-      document.querySelector('button').textContent = isLogin ? 'Log In' : 'Sign Up';
-      toggleText.innerHTML = isLogin
-        ? `Don't have an account? <a href="#" id="toggleLink">Sign Up</a>`
-        : `Already have an account? <a href="#" id="toggleLink">Log In</a>`;
+    /* Button Animation */
+    .animated-button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all 0.6s ease;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    .animated-button:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
+
+</body>
+</html>
+
+  <p>© 2024 Dellyck Company. All rights reserved.</p>
+</footer>
+<div id="message-panel">
+  <div id="close-btn">×</div>
+  <div id="message-container"></div>
+</div>
+
+<div id="movies-panel" class="panel">
+  <div class="panel-header">
+    <span>Movies</span>
+    <span class="panel-close" id="movies-panel-close">×</span>
+  </div>
+  <div id="movies-panel-content" class="panel-content">
+    <!-- Content for movies -->
+  </div>
+  <button class="panel-exit" id="movies-panel-exit">Exit</button>
+</div>
+
+<div id="games-panel" class="panel">
+  <div class="panel-header">
+    <span>Games</span>
+    <span class="panel-close" id="games-panel-close">×</span>
+  </div>
+  <div id="games-panel-content" class="panel-content">
+    <div class="game-tabs">
+      <div class="game-tab" data-url="https://www.instagram.com/iam__kingderrick" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true');">Developer</div>
+      <div class="game-tab" data-url="https://example.com/game2" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/football.jpg?raw=true');">Football</div>
+      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/templerun.png?raw=true');">Temple run 2</div>
+      <div class="game-tab" data-url="hhttps://poki.com/en/g/moto-x3m" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/moto.jpg?raw=true');">Moto racing</div>
+      <div class="game-tab" data-url="https://poki.com/en/g/battle-forces" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/shooting.jpg?raw=true');">Battle</div>
+      <div class="game-tab" data-url="https://10fastfingers.com/" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Typing.jpg?raw=true');">Typing</div>
+      <div class="game-tab" data-url="https://example.com/game2" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/SNAKE.jpg?raw=true');">Snake</div>
+      <div class="game-tab" data-url="https://example.com/game3" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/block.jpg?raw=true');">Block Puzzle</div>
+      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/bike.jpg?raw=true');">Bike racing</div>
+      <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Angrybirds.jpg?raw=true');">Angry birds</div>
+    </div>
+  </div>
+  <button class="panel-exit" id="games-panel-exit">Exit</button>
+</div>
+
+
+<div id="about-panel" class="panel">
+  <div class="panel-header">
+    <span>About</span>
+    <span class="panel-close" id="about-panel-close">×</span>
+  </div>
+  <div id="about-panel-content" class="panel-content">
+    <p>About the page:   <h1>Welcome to Dellyck</h1>
+  </div>
+  <button class="panel-exit" id="about-panel-exit">Exit</button>
+</div>
+
+<div id="contact-panel" class="panel">
+  <div class="panel-header">
+    <span>Contact</span>
+    <span class="panel-close" id="contact-panel-close">×</span>
+  </div>
+  <div id="contact-panel-content" class="panel-content">
+    <p>Email: example@gmail.com</p>
+    <p>Location: 123 Main St, Anytown, USA</p>
+    <p>Phone: +1 234 567 890</p>
+  </div>
+  <button class="panel-exit" id="contact-panel-exit">Exit</button>
+</div>
+
+<script>
+  // Hamburger menu functionality
+  document.querySelector('.hamburger').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('active');
+  });
+
+  // Navigation links
+  document.getElementById('home-nav').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('nav').classList.remove('active');
+  });
+
+  document.getElementById('about-nav').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('about-panel').classList.add('open');
+    document.querySelector('nav').classList.remove('active');
+  });
+
+  document.getElementById('contact-nav').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('contact-panel').classList.add('open');
+    document.querySelector('nav').classList.remove('active');
+  });
+
+  // Tab functionality for movies and games
+  document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      const panelId = e.target.id.replace('-tab', '-panel');
+      document.querySelector(`#${panelId}`).classList.add('open');
     });
-  </script>
+  });
+
+  // Panel close buttons
+  document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
+    button.addEventListener('click', () => {
+      button.closest('.panel').classList.remove('open');
+    });
+  });
+
+  // Message panel
+  document.getElementById('close-btn').addEventListener('click', () => {
+    document.getElementById('message-panel').classList.remove('active');
+  });
+
+  function showMessage(message) {
+    document.getElementById('message-container').innerText = message;
+    document.getElementById('message-panel').classList.add('active');
+  }
+</script>
+
 </body>
 </html>
