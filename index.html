@@ -382,7 +382,48 @@
   </style>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        /* Your existing styles */
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
 
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your existing content -->
+
+    <!-- Logout button -->
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('authenticated'); // Remove authentication status
+            window.location.href = 'landing.html'; // Redirect to landing.html
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('authenticated') !== 'true') {
+                window.location.href = 'landing.html'; // Redirect to landing.html if not authenticated
+            }
+        });
+    </script>
+</body>
+    </html>
 <header>
   <div class="logo">
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true"></a>
