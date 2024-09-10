@@ -3,11 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dellyck Company</title><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
  
   <style>
@@ -472,8 +467,6 @@
       <div class="game-tab" data-url="https://example.com/game3" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/block.jpg?raw=true');">Block Puzzle</div>
       <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/bike.jpg?raw=true');">Bike racing</div>
       <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Angrybirds.jpg?raw=true');">Angry birds</div>
-      <div class="game-tab" data-url="https://poki.com/en/g/moto-x3m" ...>
-
     </div>
   </div>
   <button class="panel-exit" id="games-panel-exit">Exit</button>
@@ -533,7 +526,7 @@
   document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
       const panelId = e.target.id.replace('-tab', '-panel');
-      document.querySelector(`#${panelId}`).classList.add('open');
+      document.querySelector(#${panelId}).classList.add('open');
     });
   });
 
@@ -555,144 +548,5 @@
   }
 </script>
 
-</body>
-</html>
-
-  <style>
-    /* Your CSS styles here */
-  </style>
-  <script>
-    // Check if user is authenticated
-    if (!localStorage.getItem('authenticated')) {
-        // Redirect to landing page if not authenticated
-        window.location.href = 'landing.html';
-    }
-  </script>
-</head>
-<body>
-<header>
-  <div class="logo">
-    <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true" alt="Dellyck Logo"></a>
-  </div>
-  <div class="animated-text">DELLYCK</div>
-</header>
-<div class="main-content">
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
-  <div class="tab-boxes">
-    <div class="tab-box" id="movies-tab">Movies</div>
-    <div class="tab-box" id="games-tab">Games</div>
-  </div>
-</div>
-
-<div class="hamburger">☰</div>
-
-<nav>
-  <ul>
-    <li><a href="#home" id="home-nav">Home</a></li>
-    <li><a href="#about" id="about-nav">About</a></li>
-    <li><a href="#contact" id="contact-nav">Contact</a></li>
-  </ul>
-</nav>
-
-<footer>
-  <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
-  <p>© 2024 Dellyck Company. All rights reserved.</p>
-</footer>
-
-<div id="message-panel">
-  <div id="close-btn">×</div>
-  <div id="message-container"></div>
-</div>
-
-<div id="movies-panel" class="panel">
-  <div class="panel-header">
-    <span>Movies</span>
-    <span class="panel-close" id="movies-panel-close">×</span>
-  </div>
-  <div id="movies-panel-content" class="panel-content">
-    <!-- Content for movies -->
-  </div>
-  <button class="panel-exit" id="movies-panel-exit">Exit</button>
-</div>
-
-<div id="games-panel" class="panel">
-  <div class="panel-header">
-    <span>Games</span>
-    <span class="panel-close" id="games-panel-close">×</span>
-  </div>
-  <div id="games-panel-content" class="panel-content">
-    <div class="game-tabs">
-      <!-- Game tabs here -->
-    </div>
-  </div>
-  <button class="panel-exit" id="games-panel-exit">Exit</button>
-</div>
-
-<div id="about-panel" class="panel">
-  <div class="panel-header">
-    <span>About</span>
-    <span class="panel-close" id="about-panel-close">×</span>
-  </div>
-  <div id="about-panel-content" class="panel-content">
-    <p>About the page: <h1>Welcome to Dellyck</h1></p>
-  </div>
-  <button class="panel-exit" id="about-panel-exit">Exit</button>
-</div>
-
-<div id="contact-panel" class="panel">
-  <div class="panel-header">
-    <span>Contact</span>
-    <span class="panel-close" id="contact-panel-close">×</span>
-  </div>
-  <div id="contact-panel-content" class="panel-content">
-    <p>Email: example@gmail.com</p>
-    <p>Location: 123 Main St, Anytown, USA</p>
-    <p>Phone: +1 234 567 890</p>
-  </div>
-  <button class="panel-exit" id="contact-panel-exit">Exit</button>
-</div>
-
-<script>
-  // Hamburger menu functionality
-  document.querySelector('.hamburger').addEventListener('click', () => {
-    document.querySelector('nav').classList.toggle('active');
-  });
-
-  // Navigation links
-  document.getElementById('home-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelector('nav').classList.remove('active');
-  });
-
-  document.getElementById('about-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('about-panel').classList.add('open');
-    document.querySelector('nav').classList.remove('active');
-  });
-
-  document.getElementById('contact-nav').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('contact-panel').classList.add('open');
-    document.querySelector('nav').classList.remove('active');
-  });
-
-  // Tab functionality for movies and games
-  document.querySelectorAll('#movies-tab, #games-tab').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      const panelId = e.target.id === 'movies-tab' ? 'movies-panel' : 'games-panel';
-      document.getElementById(panelId).classList.add('open');
-    });
-  });
-
-  // Close panel functionality
-  document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const panelId = e.target.closest('.panel').id;
-      document.getElementById(panelId).classList.remove('open');
-    });
-  });
-</script>
 </body>
 </html>
