@@ -105,11 +105,14 @@
             window.location.href = 'index.html'; // Redirect to index.html after registration
         }
 
-        // Check if the user is authenticated
-        if (!localStorage.getItem('authenticated')) {
-            // If the user is not authenticated, redirect to the landing page
-            window.location.href = 'landing.html';
-        }
+        // Ensure the script executes only once
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the user is authenticated
+            if (localStorage.getItem('authenticated')) {
+                // Redirect to the main page if authenticated
+                window.location.href = 'index.html';
+            }
+        });
     </script>
 </body>
 </html>
