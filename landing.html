@@ -106,9 +106,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Debug: Check local storage
-            console.log('Authenticated:', localStorage.getItem('authenticated'));
-
             // Check if the user is authenticated
             if (localStorage.getItem('authenticated') === 'true') {
                 // Redirect to the main page if authenticated
