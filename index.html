@@ -1,31 +1,7 @@
-<script>
-  // Close buttons functionality
-  document.querySelectorAll('.panel-close').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const panelId = e.target.closest('.panel').id;
-      document.getElementById(panelId).classList.remove('open');
-    });
-  });
 
-  document.querySelectorAll('.panel-exit').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const panelId = e.target.closest('.panel').id;
-      document.getElementById(panelId).classList.remove('open');
-    });
-  });
-
-  // Game tabs click functionality
-  document.querySelectorAll('.game-tab').forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      window.open(e.target.dataset.url, '_blank');
-    });
-  });
-</script>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
