@@ -15,27 +15,18 @@
             background: url('https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true') no-repeat center center fixed;
             background-size: cover;
         }
-
         .container {
             display: flex;
             flex-direction: column;
             width: 300px;
-            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        .form-container {
-            background: transparent;
-            padding: 0;
-            box-shadow: none;
-        }
-
         .hidden {
             display: none;
         }
-
         input {
             width: 100%;
             padding: 10px;
@@ -43,7 +34,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
         button {
             width: 100%;
             padding: 10px;
@@ -53,11 +43,9 @@
             color: white;
             font-size: 16px;
         }
-
         button:hover {
             background-color: #0056b3;
         }
-
         a {
             color: #007bff;
         }
@@ -97,19 +85,17 @@
 
         function login() {
             localStorage.setItem('authenticated', 'true');
-            window.location.href = 'index.html'; // Redirect to main page after login
+            window.location.href = 'index.html'; // Redirect to index.html after login
         }
 
         function register() {
             localStorage.setItem('authenticated', 'true');
-            window.location.href = 'index.html'; // Redirect to main page after registration
+            window.location.href = 'index.html'; // Redirect to index.html after registration
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if the user is authenticated
             if (localStorage.getItem('authenticated') === 'true') {
-                // Redirect to the main page if authenticated
-                window.location.href = 'index.html';
+                window.location.href = 'index.html'; // Redirect to index.html if authenticated
             }
         });
     </script>
