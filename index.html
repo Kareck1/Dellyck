@@ -1,43 +1,10 @@
-<button id="login-button">Login</button>
-<button id="signup-button">Sign Up</button>
-
-<!-- Login Modal -->
-<div id="login-modal" class="auth-modal">
-  <div class="auth-modal-content">
-    <span class="close-btn" id="close-login">&times;</span>
-    <h2>Login</h2>
-    <form id="login-form">
-      <input type="email" id="login-email" placeholder="Email" required>
-      <input type="password" id="login-password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
-  </div>
-</div>
-
-<!-- Sign Up Modal -->
-<div id="signup-modal" class="auth-modal">
-  <div class="auth-modal-content">
-    <span class="close-btn" id="close-signup">&times;</span>
-    <h2>Sign Up</h2>
-    <form id="signup-form">
-      <input type="text" id="signup-name" placeholder="Full Name" required>
-      <input type="email" id="signup-email" placeholder="Email" required>
-      <input type="password" id="signup-password" placeholder="Password" required>
-      <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
-  </div>
-</div>
-
-<!-- Add your existing content here -->
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
-
+ 
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -48,7 +15,6 @@
       background-blend-mode: normal;
       background-attachment: fixed;
     }
-
     header {
       color: #333;
       padding: 1rem;
@@ -66,132 +32,6 @@
       top: 10px;
       left: 10px;
     }
-/* Authentication Modals */
-.auth-modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  z-index: 100; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-}
-
-.auth-modal-content {
-  background-color: #fefefe;
-  margin: 10% auto; /* 10% from the top and centered */
-  padding: 2rem;
-  border: 1px solid #888;
-  width: 90%;
-  max-width: 400px; /* Could be more or less, depending on screen size */
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  position: relative;
-}
-
-.close-btn {
-  color: #aaa;
-  float: right;
-  font-size: 2rem;
-  font-weight: bold;
-  position: absolute;
-  right: 1rem;
-  top: 0.5rem;
-  cursor: pointer;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.auth-modal-content h2 {
-  margin-top: 0;
-  color: #1877f2; /* Facebook Blue */
-  text-align: center;
-}
-
-.auth-modal-content form {
-  display: flex;
-  flex-direction: column;
-}
-
-.auth-modal-content input {
-  padding: 0.8rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-.auth-modal-content button {
-  padding: 0.8rem;
-  background-color: #1877f2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-.auth-modal-content button:hover {
-  background-color: #165ec9;
-}
-
-.auth-modal-content p {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.auth-modal-content a {
-  color: #1877f2;
-  text-decoration: none;
-}
-
-.auth-modal-content a:hover {
-  text-decoration: underline;
-}
-
-/* Update existing buttons */
-#login-button,
-#signup-button {
-  padding: 0.5rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-#login-button {
-  background-color: #42b72a; /* Facebook green for 'Login' */
-  color: #fff;
-  margin-right: 0.5rem;
-}
-
-#login-button:hover {
-  background-color: #36a420;
-}
-
-#signup-button {
-  background-color: #1877f2; /* Facebook blue for 'Sign Up' */
-  color: #fff;
-}
-
-#signup-button:hover {
-  background-color: #165ec9;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 600px) {
-  .auth-modal-content {
-    width: 95%;
-  }
-}
 
     .logo img {
       max-width: 80px;
@@ -690,80 +530,6 @@
     document.getElementById('message-container').innerText = message;
     document.getElementById('message-panel').classList.add('active');
   }
-<script>
-  // Get modal elements
-  const loginModal = document.getElementById('login-modal');
-  const signupModal = document.getElementById('signup-modal');
-
-  // Get open modal buttons
-  const loginBtn = document.getElementById('login-button');
-  const signupBtn = document.getElementById('signup-button');
-
-  // Get close buttons
-  const closeLoginBtn = document.getElementById('close-login');
-  const closeSignupBtn = document.getElementById('close-signup');
-
-  // Get switch links
-  const switchToSignup = document.getElementById('switch-to-signup');
-  const switchToLogin = document.getElementById('switch-to-login');
-
-  // Listen for open click
-  loginBtn.addEventListener('click', () => {
-    loginModal.style.display = 'block';
-  });
-
-  signupBtn.addEventListener('click', () => {
-    signupModal.style.display = 'block';
-  });
-
-  // Listen for close click
-  closeLoginBtn.addEventListener('click', () => {
-    loginModal.style.display = 'none';
-  });
-
-  closeSignupBtn.addEventListener('click', () => {
-    signupModal.style.display = 'none';
-  });
-
-  // Switch between modals
-  switchToSignup.addEventListener('click', (e) => {
-    e.preventDefault();
-    loginModal.style.display = 'none';
-    signupModal.style.display = 'block';
-  });
-
-  switchToLogin.addEventListener('click', (e) => {
-    e.preventDefault();
-    signupModal.style.display = 'none';
-    loginModal.style.display = 'block';
-  });
-
-  // Close modals when clicking outside of the modal content
-  window.addEventListener('click', (event) => {
-    if (event.target === loginModal) {
-      loginModal.style.display = 'none';
-    }
-    if (event.target === signupModal) {
-      signupModal.style.display = 'none';
-    }
-  });
-
-  // Handle form submissions (You can replace this with actual authentication logic)
-  document.getElementById('login-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Placeholder for login logic
-    alert('Login form submitted');
-    loginModal.style.display = 'none';
-  });
-
-  document.getElementById('signup-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Placeholder for sign-up logic
-    alert('Sign-up form submitted');
-    signupModal.style.display = 'none';
-  });
-</script>
-
 </script>
 
 </body>
