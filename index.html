@@ -531,6 +531,10 @@
     document.getElementById('message-panel').classList.add('active');
   }
 </script>
-
+document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
+  button.addEventListener('click', () => {
+    button.closest('.panel').classList.remove('open');
+  });
+});
 </body>
 </html>
