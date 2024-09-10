@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <script>
+        // Check if the user is authenticated
+        function isAuthenticated() {
+            // Replace this with your actual authentication check
+            // For example, checking if a session token or user data exists
+            return !!localStorage.getItem('userToken'); // Example check
+        }
+
+        // Redirect if not authenticated
+        if (!isAuthenticated()) {
+            window.location.href = 'landing.html';
+        }
+    </script>
+</head>
+<body>
+    <!-- Your page content goes here -->
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
