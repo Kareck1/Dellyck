@@ -12,20 +12,24 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background: url('https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true') no-repeat center center fixed;
+            background-size: cover;
         }
 
         .container {
             display: flex;
             flex-direction: column;
             width: 300px;
-        }
-
-        .form-container {
-            background: white;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-container {
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
         }
 
         .hidden {
@@ -92,18 +96,15 @@
         }
 
         function login() {
-            // Add logic to handle login, e.g., form validation and authentication
             localStorage.setItem('authenticated', 'true');
             window.location.href = 'https://kareck1.github.io/Dellyck';
         }
 
         function register() {
-            // Add logic to handle registration, e.g., form validation and saving user data
             localStorage.setItem('authenticated', 'true');
             window.location.href = 'https://kareck1.github.io/Dellyck';
         }
 
-        // Check if the user is authenticated before showing the forms
         if (localStorage.getItem('authenticated')) {
             window.location.href = 'https://kareck1.github.io/Dellyck';
         }
