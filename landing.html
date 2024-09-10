@@ -108,6 +108,14 @@
         if (localStorage.getItem('authenticated')) {
             window.location.href = 'https://kareck1.github.io/Dellyck';
         }
+        <script>
+    // Check if the user is authenticated
+    if (!localStorage.getItem('authenticated')) {
+        // If the user is not authenticated, redirect to the landing page
+        window.location.href = 'landing.html';
+    }
+</script>
+
     </script>
 </body>
 </html>
