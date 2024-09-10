@@ -105,10 +105,12 @@
             window.location.href = 'index.html'; // Redirect to index.html after registration
         }
 
-        // Ensure the script executes only once
         document.addEventListener('DOMContentLoaded', function() {
+            // Debug: Check local storage
+            console.log('Authenticated:', localStorage.getItem('authenticated'));
+
             // Check if the user is authenticated
-            if (localStorage.getItem('authenticated')) {
+            if (localStorage.getItem('authenticated') === 'true') {
                 // Redirect to the main page if authenticated
                 window.location.href = 'index.html';
             }
