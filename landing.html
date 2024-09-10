@@ -103,9 +103,9 @@
             window.location.href = 'https://kareck1.github.io/Dellyck';
         }
 
-        // Redirect to login if not authenticated
-        if (!localStorage.getItem('authenticated')) {
-            window.location.href = 'landing.html';
+        // Check if the user is authenticated before showing the forms
+        if (localStorage.getItem('authenticated')) {
+            window.location.href = 'https://kareck1.github.io/Dellyck';
         }
     </script>
 </body>
