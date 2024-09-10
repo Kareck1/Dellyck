@@ -1,17 +1,28 @@
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if user is authenticated
-        function isAuthenticated() {
-            // Replace with your actual authentication check
-            return localStorage.getItem('authToken') !== null;
-        }
-
-        // Redirect if not authenticated
-        if (!isAuthenticated()) {
-            window.location.href = 'landing.html';
-        }
+  // Close buttons functionality
+  document.querySelectorAll('.panel-close').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const panelId = e.target.closest('.panel').id;
+      document.getElementById(panelId).classList.remove('open');
     });
+  });
+
+  document.querySelectorAll('.panel-exit').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const panelId = e.target.closest('.panel').id;
+      document.getElementById(panelId).classList.remove('open');
+    });
+  });
+
+  // Game tabs click functionality
+  document.querySelectorAll('.game-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      window.open(e.target.dataset.url, '_blank');
+    });
+  });
 </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
