@@ -10,6 +10,36 @@
 </head>
 <body>
     <!-- Your existing content -->
+
+    <!-- Logout button -->
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('authenticated'); // Remove authentication status
+            window.location.href = 'landing.html'; // Redirect to landing.html
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('authenticated') !== 'true') {
+                window.location.href = 'landing.html'; // Redirect to landing.html if not authenticated
+            }
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        /* Your existing styles */
+    </style>
+</head>
+<body>
+    <!-- Your existing content -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('authenticated') !== 'true') {
