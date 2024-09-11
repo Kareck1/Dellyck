@@ -13,6 +13,18 @@
             height: 100vh;
             margin: 0;
             background: #f0f2f5;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .container {
             display: flex;
@@ -23,15 +35,55 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             text-align: center;
+            opacity: 0;
+            animation: slideUp 0.7s ease-in-out forwards;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         img.logo {
             width: 150px;
             margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInLogo 1s ease-in-out 0.5s forwards;
+        }
+        @keyframes fadeInLogo {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         h1 {
             margin: 0;
             font-size: 24px;
             color: #333;
+            opacity: 0;
+            animation: fadeInText 0.5s ease-in-out 0.8s forwards;
+        }
+        h2 {
+            opacity: 0;
+            animation: fadeInText 0.5s ease-in-out 1s forwards;
+        }
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         input {
             width: 100%;
@@ -39,6 +91,11 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        input:focus {
+            background-color: #f1f1f1;
+            transform: scale(1.02);
         }
         button {
             width: 100%;
@@ -50,6 +107,17 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
+            animation: buttonFadeIn 1.2s forwards;
+        }
+        @keyframes buttonFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         button:hover {
             background-color: #0056b3;
@@ -61,12 +129,36 @@
         a {
             color: #007bff;
             text-decoration: none;
+            opacity: 0;
+            animation: fadeInLink 1.5s forwards;
+        }
+        @keyframes fadeInLink {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .hidden {
             display: none;
         }
         .error {
             color: red;
+            opacity: 0;
+            animation: fadeInError 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeInError {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .form-switch {
             margin: 20px 0;
@@ -160,6 +252,7 @@
 
             if (!username || !email || !phone || !password) {
                 errorElement.textContent = 'Please fill in all the fields.';
+                errorElement.style.animation = 'fadeInError 0.5s ease-in-out';
                 return;
             }
             if (!isEmailValid(email)) {
@@ -167,14 +260,24 @@
                 return;
             }
             if (!isPhoneValid(phone)) {
-                errorElement.textContent = 'Phone number must start with 07 or 8 and be 10 digits.';
+                errorElement.textContent = 'Please enter a valid phone number (07 or 8 followed by 8 digits).';
+                return;
+            }
+            if (password.length < 6) {
+                errorElement.textContent = 'Password must be at least 6 characters long.';
                 return;
             }
 
-            users.push({ email, password });
+            const existingUser = users.find(user => user.email === email);
+            if (existingUser) {
+                errorElement.textContent = 'User already exists.';
+                return;
+            }
+
+            users.push({ username, email, phone, password });
             localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('authenticated', 'true');
-            window.location.href = 'index.html'; // Redirect to index.html after registration
+            alert('Registration successful!');
+            showLoginForm();
         }
 
         function login() {
@@ -187,13 +290,14 @@
                 return;
             }
 
-            const user = users.find(user => user.email === email && user.password === password);
-            if (user) {
-                localStorage.setItem('authenticated', 'true');
-                window.location.href = 'index.html'; // Redirect to index.html after login
-            } else {
-                errorElement.textContent = 'Invalid email or password.';
+            const existingUser = users.find(user => user.email === email && user.password === password);
+
+            if (!existingUser) {
+                errorElement.textContent = 'Incorrect email or password.';
+                return;
             }
+
+            alert('Login successful!');
         }
 
         function resetPassword() {
@@ -203,7 +307,11 @@
             const errorElement = document.getElementById('forgotPasswordError');
 
             if (!oldPassword || !newPassword || !confirmNewPassword) {
-                errorElement.textContent = 'Please fill in all fields.';
+                errorElement.textContent = 'Please fill in all the fields.';
+                return;
+            }
+            if (newPassword.length < 6) {
+                errorElement.textContent = 'New password must be at least 6 characters long.';
                 return;
             }
             if (newPassword !== confirmNewPassword) {
@@ -211,21 +319,17 @@
                 return;
             }
 
-            const user = users.find(user => user.password === oldPassword);
-            if (user) {
-                user.password = newPassword;
-                localStorage.setItem('users', JSON.stringify(users));
-                showLoginForm();
-            } else {
+            const existingUser = users.find(user => user.password === oldPassword);
+            if (!existingUser) {
                 errorElement.textContent = 'Old password is incorrect.';
+                return;
             }
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            if (localStorage.getItem('authenticated') === 'true') {
-                window.location.href = 'index.html'; // Redirect to index.html if authenticated
-            }
-        });
+            existingUser.password = newPassword;
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Password reset successful!');
+            showLoginForm();
+        }
     </script>
 </body>
 </html>
