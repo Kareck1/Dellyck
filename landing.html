@@ -42,6 +42,7 @@
             background-color: #007bff;
             color: white;
             font-size: 16px;
+            cursor: pointer; /* Added cursor pointer */
         }
         button:hover {
             background-color: #0056b3;
@@ -53,18 +54,10 @@
             color: red;
         }
     </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWWZJ8N0E8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LWWZJ8N0E8');
-    </script>
 </head>
 <body>
     <div class="container">
+        <!-- Login Form -->
         <div class="form-container" id="loginForm">
             <h2>Login</h2>
             <form id="loginFormElement">
@@ -76,6 +69,7 @@
             <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
         </div>
 
+        <!-- Register Form -->
         <div class="form-container hidden" id="registerForm">
             <h2>Register</h2>
             <form id="registerFormElement">
@@ -91,12 +85,10 @@
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
 
-        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBMG1XAwWndKU3k0W5aHxXc59WOIvhJsbY",
             authDomain: "dellyck.firebaseapp.com",
@@ -107,7 +99,6 @@
             measurementId: "G-0C3H5DZH3R"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const analytics = getAnalytics(app);
@@ -139,7 +130,6 @@
             const password = document.getElementById('registerPassword').value;
             const errorElement = document.getElementById('registerError');
 
-            // Validation checks
             if (!username || !email || !phone || !password) {
                 errorElement.textContent = 'Please fill in all the fields.';
                 return;
@@ -153,18 +143,13 @@
                 return;
             }
 
-            // Register user
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    // Signed in
-                    const user = userCredential.user;
                     localStorage.setItem('authenticated', 'true');
-                    window.location.href = 'index.html'; // Redirect to index.html after registration
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    errorElement.textContent = errorMessage;
+                    errorElement.textContent = error.message;
                 });
         }
 
@@ -173,30 +158,24 @@
             const password = document.getElementById('loginPassword').value;
             const errorElement = document.getElementById('loginError');
 
-            // Validation check
             if (!email || !password) {
                 errorElement.textContent = 'Please enter both email and password.';
                 return;
             }
 
-            // Log in user
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    // Signed in
-                    const user = userCredential.user;
                     localStorage.setItem('authenticated', 'true');
-                    window.location.href = 'index.html'; // Redirect to index.html after login
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    errorElement.textContent = errorMessage;
+                    errorElement.textContent = error.message;
                 });
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('authenticated') === 'true') {
-                window.location.href = 'index.html'; // Redirect to index.html if authenticated
+                window.location.href = 'index.html';
             }
         });
     </script>
