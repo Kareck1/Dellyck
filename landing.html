@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login or Register</title>
+    <title>DELLYCK Hub - Login or Register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +26,12 @@
         }
         img.logo {
             width: 150px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
         }
         input {
             width: 100%;
@@ -43,12 +48,19 @@
             background-color: #007bff;
             color: white;
             font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
         }
         button:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
         }
         a {
             color: #007bff;
+            text-decoration: none;
         }
         .hidden {
             display: none;
@@ -56,11 +68,19 @@
         .error {
             color: red;
         }
+        .form-switch {
+            margin: 20px 0;
+        }
+        .form-switch a {
+            font-weight: bold;
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true" alt="Logo" class="logo">
+        <h1>DELLYCK Hub</h1>
 
         <div id="loginForm">
             <h2>Login</h2>
@@ -69,9 +89,9 @@
                 <input type="password" id="loginPassword" placeholder="Password" required>
                 <button type="button" onclick="login()">Login</button>
                 <p class="error" id="loginError"></p>
-                <p><a href="#" onclick="showForgotPasswordForm()">Forgot Password?</a></p>
+                <p class="form-switch"><a href="#" onclick="showForgotPasswordForm()">Forgot Password?</a></p>
             </form>
-            <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+            <p class="form-switch">Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
         </div>
 
         <div id="registerForm" class="hidden">
@@ -84,7 +104,7 @@
                 <button type="button" onclick="register()">Register</button>
                 <p class="error" id="registerError"></p>
             </form>
-            <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
+            <p class="form-switch">Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
         </div>
 
         <div id="forgotPasswordForm" class="hidden">
@@ -96,7 +116,7 @@
                 <button type="button" onclick="resetPassword()">Reset Password</button>
                 <p class="error" id="forgotPasswordError"></p>
             </form>
-            <p><a href="#" onclick="showLoginForm()">Back to Login</a></p>
+            <p class="form-switch"><a href="#" onclick="showLoginForm()">Back to Login</a></p>
         </div>
     </div>
 
