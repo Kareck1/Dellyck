@@ -19,11 +19,11 @@
         html, body {
             height: 100%;
             margin: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,6 +38,9 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -63,10 +66,17 @@
         .continue-button:hover {
             background-color: #0056b3;
         }
+
+        .logo {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="welcome-container">
+        <a href="https://kareck1.github.io/Dellyck/" class="logo">
+            <img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true" alt="Logo" style="max-width: 100%; height: auto;">
+        </a>
         <h1>Welcome to Dellyck!</h1>
         <div class="user-message" id="userMessage"></div>
         <button class="continue-button" onclick="continueToSite()">Continue</button>
@@ -74,7 +84,6 @@
 
     <script>
         function getUsername() {
-            // Retrieve the username from localStorage or any other source
             return localStorage.getItem('username');
         }
 
@@ -89,21 +98,20 @@
         }
 
         function continueToSite() {
-            // Set a flag in localStorage to indicate that the welcome page has been seen
-            localStorage.setItem('welcomeSeen', 'true');
-            // Redirect to the main site
-            window.location.href = 'index.html'; // Replace with your main site URL
+            // Set flag in sessionStorage to indicate user has seen the welcome page
+            sessionStorage.setItem('welcomeSeen', 'true');
+            window.location.href = 'index.html'; // Redirect to the main site
         }
 
         function checkWelcomePage() {
-            if (localStorage.getItem('welcomeSeen') === 'true') {
-                window.location.href = 'index.html'; // Redirect to main site if welcome page has been seen
+            if (sessionStorage.getItem('welcomeSeen') === 'true') {
+                window.location.href = 'index.html'; // Redirect to the main site if welcome page was already seen
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            checkWelcomePage();
+        document.addEventListener('DOMContentLoaded', () => {
             displayWelcomeMessage();
+            checkWelcomePage();
         });
     </script>
 </body>
