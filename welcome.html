@@ -98,16 +98,17 @@
         }
 
         function continueToSite() {
-            // Set flag in sessionStorage to indicate user has seen the welcome page
-            sessionStorage.setItem('welcomeSeen', 'true');
+            // Set flag in localStorage to indicate user has seen the welcome page
+            localStorage.setItem('welcomeSeen', 'true');
             window.location.href = 'index.html'; // Redirect to the main site
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             displayWelcomeMessage();
-            // Ensure user stays on welcome page unless they click "Continue"
-            if (sessionStorage.getItem('welcomeSeen') === 'true') {
-                window.location.href = 'index.html'; // Redirect to the main site if they have already seen the welcome page
+            // Always stay on welcome page unless they click "Continue"
+            if (localStorage.getItem('welcomeSeen') === 'true') {
+                // Ensure they stay on welcome page regardless of previous visits
+                localStorage.removeItem('welcomeSeen'); // Remove flag to ensure they stay here until they click continue
             }
         });
     </script>
