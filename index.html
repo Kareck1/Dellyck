@@ -328,26 +328,30 @@
       cursor: pointer;
       font-size: 1.5rem;
     }
+/* Style for the panel container */
+.panel-container {
+  position: relative; /* Allows positioning child elements relative to this container */
+  /* Other styling for the panel container */
+}
 
-    .panel-exit {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: red;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      padding: 1rem;
-      cursor: pointer;
-      font-size: 1.5rem;
-      transition: background-color 0.3s ease;
-    }
+/* Style for the exit button */
+.panel-exit {
+  position: absolute; /* Position the button relative to the panel container */
+  bottom: 0; /* Aligns it to the bottom of the panel container */
+  left: 0;
+  width: 100%; /* Full width of the panel container */
+  background: blue; /* Button color */
+  color: white; /* Text color */
+  border: none;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+}
 
-    .panel-exit:hover {
-      background-color: darkGreen;
-      position: Bottom;
-    }
+.panel-exit:hover {
+  background-color: darkred; /* Hover color */
+}
+
 
 .game-tabs {
   display: grid;
@@ -360,7 +364,7 @@
   background-size: cover; /* Cover the entire tab with the image */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent repeating the image */
-  color: Black;
+  color: white;
   padding: 1rem;
   border-radius: 10px;
   text-align: center;
