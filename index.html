@@ -634,7 +634,6 @@
   </div>
   <button class="panel-exit" id="contact-panel-exit">Exit</button>
 </div>
-
 <script>
   // Hamburger menu functionality
   document.querySelector('.hamburger').addEventListener('click', () => {
@@ -684,32 +683,45 @@
     document.getElementById('message-container').innerText = message;
     document.getElementById('message-panel').classList.add('active');
   }
+
+  // Close panels
   document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
-  button.addEventListener('click', () => {
-    button.closest('.panel').classList.remove('open');
+    button.addEventListener('click', () => {
+      button.closest('.panel').classList.remove('open');
+    });
   });
-});
-    // Function to open chat options modal
-function openChatMenu() {
+
+  // Function to open chat options modal
+  function openChatMenu() {
     var modal = document.getElementById("chat-options");
     modal.style.display = "block";
-}
+  }
 
-// Function to trigger Live Chat
-function openLiveChat() {
+  // Function to trigger Live Chat
+  function openLiveChat() {
     // Here you would integrate your live chat functionality
     alert("Opening Live Chat...");
     document.getElementById("chat-options").style.display = "none";
-}
+  }
 
-// Function to trigger WhatsApp Chat
-function openWhatsApp() {
-    var phoneNumber = 'YOUR_WHATSAPP_PHONE_NUMBER'; // Include your WhatsApp number
+  // Function to trigger WhatsApp Chat
+  function openWhatsApp() {
+    var phoneNumber = 'YOUR_WHATSAPP_PHONE_NUMBER'; // Replace with your WhatsApp number
     var whatsappURL = 'https://wa.me/' + phoneNumber;
     window.open(whatsappURL, '_blank');
     document.getElementById("chat-options").style.display = "none";
-}
+  }
 </script>
 
-</body>
-</html>
+<!-- WhatsApp and Live Chat Button -->
+<div class="chat-button" onclick="openChatMenu()">
+    <img src="whatsapp-icon.png" alt="Chat Icon">
+</div>
+
+<!-- Chat Options Modal -->
+<div id="chat-options" class="chat-modal">
+    <div class="chat-options-content">
+        <button onclick="openLiveChat()">Live Chat</button>
+        <button onclick="openWhatsApp()">WhatsApp</button>
+    </div>
+</div>
