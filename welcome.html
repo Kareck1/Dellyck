@@ -103,15 +103,8 @@
             window.location.href = 'index.html'; // Redirect to the main site
         }
 
-        function checkWelcomePage() {
-            if (sessionStorage.getItem('welcomeSeen') === 'true') {
-                window.location.href = 'index.html'; // Redirect to the main site if welcome page was already seen
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             displayWelcomeMessage();
-            checkWelcomePage();
         });
     </script>
 </body>
