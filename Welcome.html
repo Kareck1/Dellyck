@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #000; /* Dark background */
+            color: #fff;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .welcome-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .user-message {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .logout-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Welcome to Dellyck!</h1>
+        <div class="user-message" id="userMessage"></div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        function getUsername() {
+            // Retrieve the username from localStorage or any other source
+            return localStorage.getItem('username');
+        }
+
+        function displayWelcomeMessage() {
+            const username = getUsername();
+            const userMessage = document.getElementById('userMessage');
+            if (username) {
+                userMessage.textContent = `Welcome back, ${username}!`;
+            } else {
+                userMessage.textContent = `Welcome to Dellyck, ${username}!`;
+            }
+        }
+
+        function logout() {
+            // Clear user session and redirect to login page
+            localStorage.removeItem('username');
+            window.location.href = 'login.html'; // Replace with your login page URL
+        }
+
+        document.addEventListener('DOMContentLoaded', displayWelcomeMessage);
+    </script>
+</body>
+</html>
