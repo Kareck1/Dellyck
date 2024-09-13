@@ -304,27 +304,6 @@
       display: block;
       animation: slideIn 0.5s ease forwards;
     }
-.panel {
-  position: relative; /* Make sure the panel is positioned relative for the exit button to be fixed within it */
-  overflow-y: auto;   /* Enable vertical scrolling if content overflows */
-  height: 100vh;      /* Or set a specific height */
-}
-
-.panel-content {
-  padding-bottom: 50px; /* Ensure there's space for the button */
-}
-
-.exit-button {
-  position: fixed; /* Keep the button fixed */
-  bottom: 0;       /* Align to the bottom */
-  left: 0;         /* Align to the left (adjust as needed) */
-  width: 100%;     /* Full width (adjust as needed) */
-  background-color: red; /* Your button color */
-  color: white;    /* Button text color */
-  border: none;    /* Remove border */
-  padding: 10px;   /* Button padding */
-  text-align: center; /* Center text */
-}
 
     @keyframes slideIn {
       0% {
@@ -547,13 +526,6 @@
     <!-- Content for movies -->
   </div>
   <button class="panel-exit" id="movies-panel-exit">Exit</button>
-</div>
-<div class="panel">
-  <!-- Your panel content here -->
-  <div class="panel-content">
-    <!-- Panel content that might be scrollable -->
-  </div>
-  <button class="exit-button">Exit</button>
 </div>
 
 <div id="games-panel" class="panel">
