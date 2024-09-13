@@ -185,7 +185,7 @@
     </div>
 
     <script>
-        let users = [];
+        let users = JSON.parse(localStorage.getItem('users')) || [];
 
         function showRegisterForm() {
             document.getElementById('loginForm').classList.add('hidden');
@@ -231,7 +231,7 @@
             localStorage.setItem('users', JSON.stringify(users));
             localStorage.setItem('authenticated', 'true');
             localStorage.setItem('username', username);
-            window.location.href = 'welcome.html';
+            window.location.href = `welcome.html?username=${encodeURIComponent(username)}`;
         }
 
         function login() {
@@ -250,7 +250,7 @@
             if (user) {
                 localStorage.setItem('authenticated', 'true');
                 localStorage.setItem('username', user.username);
-                window.location.href = 'welcome.html';
+                window.location.href = `welcome.html?username=${encodeURIComponent(user.username)}`;
             } else {
                 errorElement.textContent = 'Invalid email or password.';
             }
@@ -258,7 +258,8 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('authenticated') === 'true') {
-                window.location.href = 'welcome.html';
+                const username = localStorage.getItem('username');
+                window.location.href = `welcome.html?username=${encodeURIComponent(username)}`;
             }
         });
     </script>
