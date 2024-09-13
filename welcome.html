@@ -45,7 +45,7 @@
             margin: 10px 0;
         }
 
-        .logout-button {
+        .continue-button {
             padding: 10px 20px;
             border: none;
             border-radius: 8px;
@@ -56,7 +56,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .logout-button:hover {
+        .continue-button:hover {
             background-color: #0056b3;
         }
     </style>
@@ -65,7 +65,7 @@
     <div class="welcome-container">
         <h1>Welcome to Dellyck!</h1>
         <div class="user-message" id="userMessage"></div>
-        <button class="logout-button" onclick="logout()">Logout</button>
+        <button class="continue-button" onclick="continueToSite()">Continue</button>
     </div>
 
     <script>
@@ -80,14 +80,13 @@
             if (username) {
                 userMessage.textContent = `Welcome back, ${username}!`;
             } else {
-                userMessage.textContent = `Welcome to Dellyck, ${username}!`;
+                userMessage.textContent = `Welcome to Dellyck!`;
             }
         }
 
-        function logout() {
-            // Clear user session and redirect to login page
-            localStorage.removeItem('username');
-            window.location.href = 'login.html'; // Replace with your login page URL
+        function continueToSite() {
+            // Redirect to the main site
+            window.location.href = 'index.html'; // Replace with your main site URL
         }
 
         document.addEventListener('DOMContentLoaded', displayWelcomeMessage);
