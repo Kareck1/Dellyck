@@ -328,35 +328,31 @@
       cursor: pointer;
       font-size: 1.5rem;
     }
-/* Style for the panel container */
-/* Style for the panel container */
-.panel-container {
-  position: relative; /* Allows positioning child elements relative to this container */
-  /* Other styling for the panel container */
-}
-
-/* Style for the exit button */
+/* Style for the exit button as a fixed overlay */
 .panel-exit {
-  position: absolute; /* Position the button relative to the panel container */
-  bottom: 0; /* Aligns it to the bottom of the panel container */
+  position: fixed; /* Fixed position in the viewport, independent of the panel */
+  bottom: 0; /* Aligns it to the bottom of the screen */
   left: 0;
-  width: 100%; /* Full width of the panel container */
+  width: 100%; /* Full width of the viewport */
   background: blue; /* Button color */
   color: white; /* Text color */
   border: none;
   padding: 15px;
   text-align: center;
   cursor: pointer;
+  z-index: 1000; /* Ensures it appears above all other elements */
+  display: none; /* Hidden by default, shown when the panel is toggled */
 }
 
 .panel-exit:hover {
-  background-color: darkred; /* Hover color */
+  background-color: darkred; /* Hover effect */
 }
 
-
-.panel-exit:hover {
-  background-color: darkred; /* Hover color */
+/* To show the exit button when the panel is active */
+.panel-active .panel-exit {
+  display: block; /* Make the button visible when panel is toggled */
 }
+
 
 
 .game-tabs {
