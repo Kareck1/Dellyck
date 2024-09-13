@@ -16,13 +16,17 @@
             }
         }
 
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
             background: #000; /* Dark background */
             color: #fff;
             text-align: center;
@@ -85,11 +89,22 @@
         }
 
         function continueToSite() {
+            // Set a flag in localStorage to indicate that the welcome page has been seen
+            localStorage.setItem('welcomeSeen', 'true');
             // Redirect to the main site
             window.location.href = 'index.html'; // Replace with your main site URL
         }
 
-        document.addEventListener('DOMContentLoaded', displayWelcomeMessage);
+        function checkWelcomePage() {
+            if (localStorage.getItem('welcomeSeen') === 'true') {
+                window.location.href = 'index.html'; // Redirect to main site if welcome page has been seen
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            checkWelcomePage();
+            displayWelcomeMessage();
+        });
     </script>
 </body>
 </html>
