@@ -105,6 +105,10 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             displayWelcomeMessage();
+            // Ensure user stays on welcome page unless they click "Continue"
+            if (sessionStorage.getItem('welcomeSeen') === 'true') {
+                window.location.href = 'index.html'; // Redirect to the main site if they have already seen the welcome page
+            }
         });
     </script>
 </body>
