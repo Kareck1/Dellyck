@@ -44,27 +44,25 @@
             font-family: Arial, sans-serif;
             margin: 0;
             height: 100vh;
-            background: url('https://example.com/dark-matrix-background.jpg') no-repeat center center fixed;
+            background: #000; /* Dark background */
             background-size: cover;
             backdrop-filter: blur(5px);
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
             width: 320px;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9); /* Darker background */
             animation: fadeIn 1s ease-in-out;
             z-index: 1000;
-            cursor: move;
         }
 
         h2 {
@@ -263,34 +261,6 @@
                 window.location.href = 'welcome.html';
             }
         });
-
-        // Make the login box draggable
-        const loginBox = document.getElementById('loginBox');
-
-        loginBox.onmousedown = function(event) {
-            let shiftX = event.clientX - loginBox.getBoundingClientRect().left;
-            let shiftY = event.clientY - loginBox.getBoundingClientRect().top;
-
-            function moveAt(pageX, pageY) {
-                loginBox.style.left = pageX - shiftX + 'px';
-                loginBox.style.top = pageY - shiftY + 'px';
-            }
-
-            function onMouseMove(event) {
-                moveAt(event.pageX, event.pageY);
-            }
-
-            document.addEventListener('mousemove', onMouseMove);
-
-            loginBox.onmouseup = function() {
-                document.removeEventListener('mousemove', onMouseMove);
-                loginBox.onmouseup = null;
-            };
-        };
-
-        loginBox.ondragstart = function() {
-            return false;
-        };
     </script>
 </body>
 </html>
