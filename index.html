@@ -108,6 +108,59 @@
       from { opacity: 0.5; }
       to { opacity: 1; }
     }
+      .donation-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #FF5733; /* Bright color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.donation-button:hover {
+    background-color: #FF6F61; /* Slightly different color on hover */
+}
+
+.donation-button:active {
+    transform: scale(1.1); /* Increase size when clicked */
+}
+
+.donation-button img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.donation-button:active img {
+    transform: scale(1.2); /* Enlarge image when clicked */
+}
+
+/* Optional: add a subtle 'pop-out' animation */
+@keyframes pop-out {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.donation-button:hover {
+    animation: pop-out 0.6s ease;
+}
+
 
     .auth-buttons {
       margin-top: 1rem;
@@ -525,6 +578,10 @@
         <button onclick="openWhatsApp()">WhatsApp</button>
     </div>
 </div>
+    
+<a href="tel:*182*8*1*522894#" class="donation-button">
+    <img src="heart-icon.png" alt="Donate">
+</a>
 
 <script>
   // Function to toggle the contact options menu
