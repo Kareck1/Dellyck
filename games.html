@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games - Dellyck</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://i.pinimg.com/564x/79/7b/57/797b571b4f1631fd6e28428cb37dd1d9.jpg') center center no-repeat, linear-gradient(45deg, #ffcccb, #d5f4e6);
+      background-size: cover, 50% 100%;
+      background-blend-mode: normal;
+      background-attachment: fixed;
+    }
+
+    header {
+      color: #333;
+      padding: 1rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-bottom: 1px solid #ddd;
+      z-index: 5;
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .logo img {
+      max-width: 80px;
+      height: auto;
+    }
+
+    .header-text {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    .game-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+      padding: 1rem;
+    }
+
+    .game-tab {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-size: 1rem;
+      font-weight: bold;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .game-tab:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .back-button {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: none;
+      color: black;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true" alt="Dellyck Logo"></a>
+    </div>
+    <div class="header-text">Games</div>
+  </header>
+
+  <div class="game-tabs">
+    <div class="game-tab" data-url="https://www.instagram.com/iam__kingderrick" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/header-image.png?raw=true');">Developer</div>
+    <div class="game-tab" data-url="https://www.footballizer.com/match/play/" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/football.jpg?raw=true');">Football</div>
+    <div class="game-tab" data-url="https://gamecomets.com/game/temple-run-2/" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/templerun.png?raw=true');">Temple Run 2</div>
+    <div class="game-tab" data-url="https://poki.com/en/g/moto-x3m" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/moto.jpg?raw=true');">Moto Racing</div>
+    <div class="game-tab" data-url="https://poki.com/en/g/battle-forces" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/shooting.jpg?raw=true');">Battle</div>
+    <div class="game-tab" data-url="https://10fastfingers.com/" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Typing.jpg?raw=true');">Typing</div>
+    <div class="game-tab" data-url="https://example.com/game2" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/SNAKE.jpg?raw=true');">Snake</div>
+    <div class="game-tab" data-url="https://example.com/game3" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/block.jpg?raw=true');">Block Puzzle</div>
+    <div class="game-tab" data-url="https://example.com/game4" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/bike.jpg?raw=true');">Bike Racing</div>
+    <div class="game-tab" data-url="https://www.gameszap.com/game/19462/angry-birds-classic.html" style="background-image: url('https://github.com/Kareck1/Dellyck/blob/main/Angrybirds.jpg?raw=true');">Angry Birds</div>
+  </div>
+
+  <button class="back-button" onclick="window.history.back()">Back</button>
+
+  <footer>
+    <p>© 2024 Dellyck Company. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.game-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        window.open(tab.getAttribute('data-url'), '_blank');
+      });
+    });
+  </script>
+</body>
+</html>
