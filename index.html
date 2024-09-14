@@ -92,43 +92,6 @@
       max-width: 80px;
       height: auto;
     }
-      body {
-    font-family: Arial, sans-serif;
-}
-
-.search-container {
-    position: relative;
-    display: inline-block;
-}
-
-#searchBox {
-    width: 200px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#dropdown {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 4px;
-}
-
-#dropdown a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-#dropdown a:hover {
-    background-color: #f1f1f1;
-}
-
 
 .animated-text {
   margin: 0;
@@ -535,29 +498,6 @@
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
   <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Dropdown</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="search-container">
-        <input type="text" id="searchBox" placeholder="Search...">
-        <div id="dropdown" class="dropdown-content">
-            <!-- Dropdown items will be added dynamically -->
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-
-
-  <ul id="suggestions-list" class="suggestions-list"></ul>
-</header>
 </div>
 
 <div class="hamburger">☰</div>
@@ -763,42 +703,6 @@
     opacity: 1;
     transform: scale(1);
   }
-  header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  justify-content: center; /* Center search bar horizontally */
-}
-
-#search-bar {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  margin-left: 0.5rem;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
 
   .contact-options-content button {
     display: block;
@@ -861,122 +765,38 @@ button:hover {
   </div>
   <button class="panel-exit" id="contact-panel-exit">Exit</button>
 </div>
-    <script>
+
+<script>
   // Hamburger menu functionality
   document.querySelector('.hamburger').addEventListener('click', () => {
     document.querySelector('nav').classList.toggle('active');
   });
 
-// Hamburger menu functionality
-document.querySelector('.hamburger').addEventListener('click', () => {
-    document.querySelector('nav').classList.toggle('active');
-});
-
-// Navigation links
-document.getElementById('home-nav').addEventListener('click', (e) => {
+  // Navigation links
+  document.getElementById('home-nav').addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.querySelector('nav').classList.remove('active');
-});
+  });
 
-document.getElementById('about-nav').addEventListener('click', (e) => {
+  document.getElementById('about-nav').addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('about-panel').classList.add('open');
     document.querySelector('nav').classList.remove('active');
-});
+  });
 
-document.getElementById('contact-nav').addEventListener('click', (e) => {
+  document.getElementById('contact-nav').addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('contact-panel').classList.add('open');
     document.querySelector('nav').classList.remove('active');
-});
+  });
 
-// Tab functionality for movies
-document.querySelectorAll('#movies-tab').forEach(tab => {
+  // Tab functionality for movies
+  document.querySelectorAll('#movies-tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
-        const panelId = e.target.id.replace('-tab', '-panel');
-        document.querySelector(`#${panelId}`).classList.add('open');
+      const panelId = e.target.id.replace('-tab', '-panel');
+      document.querySelector(`#${panelId}`).classList.add('open');
     });
-});
+  });
 
-// Panel close buttons
-document.querySelectorAll('.panel-close, .panel-exit').forEach(button => {
-    button.addEventListener('click', () => {
-        button.closest('.panel').classList.remove('open');
-    });
-});
-
-// Search functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const searchBox = document.getElementById('searchBox');
-    const dropdown = document.getElementById('dropdown');
-
-    // List of items to display in the dropdown
-    const items = [
-        { text: 'Blog', href: '#blog' },
-        { text: 'Games', href: '#games' },
-        { text: 'About', href: '#about' },
-        { text: 'Movies', href: '#movies' },
-        { text: 'Contacts', href: '#contacts' },
-        { text: 'Donate', href: '#donate' },
-        { text: 'WhatsApp', href: '#whatsapp' },
-        { text: 'Call', href: '#call' }
-    ];
-
-    // Function to update the dropdown content based on search input
-    function updateDropdown() {
-        dropdown.innerHTML = ''; // Clear existing items
-        const filter = searchBox.value.toLowerCase();
-        
-        // Filter and create dropdown items based on search input
-        items
-            .filter(item => item.text.toLowerCase().includes(filter))
-            .forEach(item => {
-                const a = document.createElement('a');
-                a.href = item.href;
-                a.textContent = item.text;
-                dropdown.appendChild(a);
-            });
-    }
-
-    // Show the dropdown and update its content when the search box is clicked
-    searchBox.addEventListener('click', () => {
-        dropdown.style.display = 'block';
-        updateDropdown();
-    });
-
-    // Update the dropdown content as the user types in the search box
-    searchBox.addEventListener('input', () => {
-        updateDropdown();
-    });
-
-    // Hide the dropdown when clicking outside of the search box and dropdown
-    document.addEventListener('click', (event) => {
-        if (!searchBox.contains(event.target) && !dropdown.contains(event.target)) {
-            dropdown.style.display = 'none';
-        }
-    });
-
-    // Hide the dropdown when a dropdown item is clicked
-    dropdown.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A') {
-            dropdown.style.display = 'none';
-        }
-    });
-});
-
-// Message panel
-document.getElementById('close-btn').addEventListener('click', () => {
-    document.getElementById('message-panel').classList.remove('active');
-});
-
-function showMessage(message) {
-    document.getElementById('message-container').innerText = message;
-    document.getElementById('message-panel').classList.add('active');
-}
-
-// Games tab opens games.html
-document.getElementById('games-tab').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.href = 'games.html';
-});
+  // Pa
