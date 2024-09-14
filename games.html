@@ -92,16 +92,6 @@
     .back-button:hover {
       background-color: #0056b3;
     }
-
-    footer {
-      background-color: none;
-      color: black;
-      text-align: center;
-      padding: 1rem;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
   </style>
 </head>
 <body>
@@ -126,11 +116,6 @@
   </div>
 
   <button class="back-button" onclick="window.history.back()">Back</button>
-
-  <footer>
-    <p>© 2024 Dellyck Company. All rights reserved.</p>
-  </footer>
-
   <script>
     document.querySelectorAll('.game-tab').forEach(function(tab) {
       tab.addEventListener('click', function() {
