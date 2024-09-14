@@ -721,6 +721,11 @@
     button.closest('.panel').classList.remove('open');
   });
 });
+    document.querySelectorAll('.game-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    window.open(tab.getAttribute('data-url'), '_blank');
+  });
+});
 </script>
 
 </body>
