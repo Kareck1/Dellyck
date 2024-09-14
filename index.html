@@ -579,9 +579,48 @@
     </div>
 </div>
     
-<a href="tel:*182*8*1*522894#" class="donation-button">
-    <img src="mtn.jpg" alt="Donate">
-</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate Button with Support Text</title>
+  <style>
+    .support-button-container {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Adjusts space between text and button */
+    }
+
+    .support-text {
+      font-size: 20px; /* Adjust the size of the text */
+      font-weight: bold;
+      color: #000; /* Change to your preferred color */
+    }
+
+    .donate-button img {
+      width: 60px; /* Adjust the size of your button */
+      height: 60px;
+      border-radius: 50%; /* Ensures it's a circle */
+      transition: transform 0.2s ease;
+    }
+
+    .donate-button img:hover {
+      transform: scale(1.1); /* Adds the growing animation on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="support-button-container">
+    <span class="support-text">Support Me</span>
+    <a href="tel:*182*8*1*522894#" class="donate-button">
+      <img src="https://github.com/Kareck1/Dellyck/blob/main/mtn.jpg?raw=true" alt="MTN Logo">
+    </a>
+  </div>
+
+</body>
+</html>
 
 <script>
   // Function to toggle the contact options menu
