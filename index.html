@@ -498,13 +498,12 @@
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
   <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
-      <div class="search-container">
+   <div class="search-container">
     <input type="text" id="search-bar" placeholder="Search...">
     <button onclick="performSearch()">Search</button>
   </div>
+  <ul id="suggestions-list" class="suggestions-list"></ul>
 </header>
-</div>
-
 <div class="hamburger">☰</div>
 
 <nav>
@@ -862,7 +861,47 @@ button:hover {
     e.preventDefault();
     window.location.href = 'games.html';
   });
+
+  // Search functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchBar = document.getElementById('search-bar');
+    const suggestionsList = document.getElementById('suggestions-list');
+    
+    // Example data - replace with actual items and services
+    const itemsAndServices = [
+      'Item 1',
+      'Item 2',
+      'Service 1',
+      'Service 2',
+      // Add more items and services here
+    ];
+
+    function updateSuggestions() {
+      const query = searchBar.value.toLowerCase();
+      suggestionsList.innerHTML = ''; // Clear previous suggestions
+
+      if (query) {
+        const filteredItems = itemsAndServices.filter(item => item.toLowerCase().includes(query));
+        filteredItems.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          li.addEventListener('click', () => {
+            searchBar.value = item; // Set clicked suggestion as value
+            suggestionsList.innerHTML = ''; // Clear suggestions
+          });
+          suggestionsList.appendChild(li);
+        });
+      }
+    }
+
+    searchBar.addEventListener('input', updateSuggestions);
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchBar.contains(e.target) && !suggestionsList.contains(e.target)) {
+        suggestionsList.innerHTML = ''; // Clear suggestions
+      }
+    });
+  });
 </script>
 
-</body>
-</html>
