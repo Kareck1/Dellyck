@@ -640,58 +640,40 @@
     <img src="mtn.jpg" alt="Donate">
 </a>
 <style>
+<a href="tel:*182*8*1*522894#" class="donation-button">
+    <img src="mtn.jpg" alt="Donate">
+</a>
+<stle>
+<style>
 .donation-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #FF5733; /* Bright color */
-    display: flex;
-    align-items: center;
+    display: inline-flex;
     justify-content: center;
-    color: #fff;
-    font-size: 24px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
-    position: relative;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     overflow: hidden;
-}
-
-.donation-button:hover {
-    background-color: #FF6F61; /* Slightly different color on hover */
-}
-
-.donation-button:active {
-    transform: scale(1.1); /* Increase size when clicked */
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .donation-button img {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.donation-button:active img {
-    transform: scale(1.2); /* Enlarge image when clicked */
-}
-
-/* Optional: add a subtle 'pop-out' animation */
-@keyframes pop-out {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 .donation-button:hover {
-    animation: pop-out 0.6s ease;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
+
+.donation-button:active img {
+    transform: scale(1.2);
+}
+
 
   <p>© 2024 Dellyck Company. All rights reserved.</p>
 </footer>
