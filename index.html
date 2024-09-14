@@ -498,6 +498,11 @@
   <p class="bold-text">Your solution for innovative digital experiences.</p>
   <p>Welcome to Dellyck where innovation meets convenience.</p>
   <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
+      <div class="search-container">
+    <input type="text" id="search-bar" placeholder="Search...">
+    <button onclick="performSearch()">Search</button>
+  </div>
+</header>
 </div>
 
 <div class="hamburger">☰</div>
@@ -703,6 +708,42 @@
     opacity: 1;
     transform: scale(1);
   }
+  header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: center; /* Center search bar horizontally */
+}
+
+#search-bar {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
 
   .contact-options-content button {
     display: block;
