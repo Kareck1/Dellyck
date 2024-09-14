@@ -616,7 +616,28 @@
   .contact-options-content button:nth-child(1) {
     background-color: #34B7F1; /* Call button color */
   }
-    <a href="tel:*182*8*1*522894#" class="donation-button">
+
+/* Optional: add a subtle 'pop-out' animation */
+@keyframes pop-out {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.donation-button:hover {
+    animation: pop-out 0.6s ease;
+}
+
+</style>
+</body>
+</html>
+<a href="tel:*182*8*1*522894#" class="donation-button">
     <img src="heart-icon.png" alt="Donate">
 </a>
 <style>
@@ -672,10 +693,6 @@
 .donation-button:hover {
     animation: pop-out 0.6s ease;
 }
-
-</style>
-</body>
-</html>
 
   <p>© 2024 Dellyck Company. All rights reserved.</p>
 </footer>
