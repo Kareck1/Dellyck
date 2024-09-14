@@ -493,12 +493,94 @@
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true"></a>
   </div>
   <div class="animated-text">DELLYCK</div>
+  <!-- Search Bar in Header -->
+  <div class="search-container">
+    <input type="text" id="search-bar" placeholder="Search...">
+    <button onclick="performSearch()">Search</button>
+  </div>
 </header>
-<div class="main-content">
-  <p class="bold-text">Your solution for innovative digital experiences.</p>
-  <p>Welcome to Dellyck where innovation meets convenience.</p>
-  <button class="animated-button" onclick="window.location.href='https://appilink.company.site'">OUR BLOG</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header with Search Bar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo img {
+      max-height: 50px;
+    }
+
+    .animated-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-top: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #search-bar {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true" alt="Dellyck Logo"></a>
+    </div>
+    <div class="animated-text">DELLYCK</div>
+    <!-- Search Bar in Header -->
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <script>
+    function performSearch() {
+      // Add your search functionality here
+      alert('Search button clicked!');
+    }
+  </script>
+</body>
+</html>
 
 <div class="hamburger">☰</div>
 
