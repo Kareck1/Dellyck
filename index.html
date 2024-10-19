@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWWZJ8N0E8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,7 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    
+    <style>
+
     <script>
         function logout() {
             localStorage.removeItem('authenticated'); // Remove authentication status
@@ -29,7 +31,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    
+    <style>
+        /* Your existing styles */
     </style>
 </head>
     <script>
@@ -39,7 +42,11 @@
             }
         });
     </script>
-    
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dellyck Company</title>
@@ -81,10 +88,10 @@
   margin: 0;
   font-size: 2.5rem;
   font-weight: 900; /* Excessive boldness */
-  color: White;
-  animation: pulse 1.5s infinite;
+  color: White; /* Default color */
+  animation: pulse 1.5s infinite; /* Example animation */
   text-align: center;
-  text-shadow: 1px 1px 4px Blue;
+  text-shadow: 1px 1px 4px Blue; /* Adding a black outline */
 }
 
 
@@ -96,7 +103,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #FF5733;
+    background-color: #FF5733; /* Bright color */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,11 +118,11 @@
 }
 
 .donation-button:hover {
-    background-color: #FF6F61;
+    background-color: #FF6F61; /* Slightly different color on hover */
 }
 
 .donation-button:active {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Increase size when clicked */
 }
 
 .donation-button img {
@@ -125,9 +132,10 @@
 }
 
 .donation-button:active img {
-    transform: scale(1.2);
+    transform: scale(1.2); /* Enlarge image when clicked */
 }
-      
+
+/* Optional: add a subtle 'pop-out' animation */
 @keyframes pop-out {
     0% {
         transform: scale(1);
@@ -246,8 +254,8 @@
     }
 
     .tab-box {
-      width: 180px;
-      height: 150px;
+      width: 180px; /* Reduced size */
+      height: 150px; /* Reduced size */
       border: 3px solid #ddd;
       border-radius: 10px;
       background-color: #f9f9f9;
@@ -257,7 +265,7 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-size: 1.4rem;
+      font-size: 1.4rem; /* Adjusted font size */
       font-weight: bold;
       color: white;
 
@@ -363,42 +371,44 @@
       cursor: pointer;
       font-size: 1.5rem;
     }
+/* Style for the exit button as a fixed overlay */
 .panel-exit {
-  position: fixed;
-  bottom: 0; 
+  position: fixed; /* Fixed position in the viewport, independent of the panel */
+  bottom: 0; /* Aligns it to the bottom of the screen */
   left: 0;
-  width: 100%;
-  background: blue;
-  color: white;
+  width: 100%; /* Full width of the viewport */
+  background: blue; /* Button color */
+  color: white; /* Text color */
   border: none;
   padding: 15px;
   text-align: center;
   cursor: pointer;
-  z-index: 1000; 
-  display: none;
-
-.panel-exit:hover {
-  background-color: darkred;
+  z-index: 1000; /* Ensures it appears above all other elements */
+  display: none; /* Hidden by default, shown when the panel is toggled */
 }
 
+.panel-exit:hover {
+  background-color: darkred; /* Hover effect */
+}
 
+/* To show the exit button when the panel is active */
 .panel-active .panel-exit {
-  display: block;
+  display: block; /* Make the button visible when panel is toggled */
 }
 
 
 
 .game-tabs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust size as needed */
   gap: 1rem;
   margin: 1rem 0;
 }
 
 .game-tab {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover; /* Cover the entire tab with the image */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
   color: white;
   padding: 1rem;
   border-radius: 10px;
@@ -407,7 +417,7 @@
   transition: transform 0.3s ease, background-color 0.3s ease;
   font-size: 1rem;
   font-weight: bold;
-  height: 150px;
+  height: 150px; /* Adjust height as needed */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -415,7 +425,7 @@
 
 .game-tab:hover {
   transform: scale(1.05);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: add overlay color */
 }
 
 
@@ -424,13 +434,13 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-    
+  </style>
+</head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    
     <style>
-
+        /* Your existing styles */
         button {
             padding: 10px;
             border: none;
@@ -443,7 +453,10 @@
         button:hover {
             background-color: #0056b3;
         }
-
+    </style>
+</head>
+<body>
+    <!-- Your existing content -->
 
     <!-- Logout button -->
     <button onclick="logout()">Logout</button>
@@ -460,7 +473,6 @@
             }
         });
     </script>
-      
 <header>
   <div class="logo">
     <a href="https://kareck1.github.io/Dellyck/"><img src="https://github.com/Kareck1/Dellyck/blob/main/Logo.png?raw=true"></a>
@@ -518,6 +530,7 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
 
+    /* Button Animation */
     .animated-button::before {
       content: "";
       position: absolute;
@@ -542,6 +555,7 @@
     <img src="whatsapp.png" alt="Chat Icon">
 </div>
 
+<!-- Contact Options Modal -->
 <div id="contact-options" class="chat-modal">
     <div class="contact-options-content">
         <button onclick="callCompany()">Call</button>
@@ -554,6 +568,7 @@
 </a>
 
 <script>
+  // Function to toggle the contact options menu
   function toggleContactMenu() {
     var modal = document.getElementById("contact-options");
     if (modal.classList.contains("show")) {
@@ -565,22 +580,26 @@
     }
   }
 
+  // Function to trigger a phone call
   function callCompany() {
-    var phoneNumber = '+250783622438'; 
+    var phoneNumber = '+250783622438'; // Company phone number
     window.open('tel:' + phoneNumber);
+    // Close the modal after opening the phone app
     document.getElementById("contact-options").classList.remove("show");
   }
 
+  // Function to trigger WhatsApp chat
   function openWhatsApp() {
-    var phoneNumber = '250783622438';
+    var phoneNumber = '250783622438'; // Company WhatsApp number
     var whatsappURL = 'https://wa.me/' + phoneNumber;
     window.open(whatsappURL, '_blank');
-
+    // Close the modal after opening WhatsApp
     document.getElementById("contact-options").classList.remove("show");
   }
 </script>
 
 <style>
+  /* WhatsApp Button Styles */
   .chat-button {
     cursor: pointer;
     position: fixed;
@@ -588,7 +607,7 @@
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #25D366;
+    background-color: #25D366; /* WhatsApp color */
     border-radius: 50%;
     display: flex;
     justify-content: center;
